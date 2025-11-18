@@ -177,11 +177,50 @@ function setupCardGlowEffect() {
     });
 }
 
+function setupCardScrollAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        const cards = document.querySelectorAll('[data-gsap-card="true"]');
+        cards.forEach(card => {
+            card.classList.add('fade-in-on-scroll');
+        });
+        return;
+    }
+
+    const cards = document.querySelectorAll('[data-gsap-card="true"]');
+
+    cards.forEach((card, index) => {
+        gsap.set(card, {
+            opacity: 0,
+            y: 50,
+            rotationX: -90,
+            transformOrigin: "center top"
+        });
+
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top 90%",
+            end: "bottom 20%",
+            onEnter: () => {
+                gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    rotationX: 0,
+                    duration: 1.2,
+                    delay: 0.1 * index,
+                    ease: "elastic.out(1, 0.5)"
+                });
+            },
+            once: true
+        });
+    });
+}
+
+
 // ----------------------------------------------------
 // CÓDIGO THREE.JS (VARS GLOBAIS E CONSTANTES)
 // ----------------------------------------------------
-const COLOR_PRIMARY = 0x60a5fa; 
-const COLOR_SECONDARY = 0xa855f7; 
+const COLOR_PRIMARY = 0x60a5fa;
+const COLOR_SECONDARY = 0xa855f7;
 
 let mouseX = 0;
 let mouseY = 0;
@@ -276,8 +315,8 @@ function setupBackgroundScene() {
     ];
 
     const shapeMaterial = new THREE.MeshPhongMaterial({
-        color: COLOR_SECONDARY, 
-        emissive: COLOR_PRIMARY, 
+        color: COLOR_SECONDARY,
+        emissive: COLOR_PRIMARY,
         emissiveIntensity: 0.1,
         shininess: 100,
         wireframe: true,
@@ -306,7 +345,7 @@ function setupBackgroundScene() {
     techCylinders = [];
     const cylinderCount = 8;
     const cylinderMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY, 
+        color: COLOR_PRIMARY,
         wireframe: true,
         transparent: true,
         opacity: 0.1
@@ -340,7 +379,7 @@ function setupBackgroundScene() {
     const reactiveParticleCount = 300;
     const reactiveParticleGeometry = new THREE.SphereGeometry(0.2, 8, 8);
     const reactiveParticleMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY, 
+        color: COLOR_PRIMARY,
         transparent: true,
         opacity: 0.05,
         blending: THREE.AdditiveBlending
@@ -362,7 +401,7 @@ function setupBackgroundScene() {
     networkPoints = [];
     const networkGeometry = new THREE.BufferGeometry();
     const networkLineMaterial = new THREE.LineBasicMaterial({
-        color: COLOR_PRIMARY, 
+        color: COLOR_PRIMARY,
         transparent: true,
         opacity: 0.1,
         blending: THREE.AdditiveBlending
@@ -387,7 +426,7 @@ function setupBackgroundScene() {
     dataPanels = [];
     const panelCount = 5;
     const panelMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY, 
+        color: COLOR_PRIMARY,
         wireframe: true,
         transparent: true,
         opacity: 0.08
@@ -409,7 +448,7 @@ function setupBackgroundScene() {
 
     // 7. Esferas de Energia Pulsante (Core Energy)
     energySpheres = [];
-    const pulseLight = new THREE.PointLight(COLOR_SECONDARY, 5, 100); 
+    const pulseLight = new THREE.PointLight(COLOR_SECONDARY, 5, 100);
     pulseLight.position.set(0, 0, -150);
     scene.add(pulseLight);
 
@@ -417,7 +456,7 @@ function setupBackgroundScene() {
         const sphereGeometry = new THREE.IcosahedronGeometry(8, 1);
         const sphereMaterial = new THREE.MeshPhongMaterial({
             color: 0x000000,
-            emissive: COLOR_SECONDARY, 
+            emissive: COLOR_SECONDARY,
             emissiveIntensity: 0.2,
             shininess: 10
         });
@@ -434,7 +473,7 @@ function setupBackgroundScene() {
     // 8. Partículas Sequenciais (Flowing Data Stream)
     dataStreamParticles = [];
     const streamGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const streamMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PRIMARY }); 
+    const streamMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PRIMARY });
 
     for (let i = 0; i < DATA_STREAM_COUNT; i++) {
         const particle = new THREE.Mesh(streamGeometry, streamMaterial.clone());
@@ -778,9 +817,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMouseGlow();
 
     setupDockEffect();
-    
-    // CHAMADA ADICIONAL PARA O NOVO EFEITO
-    setupCardGlowEffect(); 
+
+    setupCardGlowEffect();
+
+    setupCardScrollAnimation();
 
     const mainHeader = document.getElementById('main-header');
 
