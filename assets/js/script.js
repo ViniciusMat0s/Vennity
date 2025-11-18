@@ -140,11 +140,48 @@ function setupMouseGlow() {
     });
 }
 
+function setupCardGlowEffect() {
+    const cards = document.querySelectorAll('.service-card');
+
+    cards.forEach(card => {
+        const glowOverlay = card.querySelector('.card-glow-overlay');
+        if (!glowOverlay) return;
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            glowOverlay.style.setProperty('--mouse-x', `${xPercent}%`);
+            glowOverlay.style.setProperty('--mouse-y', `${yPercent}%`);
+
+            gsap.to(card, {
+                x: (x - rect.width / 2) * 0.05,
+                y: (y - rect.height / 2) * 0.05,
+                duration: 0.3,
+                ease: "power2.out",
+                overwrite: true
+            });
+        });
+
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, { scale: 1.02, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, { x: 0, y: 0, scale: 1, duration: 0.5, ease: "power3.out" });
+        });
+    });
+}
+
 // ----------------------------------------------------
 // CÓDIGO THREE.JS (VARS GLOBAIS E CONSTANTES)
 // ----------------------------------------------------
-const COLOR_PRIMARY = 0x60a5fa; // Azul/Ciano Claro
-const COLOR_SECONDARY = 0xa855f7; // Roxo
+const COLOR_PRIMARY = 0x60a5fa; 
+const COLOR_SECONDARY = 0xa855f7; 
 
 let mouseX = 0;
 let mouseY = 0;
@@ -239,8 +276,8 @@ function setupBackgroundScene() {
     ];
 
     const shapeMaterial = new THREE.MeshPhongMaterial({
-        color: COLOR_SECONDARY, // ROXO
-        emissive: COLOR_PRIMARY, // EMISSIVO AZUL
+        color: COLOR_SECONDARY, 
+        emissive: COLOR_PRIMARY, 
         emissiveIntensity: 0.1,
         shininess: 100,
         wireframe: true,
@@ -269,7 +306,7 @@ function setupBackgroundScene() {
     techCylinders = [];
     const cylinderCount = 8;
     const cylinderMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY, // AZUL/CIANO
+        color: COLOR_PRIMARY, 
         wireframe: true,
         transparent: true,
         opacity: 0.1
@@ -303,7 +340,7 @@ function setupBackgroundScene() {
     const reactiveParticleCount = 300;
     const reactiveParticleGeometry = new THREE.SphereGeometry(0.2, 8, 8);
     const reactiveParticleMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY, // AZUL/CIANO
+        color: COLOR_PRIMARY, 
         transparent: true,
         opacity: 0.05,
         blending: THREE.AdditiveBlending
@@ -325,7 +362,7 @@ function setupBackgroundScene() {
     networkPoints = [];
     const networkGeometry = new THREE.BufferGeometry();
     const networkLineMaterial = new THREE.LineBasicMaterial({
-        color: COLOR_PRIMARY, // AZUL/CIANO
+        color: COLOR_PRIMARY, 
         transparent: true,
         opacity: 0.1,
         blending: THREE.AdditiveBlending
@@ -350,7 +387,7 @@ function setupBackgroundScene() {
     dataPanels = [];
     const panelCount = 5;
     const panelMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY, // AZUL/CIANO
+        color: COLOR_PRIMARY, 
         wireframe: true,
         transparent: true,
         opacity: 0.08
@@ -372,7 +409,7 @@ function setupBackgroundScene() {
 
     // 7. Esferas de Energia Pulsante (Core Energy)
     energySpheres = [];
-    const pulseLight = new THREE.PointLight(COLOR_SECONDARY, 5, 100); // LUZ ROXA
+    const pulseLight = new THREE.PointLight(COLOR_SECONDARY, 5, 100); 
     pulseLight.position.set(0, 0, -150);
     scene.add(pulseLight);
 
@@ -380,7 +417,7 @@ function setupBackgroundScene() {
         const sphereGeometry = new THREE.IcosahedronGeometry(8, 1);
         const sphereMaterial = new THREE.MeshPhongMaterial({
             color: 0x000000,
-            emissive: COLOR_SECONDARY, // ROXO PULSANTE
+            emissive: COLOR_SECONDARY, 
             emissiveIntensity: 0.2,
             shininess: 10
         });
@@ -397,7 +434,7 @@ function setupBackgroundScene() {
     // 8. Partículas Sequenciais (Flowing Data Stream)
     dataStreamParticles = [];
     const streamGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const streamMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PRIMARY }); // AZUL/CIANO
+    const streamMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PRIMARY }); 
 
     for (let i = 0; i < DATA_STREAM_COUNT; i++) {
         const particle = new THREE.Mesh(streamGeometry, streamMaterial.clone());
@@ -741,6 +778,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMouseGlow();
 
     setupDockEffect();
+    
+    // CHAMADA ADICIONAL PARA O NOVO EFEITO
+    setupCardGlowEffect(); 
 
     const mainHeader = document.getElementById('main-header');
 

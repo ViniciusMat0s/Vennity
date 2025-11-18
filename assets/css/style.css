@@ -813,3 +813,26 @@
         #mobile-menu.open {
             transform: translateX(0);
         }
+
+        .service-card {
+            isolation: isolate;
+        }
+
+        .card-glow-overlay {
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(96, 165, 250, 0.4) 0%,
+                    rgba(168, 85, 247, 0.25) 30%,
+                    rgba(255, 255, 255, 0.0) 65%);
+            filter: blur(25px);
+            z-index: 5;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .light-mode .card-glow-overlay {
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(37, 99, 235, 0.3) 0%,
+                    rgba(147, 51, 234, 0.15) 30%,
+                    rgba(0, 0, 0, 0.0) 65%);
+            filter: blur(20px);
+        }
