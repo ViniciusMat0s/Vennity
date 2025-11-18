@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VBM Devs: FAQ - Perguntas Frequentes e Resultados</title>
+
+    <meta name="description"
+        content="Respostas para as dúvidas mais comuns sobre desenvolvimento web, tráfego pago, performance e design da VBM Devs. Veja os resultados que garantimos.">
+
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400;1,700&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        .font-body {
+            font-family: 'Quantico', monospace;
+        }
+
+        .font-header {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: 'Quantico', monospace;
+            background-color: #030712;
+            color: #ffffff;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        header .backdrop-blur-md {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border-color: #374151 !important;
+        }
+
+        .bg-black\/50 {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .bg-gray-950 {
+            background-color: #030712 !important;
+        }
+
+        .bg-gray-950\/80 {
+            background-color: rgba(3, 7, 18, 0.8) !important;
+        }
+
+        .bg-gray-900\/70 {
+            background-color: rgba(17, 24, 39, 0.7) !important;
+        }
+
+        .bg-gray-900\/60 {
+            background-color: rgba(17, 24, 39, 0.6) !important;
+        }
+
+        .bg-gray-800\/70 {
+            background-color: rgba(31, 41, 55, 0.7) !important;
+        }
+
+        .bg-gray-800\/80 {
+            background-color: rgba(31, 41, 55, 0.8) !important;
+        }
+
+        .bg-gray-950\/90 {
+            background-color: rgba(3, 7, 18, 0.9) !important;
+        }
+
+        .bg-purple-950\/30 {
+            background-color: rgba(23, 7, 39, 0.3) !important;
+        }
+
+        .bg-blue-950\/30 {
+            background-color: rgba(7, 14, 39, 0.3) !important;
+        }
+
+        .bg-gray-800 {
+            background-color: #1f2937 !important;
+        }
+
+        .text-neutral-300 {
+            color: #d1d5db !important;
+        }
+
+        .text-neutral-400 {
+            color: #9ca3af !important;
+        }
+
+        .text-neutral-500 {
+            color: #6b7280 !important;
+        }
+
+        .text-neutral-600 {
+            color: #9ca3af !important;
+        }
+
+        .text-neutral-700 {
+            color: #d1d5db !important;
+        }
+
+        .text-gray-900 {
+            color: #ffffff !important;
+        }
+
+        .text-gray-700 {
+            color: #d1d5db !important;
+        }
+
+        .text-white {
+            color: #ffffff !important;
+        }
+
+        .text-blue-600 {
+            color: #3b82f6 !important;
+        }
+
+        .text-purple-600 {
+            color: #a855f7 !important;
+        }
+
+        header img {
+            filter: invert(1) !important;
+        }
+
+        .gradient-blue-purple {
+            background-image: linear-gradient(to right, #60a5fa, #a855f7);
+        }
+
+        .gradient-purple-pink {
+            background-image: linear-gradient(to right, #a855f7, #f472b6);
+        }
+
+        .gradient-pink-red {
+            background-image: linear-gradient(to right, #f472b6, #f87171);
+        }
+
+        .faq-item {
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+            /* Valor alto para permitir expansão */
+            padding-top: 1rem;
+            padding-bottom: 2rem;
+        }
+
+        .faq-question svg {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .faq-question.active svg {
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+        }
+
+        /* --- LIGHT MODE STYLES REPLICATED --- */
+
+        .light-mode {
+            background-color: #F3F4F6;
+            color: #1F2937;
+        }
+
+        .light-mode .bg-gray-950,
+        .light-mode .bg-gray-950\/80,
+        .light-mode .bg-gray-950\/40 {
+            background-color: #F3F4F6 !important;
+        }
+
+        /* Corrigindo elementos específicos do FAQ e Header */
+        .light-mode header .backdrop-blur-md {
+            background-color: rgba(255, 255, 255, 0.7) !important;
+            border-color: #D1D5DB !important;
+        }
+
+        .light-mode .faq-item,
+        .light-mode .bg-gray-900\/70 {
+            background-color: #ffffff !important;
+            border-color: #D1D5DB !important;
+        }
+
+        .light-mode .text-neutral-300 {
+            color: #374151 !important;
+        }
+
+        .light-mode .text-neutral-400 {
+            color: #6b7280 !important;
+        }
+
+        .light-mode .text-white {
+            color: #1F2937 !important;
+        }
+
+        .light-mode header img {
+            filter: none !important;
+        }
+
+        .light-mode .gradient-blue-purple {
+            background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
+        }
+
+        /* Fim dos estilos Light Mode */
+    </style>
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833">
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17620440833');
+</script>
+
+<body class="min-h-screen">
+
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <button id="theme-toggle"
+        class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-50 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white">
+        <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+            </path>
+        </svg>
+    </button>
+    <header class="w-full">
+        <div class="flex justify-center items-center h-20 w-full backdrop-blur-md bg-black/30 border-b border-white/10">
+            <div class="flex justify-between items-center w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo.png" alt="VBM Devs Logo" class="h-8 w-auto invert" />
+                </a>
+
+                <nav class="flex text-neutral-300">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html#hero"
+                                class="hover:text-purple-400 transition-colors duration-200">Início</a></li>
+                        <li><a href="index.html#depoimentos"
+                                class="hover:text-purple-400 transition-colors duration-200">Reviews</a></li>
+                        <li><a href="index.html#processo"
+                                class="hover:text-purple-400 transition-colors duration-200">Processo</a></li>
+                        <li><a href="index.html#sobre"
+                                class="hover:text-purple-400 transition-colors duration-200">Sobre</a></li>
+                        <li><a href="index.html#precos"
+                                class="hover:text-purple-400 transition-colors duration-200">Preços</a></li>
+                        <li><a href="index.html#contato"
+                                class="hover:text-purple-400 transition-colors duration-200">Contato</a></li>
+                        <li><a href="politica-e-termos.html"
+                                class="hover:text-pink-400 transition-colors duration-200">Política e Termos</a></li>
+                        <li><a href="faq.html" class="hover:text-purple-400 transition-colors duration-200">FAQ</a></li>
+                    </ul>
+                </nav>
+                <a href="index.html#contato"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 shadow-md shadow-blue-500/30">
+                    Trabalhe conosco!
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-24 bg-gray-950">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in-up">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                    FAQ: Perguntas Frequentes
+                </h1>
+                <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                    Respostas diretas e focadas em **resultados reais** para as suas maiores dúvidas.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-100">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>1. Em quanto tempo terei o retorno (ROI) do meu investimento em Tráfego?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">O tempo de retorno varia pela complexidade do projeto, o nicho empresarial e a
+                            estratégia de marketing. No entanto, nossos clientes de planos com gestão de tráfego
+                            integrada alcançam um <strong>ROI médio de 300% em menos de 18 meses (200% de lucro).</p>
+                        <p class="text-sm text-purple-400"><strong>Resultado:</strong> Nosso foco análise incremental
+                            começa na captação de leads qualificados desde o lançamento, minimizando o tempo de retorno
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-pink-500 transition-colors duration-300 animate-fade-in-up delay-200">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>2. O serviço de Tráfego Pago realmente traz clientes qualificados?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Sim. Nós não geramos apenas cliques, mas sim <strong>conexões
+                                estratégicas</strong>. Utilizamos o Tráfego Pago com uma estratégia cirúrgica, focando
+                            na segmentação ideal do seu público para <strong>reduzir custos e aumentar a
+                                qualidade</strong> dos leads.</p>
+                        <p class="text-sm text-pink-400"><strong>Resultado:</strong> Redução de até <strong>30% no Custo
+                                por Aquisição (CPA)</strong> no primeiro trimestre, focando principalmente em clientes
+                            com alta intenção de compra.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-blue-500 transition-colors duration-300 animate-fade-in-up delay-300">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>3. O design do meu site será moderno e 100% adaptável (responsivo)?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Com certeza. Entregamos páginas 100% responsivas, que funcionam perfeitamente em
+                            celulares, tablets e desktops. Nosso foco é a <strong>experiência imersiva do
+                                usuário</strong>, otimizando o acesso em qualquer dispositivo.</p>
+                        <p class="text-sm text-blue-400"><strong>Resultado:</strong> Design focado em conversão, que
+                            melhora a experiência e a credibilidade da sua marca, independentemente de qual dispositvo o
+                            cliente acessa.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-400">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>4. Vocês garantem a velocidade do meu site? Isso afeta meu SEO?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Absolutamente. A velocidade é crucial para o SEO. Nossos projetos são otimizados
+                            para alcançar scores máximos de <strong>performance e velocidade</strong>, garantindo que
+                            sua página carregue instantaneamente. Isso é essencial para seu ranqueamento no Google.</p>
+                        <p class="text-sm text-purple-400"><strong>Resultado:</strong> Redução da taxa de rejeição e
+                            melhor posicionamento orgânico devido à excelência de imagem.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-pink-500 transition-colors duration-300 animate-fade-in-up delay-500">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>5. Quais tecnologias vocês utilizam para garantir a longevidade do meu projeto?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Utilizamos uma stack <strong>moderna</strong> que inclui
+                            <strong>React/Next.js</strong> para Front-end dinâmico e <strong>Node.js</strong> para
+                            Back-end robusto. Isso garante que seu sistema seja escalável, moderno e de fácil
+                            manutenção.
+                        </p>
+                        <p class="text-sm text-pink-400"><strong>Resultado:</strong> Projetos com
+                            <strong>longevidade</strong> que se adaptam às necessidades futuras do seu negócio sem
+                            grandes reestruturações.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-blue-500 transition-colors duration-300 animate-fade-in-up delay-600">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>6. Qual tipo de suporte receberei após o lançamento?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Oferecemos <strong>Suporte Prioritário</strong> (de acordo com o plano
+                            contratado) para garantir a integridade do sistema. Além disso, garantimos <strong>99.9% de
+                                Uptime</strong> do seu sistema, utilizando hospedagem de alta performance.</p>
+                        <p class="text-sm text-blue-400"><strong>Resultado:</strong> Tranquilidade total. Você foca no
+                            seu negócio, e nós garantimos que sua plataforma esteja segura e 100% funcional.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-700">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>7. O design para redes sociais pode aumentar meu engajamento?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Sim. Nós criamos <strong>uma identidade visual marcante</strong>. Cada peça de
+                            design é pensada para <strong>cativar sua audiência</strong> no feed, gerando mais cliques e
+                            compartilhamentos. O design profissional é a base da sua credibilidade online.</p>
+                        <p class="text-sm text-purple-400"><strong>Resultado:</strong> Sua marca terá uma
+                            <strong>presença enorme nas redes</strong>, aumentando a autoridade e o reconhecimento de
+                            seus futuros clientes.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-pink-500 transition-colors duration-300 animate-fade-in-up delay-800">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>8. Terei custos adicionais ou mensais?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Além do serviço, cobramos apenas o valor de manutenção, domínio e hospedagem,
+                            mudanças pontuais de estrutura terão um valor tratado separadamente.</p>
+                        <p class="text-sm text-pink-400"><strong>Resultado:</strong> Sistema impecável. Garantimos que
+                            você tenha máxima satisfação com os serviços contratados, garantindo uma manutenção
+                            impecável e segurança de informações.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-blue-500 transition-colors duration-300 animate-fade-in-up delay-900">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>9. Já tenho meu sistema, mas quero fazer alterações nele, vocês modificam projetos de
+                            outras empresas?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Sim, oferecemos serviços de <strong>Reengenharia e Otimização</strong>.
+                            Analisamos sua plataforma atual (WordPress, código legado, etc.) e realizamos a migração
+                            para nossa stack de alta performance, mantendo todos os dados e modernizando seu sistema.
+                        </p>
+                        <p class="text-sm text-blue-400"><strong>Resultado:</strong> Clientes que migraram tiveram uma
+                            melhoria enorme, seja mudando uma página de site ou revivendo seu fluxo de clientes.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-1000">
+                    <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
+                        <span>10. Posso contratar serviços individuais ou vocês trabalham somente com planos?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer text-neutral-300">
+                        <p class="mb-4">Você pode contratar qualquer um de nossos serviços individualmente. Nossos
+                            planos de serviço oferecem um pacote completo e com mais economia, porém, nossos serviços
+                            individuais estão prontos para te atender, independente de sua necessidade.</p>
+                        <p class="text-sm text-purple-400"><strong>Resultado:</strong> Versatilidade total. Você pode
+                            escolher vários serviços e ter um ótimo desconto ou usufruir do nosso ótimo trabalho da
+                            mesma forma, com a mesma qualidade, atendimento e dedicação.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-16 animate-fade-in-up delay-1100">
+                <a href="index.html#contato"
+                    class="inline-flex items-center text-lg font-medium text-purple-400 hover:text-purple-300 transition-colors border-b border-purple-400/50">
+                    Sua Dúvida Não Está Aqui? Fale Conosco Agora <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-8 bg-black/50 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-neutral-500 font-body">
+            &copy; 2022 VBM Devs - Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>

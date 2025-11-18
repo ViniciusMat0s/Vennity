@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VBM Devs: Páginas e Gestão de Alta Performance</title>
+
+    <meta name="description"
+        content="Conheça o poder do método VBM! Vamos tirar suas melhores ideias do papel e alavancar seu negócio. Criamos páginas 100% responsivas, modernas e adaptadas para seu negócio, impulsionamos suas vendas e fluxo de clientes com o método VBM, além de organizar seu perfil empresarial na internet e criar os melhores designs para sua rede social!">
+
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833">
+</script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17620440833');
+</script>
+
+<body class="min-h-screen">
+
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <button id="theme-toggle"
+        class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-50 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white">
+        <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+            </path>
+        </svg>
+    </button>
+
+    <div id="mobile-menu-overlay" onclick="toggleMobileMenu()" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+    <nav id="mobile-menu"
+        class="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 p-6 transform translate-x-full transition-transform duration-300">
+        <div class="flex justify-between items-center mb-10">
+            <a href="#" class="flex items-center group px-4 py-2">
+                <img src="assets/images/icon.png" alt="VBM Devs Logo"
+                    class="h-8 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+            </a>
+            <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <ul class="space-y-6 text-lg font-semibold text-neutral-300 uppercase">
+            <li><a href="#hero" onclick="toggleMobileMenu()"
+                    class="block hover:text-purple-400 transition-colors">Início</a></li>
+            <li><a href="#depoimentos" onclick="toggleMobileMenu()"
+                    class="block hover:text-purple-400 transition-colors">Reviews</a>
+            </li>
+            <li><a href="#processo" onclick="toggleMobileMenu()"
+                    class="block hover:text-purple-400 transition-colors">Processo</a>
+            </li>
+            <li><a href="#sobre" onclick="toggleMobileMenu()"
+                    class="block hover:text-purple-400 transition-colors">Sobre</a></li>
+            <li><a href="#precos" onclick="toggleMobileMenu()"
+                    class="block hover:text-purple-400 transition-colors">Preços</a></li>
+            <li><a href="#contato" onclick="toggleMobileMenu()"
+                    class="block hover:text-purple-400 transition-colors">Contato</a></li>
+            <li><a href="politica-e-termos.html"
+                    class="block hover:text-pink-400 transition-colors border-t border-white/10 pt-4 mt-4">Política e
+                    Termos</a></li>
+            <li><a href="faq.html" class="block hover:text-purple-400 transition-colors">FAQ</a></li>
+        </ul>
+
+        <a href="#contato" onclick="toggleMobileMenu()"
+            class="mt-10 inline-block w-full text-center cta-button-header text-white font-bold py-3 rounded-full shadow-lg">
+            Trabalhe Conosco!
+        </a>
+    </nav>
+
+    <section id="fixed-header-wrapper" class="relative w-full max-w-full z-50 transition-all duration-300">
+
+        <div id="mobile-menu-overlay" onclick="toggleMobileMenu()" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+        <nav id="mobile-menu"
+            class="fixed top-0 right-0 h-full w-64 bg-black/90 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-50 p-6">
+            <div class="flex justify-between items-center mb-10">
+                <a href="#hero" onclick="toggleMobileMenu()" class="flex items-center group px-0 py-2">
+                    <img src="assets/images/icon.png" alt="VBM Devs Logo"
+                        class="h-8 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+                </a>
+                <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <ul class="space-y-6 text-lg font-semibold text-neutral-300 uppercase">
+                <li><a href="#hero" onclick="toggleMobileMenu()"
+                        class="block hover:text-purple-400 transition-colors">Início</a></li>
+                <li><a href="#depoimentos" onclick="toggleMobileMenu()"
+                        class="block hover:text-purple-400 transition-colors">Reviews</a>
+                </li>
+                <li><a href="#processo" onclick="toggleMobileMenu()"
+                        class="block hover:text-purple-400 transition-colors">Processo</a>
+                </li>
+                <li><a href="#sobre" onclick="toggleMobileMenu()"
+                        class="block hover:text-purple-400 transition-colors">Sobre</a></li>
+                <li><a href="#precos" onclick="toggleMobileMenu()"
+                        class="block hover:text-purple-400 transition-colors">Preços</a></li>
+                <li><a href="#contato" onclick="toggleMobileMenu()"
+                        class="block hover:text-purple-400 transition-colors">Contato</a></li>
+                <li><a href="politica-e-termos.html"
+                        class="block hover:text-pink-400 transition-colors border-t border-white/10 pt-4 mt-4">Política
+                        e
+                        Termos</a></li>
+                <li><a href="faq.html" class="block hover:text-purple-400 transition-colors">FAQ</a></li>
+            </ul>
+
+            <a href="#contato" onclick="toggleMobileMenu()"
+                class="mt-10 inline-block w-full text-center cta-button-header text-white font-bold py-3 rounded-full shadow-lg">
+                Trabalhe Conosco!
+            </a>
+        </nav>
+        <section id="fixed-header-wrapper" class="relative w-full max-w-full z-50 transition-all duration-300">
+
+            <div id="logo-container" class="fixed top-5 left-5 z-50 hidden md:block">
+                <a href="#hero" class="flex items-center group px-4 py-2 dock-link-logo">
+                    <img src="assets/images/icon.png" alt="VBM Devs Logo"
+                        class="h-10 w-auto group-[.light-mode_&]:filter-none logo-text-link transition-transform duration-300" />
+                </a>
+            </div>
+
+            <header id="main-header"
+                class="fixed top-5 left-1/2 transform -translate-x-1/2 w-fit max-w-none z-50 rounded-full transition-all duration-300">
+                <div
+                    class="uppercase flex justify-center items-center h-20 md:h-16 w-full backdrop-blur-p bg-black/20 border border-white/5 rounded-full px-4 sm:px-6 shadow-gradient-bottom">
+
+                    <a href="#contato"
+                        class="cta-button-header text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 text-sm md:hidden uppercase">
+                        Fale Conosco
+                    </a>
+
+                    <div class="hidden md:flex space-x-6 items-center">
+
+                        <nav class="text-neutral-300">
+                            <ul class="flex space-x-4 items-center">
+                                <li class="dock-link-text">
+                                    <a href="#sobre"
+                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Sobre</a>
+                                </li>
+                                <li class="dock-link-text">
+                                    <a href="#depoimentos"
+                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Reviews</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <a href="#hero" class="text-neutral-300 hover:text-purple-400 transition-colors duration-200 
+                    px-6 py-3 rounded-full bg-white/10 hover:bg-white/20">
+                            <i class="fas fa-home text-xl"></i>
+                        </a>
+
+                        <nav class="text-neutral-300">
+                            <ul class="flex space-x-4 items-center">
+                                <li class="dock-link-text">
+                                    <a href="#precos"
+                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Preços</a>
+                                </li>
+                                <li class="dock-link-text">
+                                    <a href="#contato"
+                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Contato</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <a href="#hero" class="flex items-center group md:hidden">
+                        <img src="assets/images/icon.png" alt="VBM Devs Logo"
+                            class="h-9 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+                    </a>
+
+                    <button id="menu-toggle-button" onclick="toggleMobileMenu()"
+                        class="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+
+                </div>
+            </header>
+
+            <div id="contact-button-container" class="fixed top-7 right-5 z-50 hidden md:block">
+                <a href="#contato"
+                    class="flex items-center cta-button-header text-white font-bold py-2.5 px-6 rounded-full shadow-lg transition-all duration-300 text-sm uppercase">
+                    FALE CONOSCO
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+        </section>
+
+        <main>
+
+            <section id="hero"
+                class="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-[120px] pb-0 sm:pt-32">
+
+                <canvas id="background-canvas"></canvas>
+
+                <div aria-hidden="true" class="absolute inset-0 -z-10">
+                    <div
+                        class="absolute inset-x-0 top-[10%] h-[600px] bg-gradient-to-br from-purple-800/60 via-blue-900/50 to-transparent blur-3xl opacity-70">
+                    </div>
+                </div>
+
+                <div
+                    class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center flex-grow z-10 py-12">
+
+                    <div id="mouse-glow" class="mouse-glow"></div>
+
+                    <div class="text-center w-full relative">
+
+                        <div class="hero-canvas-container">
+                            <canvas id="hero-canvas" class="z-20"></canvas>
+                        </div>
+
+                        <h1 id="hero-h1"
+                            class="uppercase absolute inset-0 text-5xl sm:text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse'"
+                            title="Desenvolvimento Web, UX e Performance de Alto Nível">
+                        </h1>
+
+
+                        <div
+                            class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up delay-600">
+                            <a href="#contato" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                text-white font-bold py-3 px-8 rounded-full shadow-xl shadow-blue-500/40 transform hover:scale-[1.03]
+                transition-all duration-300 flex items-center justify-center gap-2 text-base">
+                                CRIAR PROJETO (Análise Gratuita)
+                            </a>
+
+                            <a href="faq.html" class="w-full sm:w-auto bg-transparent border border-neutral-700 hover:border-purple-500 text-neutral-300 font-medium py-3 px-8 rounded-full
+                transition-colors duration-300 flex items-center justify-center gap-2 text-base hover:text-white">
+                                Tire suas dúvidas
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div
+                            class="relative mt-8 mb-4 max-w-lg mx-auto w-full h-2 animate-fade-in-up delay-800 animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/50 to-blue-500/0 blur-md opacity-75 transform scale-y-150">
+                            </div>
+                            <div
+                                class="absolute inset-0 h-0.5 mt-0.5 bg-gradient-to-r from-blue-500/0 via-purple-500/70 to-blue-500/0 opacity-90">
+                            </div>
+                        </div>
+                        <p class="mt-8 text-lg md:text-xl font-light text-transparent bg-clip-text gradient-blue-purple max-w-1xl mx-auto animate-fade-in-up delay-400 font-inter-tight 
+    whitespace-nowrap overflow-hidden text-ellipsis">
+                            DESENVOLVA SEU LEGADO.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="impacto"
+                    class="w-full bg-gray-900/70 border-y border-white/10 overflow-hidden fade-in-on-scroll">
+                    <div class="ticker-container">
+                        <div class="ticker-content flex items-center px-8 sm:px-16 lg:px-24 py-4 whitespace-nowrap">
+
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-figma.png" alt="Figma">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-firebase.png" alt="Firebase">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-googleads.png" alt="Google Ads">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-next.png" alt="Next.js">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-node.png" alt="Node.js">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-react.png" alt="React">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-meta.png" alt="Meta Ads">
+                            </div>
+                        </div>
+
+                        <div class="ticker-content flex items-center px-8 sm:px-16 lg:px-24 py-4 whitespace-nowrap">
+
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-figma.png" alt="Figma">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-firebase.png" alt="Firebase">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-googleads.png" alt="Google Ads">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-next.png" alt="Next.js">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-node.png" alt="Node.js">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-react.png" alt="React">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS">
+                            </div>
+                            <div
+                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                                <img src="assets/images/logo-meta.png" alt="Meta Ads">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sobre" class="relative py-32 sm:py-40 overflow-hidden bg-gray-950/90">
+
+                <div aria-hidden="true" class="absolute inset-0 bg-grid opacity-5"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                        <div class="lg:order-2 animate-slide-in-right lg:col-span-1">
+                            <h2
+                                class="text-6xl sm:text-7xl font-extrabold mb-6 text-transparent bg-clip-text gradient-purple-pink leading-tight">
+                                O Futuro Está Aqui.
+                            </h2>
+                            <p class="text-xl text-neutral-300 mb-8 max-w-xl">
+                                Na **VBM Devs**, não apenas desenvolvemos sites; criamos ecossistemas
+                                digitais que definem novos padrões. Nossa equipe é composta por profissionais de alto
+                                nível
+                                que vivem e respiram a inovação, focados em entregar soluções que geram resultados de
+                                alto
+                                nível.
+                            </p>
+                            <ul class="space-y-4 text-neutral-200">
+                                <li class="flex items-start gap-3 text-lg font-medium">
+                                    <span
+                                        class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
+                                    Foco em **Performance Máxima**.
+                                </li>
+                                <li class="flex items-start gap-3 text-lg font-medium">
+                                    <span
+                                        class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
+                                    Suporte **Rápido e Eficaz**.
+                                </li>
+                                <li class="flex items-start gap-3 text-lg font-medium">
+                                    <span
+                                        class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
+                                    **Confiança** máxima e garantia de satisfação.
+                                </li>
+                            </ul>
+                            <a href="#contato"
+                                class="mt-10 inline-flex items-center text-xl font-semibold text-purple-400 hover:text-purple-300 transition-all duration-300 border-b-2 border-purple-400/50 hover:border-purple-300">
+                                Fale com um Especialista <span aria-hidden="true"
+                                    class="ml-2 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                            </a>
+                        </div>
+
+                        <div class="lg:order-1 relative lg:col-span-1 animate-slide-in-left">
+
+                            <div
+                                class="relative p-1 rounded-xl bg-gradient-to-br from-purple-500/50 to-pink-500/20 shadow-2xl shadow-purple-900/50 transform hover:scale-[1.02] transition-transform duration-500">
+
+                                <div class="relative p-8 rounded-[11px] bg-gray-900 border border-purple-500/40">
+
+                                    <div
+                                        class="text-sm text-neutral-500 mb-4 flex justify-between items-center pb-2 border-b border-white/10">
+                                        &lt;Terminal_Log&gt; Sessão: Visão Corporativa
+                                        <div class="flex space-x-2">
+                                            <span class="w-3 h-3 bg-red-500 rounded-full block"></span>
+                                            <span class="w-3 h-3 bg-yellow-500 rounded-full block"></span>
+                                            <span class="w-3 h-3 bg-green-500 rounded-full block"></span>
+                                        </div>
+                                    </div>
+
+                                    <pre class="text-xs sm:text-sm text-green-400 overflow-x-auto terminal-code">
+<span class="text-blue-400">const</span> <span class="text-yellow-400">VBM Devs</span> = <span class="text-blue-400">class</span> {
+    <span class="text-pink-400">constructor</span>() {
+        <span class="text-white">this</span>.missao = <span class="text-red-400">"Maximizar seus ganhos"</span>;
+        <span class="text-white">this</span>.clientes = <span class="text-yellow-400">new</span> <span class="text-white">Set</span>([<span class="text-red-400">"All Services"</span>]);
+    }
+    
+    <span class="text-yellow-400">static</span> <span class="text-white">impactar</span>(<span class="text-white">projeto</span>) {
+        <span class="text-yellow-400">if</span> (<span class="text-white">projeto</span>.<span class="text-white">qualidade</span> === <span class="text-blue-400">"Padrão VBM"</span>) {
+            <span class="text-white">return</span> <span class="text-red-400">"Sucesso Garantido!"</span>;
+        } <span class="text-yellow-400">else</span> {
+            <span class="text-white">throw</span> <span class="text-yellow-400">new</span> <span class="text-red-400">Error</span>(<span class="text-red-400">"Perda de clientes"</span>);
+        }
+    }
+}
+                        </pre>
+
+                                    <div class="text-sm text-neutral-500 mt-4 border-t border-white/10 pt-2">
+                                        &lt;/Terminal_Log&gt;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="video-mockup" class="py-12 bg-gray-950/90">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="relative w-full max-w-6xl mx-auto animate-fade-in-up">
+                        <div
+                            class="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-40 blur-2xl transition-all duration-500 hover:opacity-70">
+                        </div>
+                        <div
+                            class="relative rounded-3xl bg-gray-900/80 p-6 shadow-2xl shadow-blue-500/20 border border-white/10 backdrop-blur-sm mockup-bg">
+                            <div class="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
+                                <div class="flex items-center gap-2">
+                                    <span class="h-3 w-3 rounded-full bg-red-500"></span>
+                                    <span class="h-3 w-3 rounded-full bg-yellow-500"></span>
+                                    <span class="h-3 w-3 rounded-full bg-green-500"></span>
+                                </div>
+                                <div
+                                    class="text-xs text-neutral-500 bg-gray-950 px-3 py-1 rounded-lg border border-neutral-700">
+                                    https://vbmdevs.com/
+                                </div>
+                                <div>
+                                    <span class="text-sm text-neutral-400">Status: Online</span>
+                                </div>
+                            </div>
+                            <div class="aspect-video bg-gray-950 rounded-lg overflow-hidden">
+                                <video controls autoplay loop muted class="w-full h-full object-cover">
+                                    <source src="assets/images/hero.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-gray-950 fade-in-on-scroll">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2
+                            class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                            Estratégias de Alto Nível: Do Visual até a Conversão
+                        </h2>
+                        <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                            Serviços que otimizam seus resultados.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div
+                            class="p-8 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-500 transform hover:translate-y-[-5px] shadow-xl bg-gray-900/60 backdrop-blur-sm fade-in-on-scroll delay-200">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-2 text-white">
+                                Desenvolvimento Completo
+                            </h3>
+                            <p class="text-neutral-400">
+                                Construção de sistemas e sites customizados com as melhores tecnologias do mercado,
+                                garantindo
+                                longevidade, velocidade e uma experiência impecável.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-all duration-500 transform hover:translate-y-[-5px] shadow-xl bg-gray-900/60 backdrop-blur-sm fade-in-on-scroll delay-400">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-purple-600/20 text-purple-400 border border-purple-500/50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                        <path
+                                            d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-2 text-white">
+                                Performance Máxima
+                            </h3>
+                            <p class="text-neutral-400">
+                                Sua página dedicada ao máximo desempenho e adaptabilidade, nosso maior objetivo é a
+                                agilidade e a praticidade de acesso.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-gray-700 hover:border-pink-500 transition-all duration-500 transform hover:translate-y-[-5px] shadow-xl bg-gray-900/60 backdrop-blur-sm fade-in-on-scroll delay-600">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-pink-600/20 text-pink-400 border border-pink-500/50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-2 text-white">
+                                Alavancagem Máxima de Clientes
+                            </h3>
+                            <p class="text-neutral-400">
+                                Geramos as melhores conexões estratégicas para seu negócio. Nossa gestão de marketing
+                                traz
+                                os clientes certos até você, transformando investimento em crescimento
+                                sólido e mensurável.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-gray-700 hover:border-green-500 transition-all duration-500 transform hover:translate-y-[-5px] shadow-xl bg-gray-900/60 backdrop-blur-sm fade-in-on-scroll delay-800">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-green-600/20 text-green-400 border border-green-500/50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-3.72 0-6.75 2.72-7.37 6.22C2.85 10.59 1 12.83 1 15.5c0 3.03 2.47 5.5 5.5 5.5h12c2.76 0 5-2.24 5-5 0-2.64-2.05-4.82-4.65-5.46zM17.5 19H6.5c-2.21 0-4-1.79-4-4s1.79-4 4-4h.87l.21-1.05C7.39 8.2 9.5 6 12 6c2.81 0 5.1 2.37 5.48 5.25L18 12h.5c2.21 0 4 1.79 4 4s-1.79 4-4 4zM8 13v2H6v-2h2zm4 0v2h-2v-2h2zm4 0v2h-2v-2h2z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-2 text-white">
+                                Boa impressão nas redes
+                            </h3>
+                            <p class="text-neutral-400">
+                                Nós não criamos apenas imagens bonitas; criamos identidade. Cada design é pensado
+                                para cativar sua audiência no feed, garantindo que sua marca tenha enorme presença nas
+                                redes
+                                socials.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="processo" class="py-24 relative overflow-hidden bg-gray-950 fade-in-on-scroll">
+                <div aria-hidden="true" class="absolute inset-0">
+                    <div id="processo-particles" class="absolute inset-0"></div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-pink-red">
+                            O Caminho do Seu Sucesso
+                        </h2>
+                        <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                            4 etapas para tirar sua visão do papel e levá-la ao ar com segurança e precisão.
+                        </p>
+                    </div>
+
+                    <div class="relative max-w-4xl mx-auto">
+                        <div
+                            class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-blue-500/20">
+                        </div>
+
+                        <div class="space-y-16">
+                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
+                                <div class="md:w-1/2 md:odd:pl-12 md:even:pl-12 text-center md:text-left">
+                                    <div
+                                        class="inline-block px-4 py-2 rounded-full border border-blue-500/50 bg-blue-950/40 text-blue-300 mb-2 process-step">
+                                        PASSO 1
+                                    </div>
+                                    <h3 class="text-3xl font-semibold mb-2 text-white">Estratégias Refinadas</h3>
+                                    <p class="text-neutral-400">
+                                        Mergulhamos nos seus objetivos de negócio e adaptamos seu negócio ao seu
+                                        público-alvo, definindo
+                                        a melhor estratégia possível.
+                                    </p>
+                                </div>
+                                <div
+                                    class="hidden md:block w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                </div>
+                            </div>
+
+                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
+                                <div class="md:w-1/2 md:odd:pr-12 md:even:pl-12 text-center md:text-left">
+                                    <div
+                                        class="inline-block px-4 py-2 rounded-full border border-purple-500/50 bg-purple-950/40 text-purple-300 mb-2 process-step">
+                                        PASSO 2
+                                    </div>
+                                    <h3 class="text-3xl font-semibold mb-2 text-white">Páginas Impactantes</h3>
+                                    <p class="text-neutral-400">
+                                        Criamos páginas que convertem, com um design moderno e interface intuitiva, seu
+                                        site
+                                        é feito sob medida, pronto para receber novos clientes.
+                                    </p>
+                                </div>
+                                <div
+                                    class="hidden md:block w-8 h-8 rounded-full bg-purple-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                </div>
+                            </div>
+
+                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
+                                <div class="md:w-1/2 md:odd:pl-12 md:even:pl-12 text-center md:text-left">
+                                    <div
+                                        class="inline-block px-4 py-2 rounded-full border border-pink-500/50 bg-pink-950/40 text-pink-300 mb-2 process-step">
+                                        PASSO 3
+                                    </div>
+                                    <h3 class="text-3xl font-semibold mb-2 text-white">Tráfego Certeiro</h3>
+                                    <p class="text-neutral-400">
+                                        Analisamos rigorosamente seu posicionamento de mercado e seu público alvo,
+                                        adaptamos
+                                        minuciosamente seus anúncios para diminuir seus gastos e aumentar seus ganhos.
+                                    </p>
+                                </div>
+                                <div
+                                    class="hidden md:block w-8 h-8 rounded-full bg-pink-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                </div>
+                            </div>
+
+                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
+                                <div class="md:w-1/2 md:odd:pr-12 md:even:pl-12 text-center md:text-left">
+                                    <div
+                                        class="inline-block px-4 py-2 rounded-full border border-green-500/50 bg-green-950/40 text-green-300 mb-2 process-step">
+                                        PASSO 4
+                                    </div>
+                                    <h3 class="text-3xl font-semibold mb-2 text-white"> Lançamento e Manutenção</h3>
+                                    <p class="text-neutral-400">
+                                        Seu site é entregue com domínio e hospedagem própria, 100% seguro e com
+                                        certificado
+                                        SSL. Também, oferecemos suporte constante ao seu sistema, garantindo sua
+                                        integridade
+                                        máxima.
+                                    </p>
+                                </div>
+                                <div
+                                    class="hidden md:block w-8 h-8 rounded-full bg-green-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resultados" class="py-24 bg-gray-950 fade-in-on-scroll">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                            Resultados Que Você Deve Esperar
+                        </h2>
+                        <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                            Métricas e análises reais sobre nossos serviços.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div
+                            class="p-8 rounded-xl border border-blue-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform fade-in-on-scroll delay-200">
+                            <p
+                                class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 mb-2">
+                                3x</p>
+                            <h3 class="text-3xl font-bold mb-2 text-white">Retorno Estimado</h3>
+                            <p class="text-neutral-400 font-body">300% do seu investimento em menos de 18 meses.</p>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-purple-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform fade-in-on-scroll delay-400">
+                            <p
+                                class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
+                                99+</p>
+                            <h3 class="text-3xl font-bold mb-2 text-white">PageSpeed Score</h3>
+                            <p class="text-neutral-400 font-body">Performance otimizada, essencial para o SEO e a
+                                experiência do usuário.</p>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-pink-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform fade-in-on-scroll delay-600">
+                            <p
+                                class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-red-400 mb-2">
+                                99.9%</p>
+                            <h3 class="text-3xl font-bold mb-2 text-white">Garantia Uptime</h3>
+                            <p class="text-neutral-400 font-body">Sua página no ar 24 horas, 7 dias na semana.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="depoimentos" class="py-24 bg-gray-900/70 fade-in-on-scroll">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-purple-pink">
+                            Reviews de Clientes
+                        </h2>
+                        <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                            Observe os reviews dados por alguns de nossos clientes!
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div
+                            class="p-8 rounded-xl border border-purple-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm fade-in-on-scroll">
+                            <span class="text-4xl text-purple-400 block mb-4">“</span>
+                            <p class="text-lg italic text-neutral-300 mb-6">
+                                "A VBM triplicou a nossa taxa de conversão em pouquíssimo tempo. O site é rápido e
+                                intuitivo, o suporte é rapido e funcional."
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-purple-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-purple-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">J***** M.</p>
+                                    <p class="text-sm text-purple-400">Hotelaria</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-blue-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm fade-in-on-scroll">
+                            <span class="text-4xl text-blue-400 block mb-4">“</span>
+                            <p class="text-lg italic text-neutral-300 mb-6">
+                                "Nosso fluxo de contatos era baixíssimo antes de contratarmos o serviço de marketing da
+                                VBM,
+                                a estratégia de tráfego acertiva reduziu meus custos e me fez voltar a vender de fato."
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-blue-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-blue-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">A***** M.</p>
+                                    <p class="text-sm text-blue-400">Imóveis</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-xl border border-pink-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm fade-in-on-scroll">
+                            <span class="text-4xl text-pink-400 block mb-4">“</span>
+                            <p class="text-lg italic text-neutral-300 mb-6">
+                                "O site que recebemos é impecável, tenho novos clientes todos os dias, minha página do
+                                Instagram ficou LINDA!"
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-pink-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-pink-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">S******* M*</p>
+                                    <p class="text-sm text-pink-400">Marketing</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="precos" class="py-24 bg-gray-950">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                            Nossos Planos de Crescimento
+                        </h2>
+                        <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                            Desenvolvemos soluções sob medida. Quanto mais completo o pacote, maior o seu desconto.
+                            Invista na presença digital completa da sua marca!
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch mb-16">
+
+                        <div
+                            class="p-8 rounded-2xl border border-gray-700 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-blue-500/20">
+                            <h3 class="text-4xl font-black mb-2 text-blue-400 text-center md:text-left">
+                                BASIC
+                            </h3>
+                            <p class="text-neutral-400 mb-4 font-body">Presença digital essencial e primeiros leads
+                                garantidos.</p>
+
+                            <div class="mb-6">
+                                <p class="text-sm text-neutral-500 line-through">De R$ 950,00</p>
+                                <span class="text-4xl md:text-3xl font-extrabold text-white">a partir de R$
+                                    700,00</span>
+                                <span class="text-neutral-500">/ projeto</span>
+                                <p class="text-sm font-bold text-blue-400 mt-1">~7% DE DESCONTO NO PACOTE!</p>
+                            </div>
+                            <ul class="space-y-3 text-neutral-300 mb-8">
+                                <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Landing Page de
+                                    Alta Conversão</li>
+                                <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Estratégia de
+                                    Tráfego Pago Inicial (A partir de R$ 200 + investimento)</li>
+                                <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Domínio,
+                                    Hospedagem
+                                    e Manutenção (R$ 49,90/mês)</li>
+                                <li class="flex items-center gap-2"><span class="text-neutral-600">✗</span> Mídia Social
+                                    &
+                                    Gestão de Perfil</li>
+                                <li class="flex items-center gap-2"><span class="text-neutral-600">✗</span> Suporte
+                                    Prioritário Avançado</li>
+                            </ul>
+
+                            <button
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
+                                onclick="sendWhatsAppPackage('BASIC')">
+                                Contratar Pacote Basic
+                            </button>
+                        </div>
+
+                        <div
+                            class="p-10 rounded-2xl border-4 border-purple-500 bg-gray-800/80 shadow-2xl shadow-purple-500/40 transform scale-[1.05] transition-all duration-300">
+                            <div class="text-center mb-4">
+                                <span
+                                    class="inline-block px-4 py-1 text-sm font-bold text-white bg-purple-600 rounded-full shadow-md">MAIOR
+                                    DESCONTO</span>
+                            </div>
+                            <h3
+                                class="text-4xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-white text-center md:text-left">
+                                PREMIUM
+                            </h3>
+                            <p class="text-neutral-300 mb-4 font-body">O pacote completo para dominar o mercado digital!
+                            </p>
+
+                            <div class="mb-6">
+                                <p class="text-sm text-neutral-500 line-through">De R$ 1.550,00</p>
+                                <span class="text-5xl md:text-3xl font-extrabold text-white">a partir de R$
+                                    1.250,00</span>
+                                <span class="text-neutral-300">/ projeto</span>
+                                <p class="text-sm font-black text-purple-400 mt-1">MAIS DE 30% DE DESCONTO!</p>
+                            </div>
+                            <ul class="space-y-3 text-white mb-8">
+                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Tudo do Plano
+                                    BASIC</li>
+                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Mídia Social
+                                    (Designs e Estratégia)</li>
+                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Gestão de
+                                    Google Empresas (SEO Local)</li>
+                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Domínio,
+                                    Hospedagem e Manutenção (R$ 39,90/mês)</li>
+                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Suporte e
+                                    Prioridade Máxima</li>
+                            </ul>
+
+                            <button
+                                class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black py-4 rounded-full transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-purple-500/50"
+                                onclick="sendWhatsAppPackage('PREMIUM')">
+                                Contratar Pacote Premium
+                            </button>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-2xl border border-gray-700 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-pink-500/20">
+                            <h3 class="text-4xl font-black mb-2 text-pink-400 text-center md:text-left">
+                                CUSTOM
+                            </h3>
+                            <p class="text-neutral-400 mb-4 font-body">Desenvolvimento de sistemas complexos e
+                                reestruturação.</p>
+
+                            <div class="mb-6">
+                                <span class="text-4xl md:text-3xl font-extrabold text-white">A Consultar</span>
+                                <span class="text-neutral-500">/ projeto</span>
+                            </div>
+
+                            <ul class="space-y-3 text-neutral-300 mb-8">
+                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Reestruturação
+                                    de
+                                    Sistemas Legados</li>
+                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Desenvolvimento
+                                    de
+                                    Software Personalizado</li>
+                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Arquitetura de
+                                    Microserviços e Escalabilidade</li>
+                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Consultoria
+                                    Estratégica e Suporte Dedicado</li>
+                                <li class="flex items-center gap-2"><span class="text-neutral-600">~</span> Preço, prazo
+                                    e
+                                    tecnologias definidos após análise</li>
+                            </ul>
+
+                            <button
+                                class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
+                                onclick="sendWhatsAppPackage('CUSTOM')">
+                                Contratar Pacote Custom
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-20">
+                        <h3
+                            class="text-2xl sm:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                            Serviços Avulsos: Soluções Focadas no Seu Projeto
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500/20 text-blue-400 mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-lg text-neutral-300 font-semibold">Landing Page</h4>
+                                </div>
+                                <p class="text-sm text-neutral-400 mb-4">Página única otimizada para capturar leads e
+                                    gerar
+                                    vendas.</p>
+                                <span class="block text-2xl font-extrabold price-tag">a partir de R$ 600,00</span>
+                            </div>
+
+                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 text-purple-400 mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.5 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.5-3-9s1.343-9 3-9m-9 9h.01M19.01 12h.01" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-lg text-neutral-300 font-semibold">Site Institucional</h4>
+                                </div>
+                                <p class="text-sm text-neutral-400 mb-4">Criação completa de um site multi-páginas para
+                                    sua
+                                    marca.</p>
+                                <span class="block text-2xl font-extrabold price-tag">a partir de R$ 1.000,00</span>
+                            </div>
+
+                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-pink-500/20 text-pink-400 mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-lg text-neutral-300 font-semibold">Gestão de Tráfego Pago</h4>
+                                </div>
+                                <p class="text-sm text-neutral-400 mb-4">Otimização e gerenciamento profissional de
+                                    campanhas
+                                    (Google Ads/Meta).</p>
+                                <span class="block text-2xl font-extrabold price-tag">a partir de R$ 200,00</span>
+                            </div>
+
+                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500/20 text-green-400 mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-lg text-neutral-300 font-semibold">Gestão de SEO</h4>
+                                </div>
+                                <p class="text-sm text-neutral-400 mb-4">Melhore seu SEO local e destaque-se no Google
+                                    Maps
+                                    e
+                                    Pesquisa.</p>
+                                <span class="block text-2xl font-extrabold price-tag">R$ 200,00</span>
+                            </div>
+
+                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-400 mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-lg text-neutral-300 font-semibold">Design para Mídia Social</h4>
+                                </div>
+                                <p class="text-sm text-neutral-400 mb-4">Criação de artes profissionais e adaptadas para
+                                    feed e stories.</p>
+                                <span class="block text-2xl font-extrabold price-tag">R$ 40,00 / Design</span>
+                            </div>
+
+                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                                <div class="flex items-center mb-3">
+                                    <div
+                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400 mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-lg text-neutral-300 font-semibold">Reestruturação de Sistemas</h4>
+                                </div>
+                                <p class="text-sm text-neutral-400 mb-4">Repaginação de sistemas legados ou com
+                                    problemas de
+                                    escala.</p>
+                                <span class="block text-2xl font-extrabold price-tag">Preço Sob Consulta</span>
+                            </div>
+
+                        </div>
+                        <div class="text-center mt-8">
+                            <a href="#contato"
+                                class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                                 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.03]">
+                                Fale Conosco sobre Serviços Avulsos
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 pt-8 border-t border-white/10 text-center">
+                        <h3 class="text-2xl font-bold mb-4 text-purple-400">Transparência e Condições de Serviço</h3>
+                        <p class="text-neutral-500 max-w-4xl mx-auto text-sm space-y-2">
+                            <span class="block">
+                                AVISO LEGAL: Todos os projetos são individuais e o preço final e o tempo de
+                                entrega variam de acordo com a complexidade e requisitos específicos do cliente. O valor
+                                final será determinado e formalizado no Contrato de Prestação de Serviço.
+                            </span>
+                            <span class="block mt-2">
+                                PAGAMENTO: Todos os valores à vista mencionados incluem 10% de desconto (Pix).
+                                Pagamento no cartão de crédito pode ser realizado em até 3x com acréscimo de 10% de
+                                juros. O
+                                valor do projeto deve ser pago na assinatura do contrato.
+                            </span>
+                            <span class="block mt-2">
+                                CONTRATO E ALTERAÇÕES: Emitimos Nota Fiscal para todos os projetos. O contrato
+                                assinado garante abertura para alterações pontuais por uma semana após a entrega. Após
+                                este período, as alterações ficam limitadas à manutenção básica inclusa.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contato" class="py-24 bg-gray-900/70 relative overflow-hidden fade-in-on-scroll">
+                <div aria-hidden="true"
+                    class="absolute inset-x-0 top-0 h-full bg-gradient-to-t from-gray-950/0 via-gray-950/20 to-gray-950/0">
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                        <div class="fade-in-on-scroll">
+                            <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-purple-pink">
+                                Não perca tempo! Entre em contato e solicite um orçamento.
+                            </h2>
+                            <p class="text-lg text-neutral-400 mb-6">
+                                Entre em contato com nossos especialistas e desfrute da melhor acessoria do mercado!
+                            </p>
+
+                            <div class="space-y-3 text-neutral-300">
+                                <p class="flex items-center gap-3">
+                                    <span class="text-lg text-blue-400">🔗</span> <strong>E-mail</strong>
+                                    contato@vbmdevs.com
+                                </p>
+                                <p class="flex items-center gap-3">
+                                    <span class="text-lg text-blue-400">📞</span> <strong>Telefone/WhatsApp:</strong>
+                                    +55
+                                    (51) 99629-9252
+                                </p>
+                                <p class="flex items-center gap-3">
+                                    <span class="text-lg text-blue-400">📍</span> <strong>Localização:</strong> Rio
+                                    Grande
+                                    do Sul/BR
+                                    (Atendimento Remoto)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="p-8 rounded-2xl bg-gray-950/90 border border-purple-500/40 shadow-2xl shadow-purple-500/20 fade-in-on-scroll delay-400">
+                            <form id="whatsappForm" onsubmit="return sendWhatsApp(event)" class="space-y-6">
+
+                                <div>
+                                    <label for="nome" class="block text-sm font-medium text-neutral-300 mb-2">Nome
+                                        Completo</label>
+                                    <input type="text" id="nome" name="nome" required
+                                        class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-neutral-300 mb-2">E-mail
+                                        Profissional</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                </div>
+
+                                <div>
+                                    <label for="assunto"
+                                        class="block text-sm font-medium text-neutral-300 mb-2">Assunto</label>
+                                    <input type="text" id="assunto" name="assunto" required
+                                        class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                        placeholder="Ex: Criação de Página, Tráfego Pago, Mídia Social, Gerenciamento de Perfil Empresarial...">
+                                </div>
+                                <div>
+                                    <label for="mensagem"
+                                        class="block text-sm font-medium text-neutral-300 mb-2">Mensagem
+                                        (Detalhes do
+                                        Projeto)</label>
+                                    <textarea id="mensagem" name="mensagem" rows="4" required
+                                        class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                                 text-white font-bold py-3 rounded-lg shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.01]">
+                                    CONTATO VIA WHATSAPP (Retorno quase imediato!)
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="py-8 bg-black/50 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 text-center text-sm text-neutral-500 font-body">
+
+                <div class="flex justify-center space-x-6 mb-4">
+
+                    <a href="https://www.instagram.com/vbmdev" target="_blank" rel="noopener noreferrer"
+                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 rounded-full hover:bg-white/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="h-6 w-6">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                    </a>
+
+                    <a href="mailto:contato@vbmdevs.com"
+                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-full hover:bg-white/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="h-6 w-6">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.83 1.83 0 0 1-2.06 0L2 7" />
+                        </svg>
+                    </a>
+
+                    <a href="tel:+5551996299252"
+                        class="text-neutral-400 hover:text-green-400 transition-colors duration-200 p-2 rounded-full hover:bg-white/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="h-6 w-6">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-4.75-4.75 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="mb-2">
+                    <a href="politica-e-termos.html"
+                        class="text-neutral-500 hover:text-white transition-colors duration-200 mr-4">Política de
+                        Privacidade e Termos de Uso</a>
+                </div>
+
+                &copy; 2022 VBM Devs. - Todos os direitos reservados.
+            </div>
+        </footer>
+
+        <script src="assets/js/script.js"></script>
+</body>
+
+</html>

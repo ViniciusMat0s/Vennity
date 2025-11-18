@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade e Termos de Uso - VBM Devs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+    <style>
+        /* Base e Fontes (Mantidas do original) */
+        body {
+            font-family: 'Quantico', monospace;
+            background-color: #030712;
+            color: #ffffff;
+            transition: background-color 0.5s, color 0.5s;
+            padding-top: 80px;
+        }
+
+        /* Adicionado padding-top para o header fixo */
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .bg-gray-950 {
+            background-color: #030712;
+        }
+
+        .text-neutral-400 {
+            color: #9ca3af;
+        }
+
+        .gradient-blue-purple {
+            background-image: linear-gradient(to right, #60a5fa, #a855f7);
+        }
+
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Estilos do Header */
+        header .backdrop-blur-md {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border-color: #374151 !important;
+        }
+
+        header img {
+            filter: invert(1) !important;
+        }
+
+        /* Estilos da barra de navegação flutuante (Table of Contents) */
+        .toc-link {
+            transition: color 0.2s;
+        }
+
+        .toc-link:hover {
+            color: #ffffff;
+            /* branco no hover */
+        }
+
+        /* Classes de Cores para o Modo LIGHT */
+        .light-mode {
+            background-color: #F3F4F6 !important;
+            /* Cor de fundo clara */
+            color: #1F2937 !important;
+            /* Cor do texto escura */
+        }
+
+        .light-mode .bg-gray-950 {
+            background-color: #F3F4F6 !important;
+            /* Fundo da seção */
+        }
+
+        .light-mode .text-white,
+        .light-mode h2,
+        .light-mode h3 {
+            color: #1F2937 !important;
+            /* Títulos escuros */
+        }
+
+        .light-mode .text-neutral-300 {
+            color: #374151 !important;
+            /* Texto principal mais escuro */
+        }
+
+        .light-mode .text-neutral-400 {
+            color: #6b7280 !important;
+            /* Texto secundário mais escuro */
+        }
+
+        .light-mode .border-gray-700 {
+            border-color: #D1D5DB !important;
+            /* Borda clara */
+        }
+
+        .light-mode .bg-gray-950\/90 {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            /* Fundo da TOC clara */
+        }
+
+        .light-mode header .backdrop-blur-md {
+            background-color: rgba(255, 255, 255, 0.7) !important;
+            border-color: #D1D5DB !important;
+        }
+
+        .light-mode header img {
+            filter: none !important;
+        }
+
+        /* Gradiente para Título em Light Mode */
+        .light-mode .gradient-blue-purple {
+            background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
+        }
+
+        .light-mode .text-blue-400 {
+            color: #2563eb;
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833">
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17620440833');
+</script>
+
+<body class="bg-gray-950 min-h-screen">
+
+    <button id="theme-toggle"
+        class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-50 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white">
+        <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+            </path>
+        </svg>
+    </button>
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="flex justify-center items-center h-20 w-full backdrop-blur-md bg-black/30 border-b border-white/10">
+            <div class="flex justify-between items-center w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo.png" alt="VBM Devs Logo" class="h-8 w-auto invert" />
+                </a>
+
+                <nav class="hidden md:flex text-neutral-300">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html#hero"
+                                class="hover:text-purple-400 transition-colors duration-200">Início</a></li>
+                        <li><a href="index.html#depoimentos"
+                                class="hover:text-purple-400 transition-colors duration-200">Reviews</a></li>
+                        <li><a href="index.html#processo"
+                                class="hover:text-purple-400 transition-colors duration-200">Processo</a></li>
+                        <li><a href="index.html#sobre"
+                                class="hover:text-purple-400 transition-colors duration-200">Sobre</a></li>
+                        <li><a href="index.html#precos"
+                                class="hover:text-purple-400 transition-colors duration-200">Preços</a>
+                        </li>
+                        <li><a href="index.html#contato"
+                                class="hover:text-purple-400 transition-colors duration-200">Contato</a>
+                        </li>
+                        <li><a href="politica-e-termos.html"
+                                class="hover:text-pink-400 transition-colors duration-200">Política e Termos</a></li>
+                        <li><a href="faq.html" class="hover:text-purple-400 transition-colors duration-200">FAQ</a></li>
+                    </ul>
+                </nav>
+                <a href="index.html#contato"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 shadow-md shadow-blue-500/30">
+                    Trabalhe conosco!
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="max-w-4xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                Política de Privacidade e Termos de Uso
+            </h1>
+            <p class="text-neutral-400">Documentos legais para a transparência dos serviços VBM Devs</p>
+        </header>
+
+        <nav
+            class="sticky top-20 z-10 bg-gray-950/90 backdrop-blur-sm p-3 rounded-lg border border-gray-700 mb-10 text-center">
+            <a href="#privacidade" class="toc-link text-blue-400 font-semibold mr-6">Política de Privacidade</a>
+            <span class="text-gray-700">|</span>
+            <a href="#termos" class="toc-link text-blue-400 font-semibold ml-6">Termos de Uso</a>
+        </nav>
+        <section id="privacidade" class="space-y-8 text-neutral-300 pt-4">
+
+            <h2 class="text-3xl font-black text-white pb-2 border-b border-gray-700">Política de Privacidade</h2>
+            <p class="text-neutral-400 italic">Última atualização: Outubro de 2025</p>
+
+            <p>A VBM Devs ("nós", "nosso") está comprometida em proteger a privacidade e a segurança dos dados de seus
+                usuários e clientes. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e
+                protegemos suas informações.</p>
+
+            <h3 class="text-xl font-bold text-white pt-4">1. Coleta de Informações</h3>
+            <p>Coletamos informações das seguintes maneiras:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>**Informações Fornecidas por Você:** Coletamos dados pessoais (nome, e-mail, telefone/WhatsApp e
+                    detalhes do projeto) que você insere voluntariamente em nossos formulários de contato e orçamento.
+                </li>
+                <li>**Dados de Navegação e Cookies:** Utilizamos cookies e tecnologias de rastreamento (como o Google
+                    Analytics) para analisar o tráfego do site, medir a performance de campanhas (Google Ads) e otimizar
+                    a experiência do usuário.</li>
+                <li>**Tradução (Google Translate):** O widget de tradução automática do Google pode coletar dados de
+                    navegação, conforme a política de privacidade do Google.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-white pt-4">2. Uso das Informações</h3>
+            <p>Suas informações são utilizadas para:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Processar orçamentos e pedidos de serviço.</li>
+                <li>Comunicar sobre o status do projeto e fornecer suporte técnico.</li>
+                <li>Personalizar a experiência do site e melhorar nossos serviços (análise de dados).</li>
+                <li>Cumprir obrigações legais, como a emissão de Nota Fiscal.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-white pt-4">3. Compartilhamento de Informações</h3>
+            <p>A VBM Devs não vende, aluga ou cede suas informações pessoais para terceiros, exceto nos casos de:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Prestadores de serviço essenciais (ex: provedores de hospedagem ou ferramentas de análise, sob
+                    rigoroso contrato de confidencialidade).</li>
+                <li>Cumprimento de requisitos legais ou ordens judiciais.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-white pt-4">4. Seus Direitos</h3>
+            <p>Você tem o direito de solicitar acesso, correção ou exclusão de seus dados pessoais. Para exercer esses
+                direitos, entre em contato conosco através do e-mail: **contato@vbmdevs.com**.</p>
+
+            <p class="pt-4 italic text-neutral-400">Ao utilizar nosso site e serviços, você concorda com a coleta e uso
+                de suas informações conforme estabelecido nesta política.</p>
+        </section>
+
+        <hr class="my-16 border-gray-700" />
+
+        <section id="termos" class="space-y-8 text-neutral-300 pt-4">
+
+            <h2 class="text-3xl font-black text-white pb-2 border-b border-gray-700">Termos e Condições de Serviço</h2>
+            <p class="text-neutral-400 italic">Válidos para todos os projetos de Desenvolvimento e Marketing</p>
+
+            <h3 class="text-xl font-bold text-white pt-4">1. Escopo dos Serviços</h3>
+            <p>A VBM Devs oferece serviços de Desenvolvimento Web (Landing Pages, Sites Institucionais, Sistemas),
+                Gestão de Tráfego Pago, Gestão de Perfil Google Empresas e Design para Mídia Social. Todos os projetos
+                são tratados individualmente. **O escopo final, o preço e o prazo serão detalhados e formalizados no
+                Contrato de Prestação de Serviço, que é obrigatório para o início de qualquer trabalho.**</p>
+
+            <h3 class="text-xl font-bold text-white pt-4">2. Condições de Pagamento</h3>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>**Valores Anunciados:** Os preços indicados no site são referenciais. O valor final é estabelecido
+                    após a análise do projeto.</li>
+                <li>**Desconto PIX:** Os valores à vista incluem **10% de desconto** (válido para pagamentos via PIX).
+                </li>
+                <li>**Cartão de Crédito:** O pagamento pode ser parcelado em até 3x, com acréscimo de 10% de juros sobre
+                    o valor do projeto.</li>
+                <li>**Início do Projeto:** O valor total ou a primeira parcela do projeto deve ser pago na **assinatura
+                    do Contrato**.</li>
+                <li>**Emissão de Nota Fiscal:** A Nota Fiscal de Serviço será emitida para todos os projetos concluídos.
+                </li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-white pt-4">3. Entregas e Alterações</h3>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>**Prazos:** O prazo de entrega varia conforme a complexidade do projeto e será definido em contrato.
+                </li>
+                <li>**Período de Ajustes:** Após a entrega, o cliente terá **7 (sete) dias corridos** para solicitar
+                    alterações pontuais e refinamentos.</li>
+                <li>**Manutenção:** Após o período de ajustes, quaisquer alterações grandes ou que fujam do escopo
+                    inicial serão cobradas separadamente. Alterações pequenas e correções de bugs estão inclusas na
+                    manutenção básica mensal (se contratada).</li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-white pt-4">4. Propriedade Intelectual</h3>
+            <p>O cliente detém a propriedade intelectual do conteúdo (textos, imagens, identidade visual) que fornecer.
+                A VBM Devs mantém a propriedade intelectual sobre o código, métodos e ferramentas de desenvolvimento
+                utilizadas para construir o site/sistema, concedendo ao cliente uma licença de uso vitalícia após a
+                quitação total do projeto.</p>
+
+            <h3 class="text-xl font-bold text-white pt-4">5. Limitação de Responsabilidade</h3>
+            <p>A VBM Devs não se responsabiliza por quaisquer perdas ou danos decorrentes de problemas na hospedagem,
+                falhas de terceiros (como Facebook Ads, Google Ads ou provedores de domínio/hospedagem) ou alterações
+                feitas no código pelo próprio cliente após a entrega e quitação.</p>
+
+            <p class="pt-4 italic text-neutral-400">Ao solicitar um orçamento ou contratar nossos serviços, você
+                confirma ter lido, compreendido e aceitado estes Termos de Uso.</p>
+
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center">
+                <a href="index.html" class="text-blue-400 hover:text-white transition-colors duration-200">← Voltar para
+                    a Página Inicial</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const body = document.body;
+        const toggleButton = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const LIGHT_MODE_CLASS = 'light-mode';
+
+        function applyTheme(isLight) {
+            if (isLight) {
+                body.classList.add(LIGHT_MODE_CLASS);
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                body.classList.remove(LIGHT_MODE_CLASS);
+                localStorage.setItem('theme', 'dark');
+                moonIcon.classList.remove('hidden');
+                sunIcon.classList.add('hidden');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            applyTheme(true);
+        } else {
+            applyTheme(false);
+        }
+
+        toggleButton.addEventListener('click', () => {
+            const isLight = body.classList.contains(LIGHT_MODE_CLASS);
+            applyTheme(!isLight);
+        });
+    </script>
+</body>
+
+</html>
