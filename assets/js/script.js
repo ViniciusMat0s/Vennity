@@ -216,7 +216,10 @@ function setupCardScrollAnimation() {
 }
 
 function setupProcessTimelineAnimation() {
-    if (typeof ScrollTrigger === 'undefined') return;
+    if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
+        console.warn("GSAP ou ScrollTrigger não estão carregados. A animação da timeline não será iniciada.");
+        return;
+    }
 
     const timeline = document.getElementById('timeline-line');
     const progressLine = document.getElementById('timeline-progress');
@@ -237,35 +240,72 @@ function setupProcessTimelineAnimation() {
         }
     });
 
-    // 2. Animação de Revelação de Cada Passo
+    // 2. Animação de Revelação de Cada Passo (Intercalada)
     steps.forEach((step, index) => {
-        // Animação dos itens (fade-in e slide-up)
-        gsap.to(step, {
+        const isEven = index % 2 === 0; // Para passos pares (0, 2, 4...) -> à esquerda
+        const startX = isEven ? -100 : 100; // Começa da esquerda (negativo) ou direita (positivo)
+
+        const stepDot = dots[index]; // O ponto correspondente na timeline
+
+        gsap.fromTo(step, {
+            opacity: 0,
+            y: 50, // Sempre começa um pouco abaixo
+            x: startX, // Movimento lateral intercalado
+        }, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            x: 0,
+            duration: 1,
             ease: "power3.out",
             scrollTrigger: {
                 trigger: step,
                 start: "top 80%", // Quando o passo entra na tela
                 toggleActions: "play none none none",
                 once: true,
+                onEnter: () => {
+                    // Animação do número do passo (PASSO 1, PASSO 2...)
+                    const stepNumber = step.querySelector('.process-step');
+                    if (stepNumber) {
+                        gsap.fromTo(stepNumber, {
+                            opacity: 0,
+                            scale: 0.8
+                        }, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "back.out(1.7)"
+                        });
+                    }
+
+                    // Animação do ponto na timeline
+                    if (stepDot) {
+                        gsap.fromTo(stepDot, {
+                            opacity: 0,
+                            scale: 0.5
+                        }, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.6,
+                            ease: "elastic.out(1, 0.5)"
+                        });
+                    }
+                }
             }
         });
 
-        // Animação dos pontos (dot) da timeline
-        if (dots[index]) {
-            gsap.to(dots[index], {
+        // 3. Animação de Pulso dos Pontos quando no centro da tela
+        if (stepDot) {
+            gsap.to(stepDot, {
                 scale: 1.5,
-                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)",
+                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)", // Sombra roxa mais destacada
                 duration: 0.3,
-                yoyo: true,
-                repeat: 1,
+                yoyo: true, // Volta ao tamanho original
+                repeat: 1, // Repete uma vez para ter o efeito de pulso
                 ease: "none",
                 scrollTrigger: {
                     trigger: step,
                     start: "center center", // Quando o passo está bem no centro da tela
-                    toggleActions: "play none reverse none",
+                    toggleActions: "play reverse play reverse", // Play ao entrar, reverse ao sair do centro
                 }
             });
         }
@@ -282,6 +322,9 @@ function setupSobreAnimation() {
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
 
+    // O Terminal está dentro de .bg-gray-900 (que é #111827).
+    const TERMINAL_BACKGROUND_COLOR = '#111827'; 
+    
     // 1. Animação de Entrada dos Blocos (Terminal e Texto)
     gsap.from(terminalContainer, {
         x: 50,
@@ -310,10 +353,11 @@ function setupSobreAnimation() {
     });
 
     // 2. Efeito de Digitação (Typewriter Effect)
-
+    // Garante que o código é visível para o GSAP ler o HTML, mas coberto para o efeito.
     terminalCode.style.visibility = 'visible';
     const cover = document.createElement('div');
-    cover.style.cssText = 'position: absolute; inset: 0; background-color: #030712;';
+    // Corrigido para usar o fundo do terminal
+    cover.style.cssText = `position: absolute; inset: 0; background-color: ${TERMINAL_BACKGROUND_COLOR};`;
     terminalCode.parentElement.appendChild(cover);
 
     const tl = gsap.timeline({
@@ -326,6 +370,7 @@ function setupSobreAnimation() {
         }
     });
 
+    // Anima o cover de 100% de largura para 0%, revelando o código por baixo.
     tl.to(cover, {
         width: "0%",
         duration: 2.5,
@@ -338,6 +383,157 @@ function setupSobreAnimation() {
                 cover.remove();
             }
         });
+}
+
+function setupReviewsGridAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.warn("GSAP ou ScrollTrigger não estão carregados. A animação da grade de reviews não será iniciada.");
+        return;
+    }
+
+    const reviewsGrid = document.getElementById('reviews-grid');
+    const reviewCards = gsap.utils.toArray('.review-grid-item');
+    const backgroundEffect = document.getElementById('reviews-background-effect');
+
+    if (!reviewsGrid || reviewCards.length === 0) return;
+
+    // 1. Animação de Entrada dos Cards (Skewed Staggered Entry)
+    gsap.from(reviewCards, {
+        opacity: 0,
+        y: 150,
+        skewY: 5, // Inclina o eixo Y
+        rotation: 3, // Rotação sutil
+        duration: 1.5,
+        ease: "power3.out",
+        stagger: 0.15, // Atraso entre cada card
+        scrollTrigger: {
+            trigger: reviewsGrid,
+            start: "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    // 2. Animação Parallax para cada Card (movimento vertical constante)
+    reviewCards.forEach((card, i) => {
+        // Define a distância de movimento vertical no Parallax (mais notável que antes)
+        const moveDistance = (i % 2 === 0) ? 60 : -60; 
+
+        gsap.to(card, {
+            y: moveDistance, 
+            ease: "none",
+            scrollTrigger: {
+                trigger: card,
+                start: "top bottom", // Começa quando o topo do card entra na tela
+                end: "bottom top",   // Termina quando o fundo do card sai da tela
+                scrub: 1.2,          // Parallax suave
+            }
+        });
+    });
+
+    // 3. Animação Parallax para o Fundo da Seção de Reviews (opcional, mas AWWWARDS)
+    if (backgroundEffect) {
+        gsap.to(backgroundEffect, {
+            yPercent: -10, // Move o background para cima 10% do seu próprio tamanho
+            ease: "none",
+            scrollTrigger: {
+                trigger: reviewsGrid,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.8, // Movimento mais suave que os cards
+            }
+        });
+
+        // Adiciona um gradiente radial no background como um toque AWWWARDS
+        backgroundEffect.style.background = `radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, rgba(3, 7, 18, 0) 70%)`;
+        backgroundEffect.style.pointerEvents = 'none';
+    }
+}
+
+function setupPricingAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    const pricingGrid = document.getElementById('pricing-grid');
+    const priceCards = gsap.utils.toArray('[data-gsap-price="true"]');
+    const destaqueCard = document.querySelector('.card-destaque');
+
+    if (!pricingGrid || priceCards.length === 0) return;
+
+    // 0. Define o estado inicial para TODOS os cards ANTES do ScrollTrigger ser criado.
+    gsap.set(priceCards, {
+        opacity: 0, 
+        y: 80, 
+        visibility: "hidden" 
+    });
+
+
+    // 1. Animação de Entrada dos Cards (Staggered Fade-in)
+    gsap.to(priceCards, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.15,
+        visibility: "visible", // Torna visível ao final da animação
+        scrollTrigger: {
+            trigger: pricingGrid,
+            start: "top 80%",
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    // 2. Animação de Rotação 3D sutil para o Card de Destaque no scroll
+    if (destaqueCard) {
+        gsap.to(destaqueCard, {
+            rotationY: 1, // Gira sutilmente 1 grau
+            y: -10, // Move 10px para cima
+            ease: "sine.inOut",
+            repeat: -1, // Loop infinito
+            yoyo: true, // Vai e volta
+            duration: 5,
+        });
+
+        // Adiciona um hover dinâmico que para a animação de fundo GSAP
+        destaqueCard.addEventListener('mouseenter', () => {
+             // Garante que o CSS hover scale entre em vigor
+        });
+        destaqueCard.addEventListener('mouseleave', () => {
+             // Reinicia a animação GSAP no mouseleave
+             gsap.to(destaqueCard, { rotationY: 1, y: -10, duration: 5, ease: "sine.inOut", repeat: -1, yoyo: true });
+        });
+    }
+}
+
+// NOVA FUNÇÃO: Aplica o brilho do mouse na seção de Preços
+function setupPricingMouseGlow() {
+    const glowElement = document.getElementById('mouse-glow-precos');
+    const targetElement = document.getElementById('pricing-container-interactive');
+    
+    if (!glowElement || !targetElement) return;
+
+    // Define a opacidade inicial do glow como 0, apenas ativa no hover
+    glowElement.classList.remove('active');
+    glowElement.classList.add('opacity-0');
+    
+    targetElement.addEventListener('mouseenter', () => {
+        glowElement.classList.add('active', 'opacity-100');
+    });
+
+    targetElement.addEventListener('mouseleave', () => {
+        glowElement.classList.remove('active', 'opacity-100');
+        glowElement.classList.add('opacity-0');
+    });
+
+    targetElement.addEventListener('mousemove', (e) => {
+        const rect = targetElement.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Move o elemento de brilho
+        glowElement.style.left = `${x}px`;
+        glowElement.style.top = `${y}px`;
+    });
 }
 
 
@@ -951,6 +1147,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupSobreAnimation();
 
+    setupReviewsGridAnimation();
+    
+    setupPricingAnimation(); 
+    
+    setupPricingMouseGlow(); // Chamada adicionada
+
     const mainHeader = document.getElementById('main-header');
     const logoContainer = document.getElementById('logo-container');
 
@@ -995,101 +1197,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-function setupProcessTimelineAnimation() {
-    if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
-        console.warn("GSAP ou ScrollTrigger não estão carregados. A animação da timeline não será iniciada.");
-        return;
-    }
-
-    const timeline = document.getElementById('timeline-line');
-    const progressLine = document.getElementById('timeline-progress');
-    const steps = document.querySelectorAll('.process-step-item');
-    const dots = document.querySelectorAll('.timeline-dot');
-
-    if (!timeline || steps.length === 0) return;
-
-    // 1. Animação da Linha de Progresso Principal
-    gsap.to(progressLine, {
-        height: "100%", // Cresce de 0 para 100%
-        ease: "power1.inOut",
-        scrollTrigger: {
-            trigger: timeline,
-            start: "top center", // Começa quando o topo da linha atinge o centro da tela
-            end: "bottom center", // Termina quando o final da linha atinge o centro da tela
-            scrub: true, // Liga a animação à rolagem
-        }
-    });
-
-    // 2. Animação de Revelação de Cada Passo (Intercalada)
-    steps.forEach((step, index) => {
-        const isEven = index % 2 === 0; // Para passos pares (0, 2, 4...) -> à esquerda
-        const startX = isEven ? -100 : 100; // Começa da esquerda (negativo) ou direita (positivo)
-
-        const stepDot = dots[index]; // O ponto correspondente na timeline
-
-        gsap.fromTo(step, {
-            opacity: 0,
-            y: 50, // Sempre começa um pouco abaixo
-            x: startX, // Movimento lateral intercalado
-        }, {
-            opacity: 1,
-            y: 0,
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: step,
-                start: "top 80%", // Quando o passo entra na tela
-                toggleActions: "play none none none",
-                once: true,
-                onEnter: () => {
-                    // Animação do número do passo (PASSO 1, PASSO 2...)
-                    const stepNumber = step.querySelector('.process-step');
-                    if (stepNumber) {
-                        gsap.fromTo(stepNumber, {
-                            opacity: 0,
-                            scale: 0.8
-                        }, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.5,
-                            ease: "back.out(1.7)"
-                        });
-                    }
-
-                    // Animação do ponto na timeline
-                    if (stepDot) {
-                        gsap.fromTo(stepDot, {
-                            opacity: 0,
-                            scale: 0.5
-                        }, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.6,
-                            ease: "elastic.out(1, 0.5)"
-                        });
-                    }
-                }
-            }
-        });
-
-        // 3. Animação de Pulso dos Pontos quando no centro da tela
-        if (stepDot) {
-            gsap.to(stepDot, {
-                scale: 1.5,
-                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)", // Sombra roxa mais destacada
-                duration: 0.3,
-                yoyo: true, // Volta ao tamanho original
-                repeat: 1, // Repete uma vez para ter o efeito de pulso
-                ease: "none",
-                scrollTrigger: {
-                    trigger: step,
-                    start: "center center", // Quando o passo está bem no centro da tela
-                    toggleActions: "play reverse play reverse", // Play ao entrar, reverse ao sair do centro
-                    // markers: true // Descomente para depurar o ScrollTrigger
-                }
-            });
-        }
-    });
-}

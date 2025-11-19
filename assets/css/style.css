@@ -582,6 +582,58 @@
             background-color: rgba(255, 255, 255, 0.05) !important;
         }
 
+        /* Estilos para o NOVO LAYOUT de GRADE DE REVIEWS */
+
+        /* Container do Carrossel e Scroll Snap */
+        .reviews-container {
+            /* Habilita o Scroll Snap e a rolagem horizontal */
+            scroll-behavior: smooth;
+
+            /* Esconde a barra de rolagem (AWWWARDS style) */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+            padding-bottom: 3rem;
+            /* Espaço para a sombra e a rolagem */
+
+            /* [REMOVIDO min-h: O GSAP controla a altura mínima indiretamente pelo Parallax] */
+        }
+
+        .reviews-container::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        /* Estilo dos Cards Internos de Review */
+        .review-inner-card {
+            position: relative;
+            z-index: 10;
+            /* Garante que os efeitos de transform e shadow funcionem */
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        /* Efeito de Destaque no Hover */
+        .review-inner-card:hover {
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+            /* Sombra roxa elegante */
+        }
+
+        /* Fixa o tamanho dos itens no Carrossel */
+        .review-card-full {
+            flex-shrink: 0;
+            max-width: none;
+        }
+
+        /* Classe para o elemento de fundo de reviews que o GSAP usa para Parallax */
+        #reviews-background-effect {
+            /* Garante que o fundo esteja na camada certa para o Parallax */
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            /* O GSAP irá adicionar o background gradient radial */
+        }
+
         /* Ajuste Light Mode - Cores mais escuras no Gradiente */
         .light-mode #timeline-progress {
             background-image: linear-gradient(to bottom,
@@ -594,6 +646,50 @@
                     #16a34a 100%
                     /* Passo 4: Verde escuro */
                 );
+        }
+
+        /* Estilos para a Seção de Preços (Chamativa AWWWARDS) */
+
+        /* Card Padrão (BASIC / CUSTOM) */
+        .card-padrao {
+            /* Adiciona um toque de profundidade base para a animação */
+            transform: scale(1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card-padrao:hover {
+            transform: scale(1.05);
+            /* Escala no hover */
+            z-index: 10;
+        }
+
+        /* Card de DESTAQUE (PREMIUM) */
+        .card-destaque {
+            /* Estado inicial já elevado pelo scale-[1.05] */
+            animation: price-pulse 4s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Garante que os cards de preço com animação GSAP estejam invisíveis inicialmente, 
+           para evitar que sumam antes do ScrollTrigger assumir. */
+        [data-gsap-price="true"] {
+            opacity: 0;
+            visibility: hidden;
+            transition: none;
+            /* Desabilita transições CSS para o GSAP ter controle total */
+        }
+
+        @keyframes price-pulse {
+
+            0%,
+            100% {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+            }
+
+            50% {
+                transform: scale(1.07);
+                box-shadow: 0 0 35px rgba(168, 85, 247, 0.9), 0 0 50px rgba(96, 165, 250, 0.4);
+            }
         }
 
         @keyframes fadeInUp {
