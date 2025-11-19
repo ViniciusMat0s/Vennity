@@ -37,15 +37,16 @@ function applyTheme(isLight) {
 }
 
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
+if (savedTheme) {
+    applyTheme(savedTheme === 'light');
+} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
     applyTheme(true);
 } else {
     applyTheme(false);
 }
 
 toggleButton.addEventListener('click', () => {
-    const isLight = body.classList.contains(LIGHT_MODE_CLASS);
-    applyTheme(!isLight);
+    applyTheme(!body.classList.contains(LIGHT_MODE_CLASS));
 });
 
 function toggleMobileMenu() {
@@ -138,7 +139,6 @@ function setupMouseGlow() {
     });
 }
 
-// ATUALIZADO: Seleciona tanto os cards de serviço quanto os cards de preço para o mouse follow.
 function setupCardGlowEffect() {
     // Seletor unificado para cards de serviço e cards de preço
     const cardSelectors = '.service-card, .card-padrao, .card-destaque';
@@ -237,7 +237,6 @@ function setupServiceCardsParallax() {
         });
     });
 }
-
 
 function setupProcessTimelineAnimation() {
     if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
@@ -404,7 +403,6 @@ function setupSobreAnimation() {
     }, ">");
 }
 
-// CORRIGIDO: Garante que os cards apareçam corretamente.
 function setupResultsAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof window.innerWidth === 'undefined') return;
 
@@ -474,8 +472,6 @@ function setupResultsAnimation() {
     });
 }
 
-
-// CORRIGIDO: Removida a altura fixa 'min-h-[450px]' via JS
 function setupReviewsGridAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
         return;
@@ -487,10 +483,6 @@ function setupReviewsGridAnimation() {
 
     if (!reviewsGrid || reviewCards.length === 0) return;
 
-    // Remove a limitação de altura da div que contém o carrossel, 
-    // permitindo que o movimento parallax dos cards não seja cortado.
-    // O min-h-[450px] está no HTML, o CSS do reviews-container deve ser ajustado.
-    
     gsap.from(reviewCards, {
         opacity: 0,
         y: 150,
@@ -509,7 +501,6 @@ function setupReviewsGridAnimation() {
 
     reviewCards.forEach((card, i) => {
         // Aumentando a distância de movimento para garantir que o corte seja evitado 
-        // e o efeito seja mais visível/dramático.
         const moveDistance = (i % 2 === 0) ? 100 : -100; // Movimento maior
         
         // Aplicando o scrub (parallax)
@@ -1348,7 +1339,7 @@ function setupThreeJS() {
         },
         function (error) {
             console.error('An error happened loading the Three.js font:', error);
-            document.getElementById('hero-h1-text-fallback').querySelector('span').style.opacity = 1;
+            document.getElementById('hero-h1').style.display = 'block'; // Mostra o H1 do HTML como fallback
             canvas.style.display = 'none';
         });
 
@@ -1361,9 +1352,9 @@ function setupHeroEntranceAnimation() {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     // Elementos a animar
-    const h1Fallback = document.querySelector('[data-gsap-hero="h1"]'); // Fallback H1 (usado se Three.js falhar)
-    const subtitle = document.querySelector('[data-gsap-hero="subtitle"]');
-    const buttons = document.querySelector('[data-gsap-hero="buttons"]');
+    const h1Fallback = document.getElementById('hero-h1'); 
+    const subtitle = document.querySelector('.max-w-1xl.mx-auto');
+    const buttons = document.querySelector('.mt-12.flex');
     const logoTicker = document.getElementById('impacto');
     const mainHeader = document.getElementById('main-header');
     
@@ -1425,10 +1416,6 @@ function setupHeroEntranceAnimation() {
         scale: 1,
         duration: 1,
     }, 1.2); // Começa 1.2s após o início
-    
-    // Garante que o Three.js e o fallback não briguem - 
-    // O Three.js tem sua própria animação de "on load"
-    document.getElementById('hero-h1').style.display = 'none'; // Esconde o H1 que estava sendo usado para o Three.js
 }
 
 // NOVO: Função para o Ticker com GSAP e Pause on Hover
@@ -1441,18 +1428,26 @@ function setupTickerAnimation() {
     tickerContainer.style.animation = 'none';
 
     // Clona o conteúdo para o loop infinito
-    const clone = tickerContent.cloneNode(true);
-    tickerContainer.appendChild(clone);
-    
-    const distance = -tickerContent.clientWidth;
+    const contentWidth = tickerContent.clientWidth;
+    const distance = -contentWidth;
     const duration = 15; // 15 segundos para um ciclo completo
+
+    // Cria o clone se ainda não existir
+    if (tickerContainer.children.length === 1) {
+        const clone = tickerContent.cloneNode(true);
+        tickerContainer.appendChild(clone);
+    }
 
     tickerAnimation = gsap.to(tickerContainer, {
         x: distance,
         duration: duration,
         ease: "linear",
         repeat: -1,
-        paused: false
+        paused: false,
+        onRepeat: function() {
+            // Reinicia a posição para simular o loop infinito
+            this.set(tickerContainer, {x: 0});
+        }
     });
 
     // Pause on Hover
@@ -1470,29 +1465,8 @@ function setupVideoStickyReveal() {
 
     if (!videoSection || !videoMockup) return;
 
-    const scrollHeight = window.innerHeight * 1.5; 
-    videoSection.style.minHeight = `${scrollHeight}px`;
-
-    // 1. Animação de entrada do mockup
-    gsap.fromTo(videoMockup, {
-        opacity: 0,
-        y: 50,
-        scale: 0.9
-    }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: videoSection,
-            start: "top 85%",
-            toggleActions: "play none none none",
-            once: true
-        }
-    });
-
-    // 2. O efeito Sticky/Pin
+    // O Mockup já tem uma animação de fade-in-up, vamos usar o GSAP para o Pin
+    
     ScrollTrigger.create({
         trigger: videoSection,
         start: "top top",
@@ -1501,10 +1475,6 @@ function setupVideoStickyReveal() {
         pinSpacing: true,
         // O scrub faz com que a animação (paralaxe) acompanhe o scroll
         scrub: 1,
-        onEnter: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
-        onLeave: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
-        onEnterBack: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
-        onLeaveBack: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
     });
 
     // Opcional: Paralaxe sutil dentro da seção para o Mockup
@@ -1550,51 +1520,125 @@ function setupDockEffect() {
     });
 }
 
+// NOVO: Função de Animação do Footer (AWWWARDS Style)
+function setupFooterAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#main-footer",
+            start: "top 85%", // Começa a animação quando 85% do footer está visível
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    // 1. Animação do Título (Texto dividido por linha)
+    tl.from(".footer-title-line", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+    })
+
+    // 2. Animação da Descrição e Botão
+    .from(".footer-cta-subtitle", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "<0.2") // Inicia um pouco depois do título
+
+    .from(".footer-cta-button", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+    }, "<0.2")
+
+    // 3. Animação dos Grupos de Links (Staggered Reveal)
+    .from(".footer-link-group-left", {
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "<0.5")
+
+    .from(".footer-link-group-right", {
+        x: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "<0") // Inicia junto com o grupo esquerdo
+
+    .from(".footer-link-item", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "power1.out",
+    }, "<0.2") // Inicia um pouco depois dos grupos laterais
+
+    // 4. Animação do Copyright
+    .from(".footer-copyright", {
+        opacity: 0,
+        duration: 1,
+        ease: "power1.out",
+    }, ">-0.5"); // Termina com o copyright
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    setupHeroEntranceAnimation();
     
+    // --- Configuração e Init Three.js / Mouse ---
     initMouseTracking();
-
     setupBackgroundScene();
-
     setupThreeJS();
-
     setupMouseGlow();
-
     setupDockEffect();
     
-    // Animações de rolagem
-    setupServiceCardsParallax();
-    setupCardGlowEffect(); // Aplicará o mouse follow nos cards de Serviço e Preço
-
-    setupProcessTimelineAnimation();
-
-    setupSobreAnimation();
-
-    setupResultsAnimation(); 
-
-    setupReviewsGridAnimation();
-
-    setupPricingAnimation();
-
-    setupPricingMouseGlow();
-
-    setupContactAnimation();
-    setupContactMouseGlow();
+    // É importante chamar o Hero Entrance logo no início
+    setupHeroEntranceAnimation();
     
-    // Chamada das novas funções
-    setupTickerAnimation();
-    setupVideoStickyReveal();
-    setupTextReveal(); // NOVO: Títulos de seção
+    // --- Animações GSAP de Rolagem ---
+    
+    // Registra Plugins (se já não estiverem no topo do arquivo)
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger); 
+    }
 
+    // Inicializa todas as animações
+    let ctx = gsap.context(() => {
+        // Hero
+        setupTickerAnimation();
+        
+        // Seções
+        setupVideoStickyReveal();
+        setupTextReveal(); 
+        setupServiceCardsParallax();
+        setupProcessTimelineAnimation();
+        setupSobreAnimation();
+        setupResultsAnimation(); 
+        setupReviewsGridAnimation();
+        setupPricingAnimation();
+        setupContactAnimation();
+        
+        // Footer (Novo)
+        setupFooterAnimations();
+    });
 
+    // --- Efeitos Interativos / Mouse ---
+    setupCardGlowEffect();
+    setupPricingMouseGlow();
+    setupContactMouseGlow();
     setupSimpleParticlesScene('video-particles');
     setupSimpleParticlesScene('processo-particles-canvas');
     setupSimpleParticlesScene('resultados-particles-canvas');
     setupSimpleParticlesScene('contato-particles-canvas');
 
+
+    // --- Lógica de Header e Scroll Genérico (Mantida) ---
     const mainHeader = document.getElementById('main-header');
     const logoContainer = document.getElementById('logo-container');
 
@@ -1612,6 +1656,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Fallback/Animação genérica para elementos que não usam GSAP dedicado
     const scrollAnimatedElements = document.querySelectorAll('.fade-in-on-scroll');
     const observerOptions = {
         root: null,
