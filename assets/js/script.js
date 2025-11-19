@@ -138,6 +138,7 @@ function setupMouseGlow() {
     });
 }
 
+// ATUALIZADO: Adiciona o efeito mouse follow 3D no hover dos cards
 function setupCardGlowEffect() {
     const cards = document.querySelectorAll('.service-card');
 
@@ -145,21 +146,31 @@ function setupCardGlowEffect() {
         const glowOverlay = card.querySelector('.card-glow-overlay');
         if (!glowOverlay) return;
 
+        card.style.transformStyle = 'preserve-3d'; // Necessário para o efeito 3D
+
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
+            const xCenter = rect.width / 2;
+            const yCenter = rect.height / 2;
+            
+            // Mouse Follow para a luz
             const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
-
             glowOverlay.style.setProperty('--mouse-x', `${xPercent}%`);
             glowOverlay.style.setProperty('--mouse-y', `${yPercent}%`);
 
+            // Parallax 3D sutil do card
+            const rotateX = ((y - yCenter) / yCenter) * -5; // Rotação de -5deg a 5deg
+            const rotateY = ((x - xCenter) / xCenter) * 5; // Rotação de -5deg a 5deg
+
             gsap.to(card, {
-                x: (x - rect.width / 2) * 0.05,
-                y: (y - rect.height / 2) * 0.05,
-                duration: 0.3,
+                rotationX: rotateX,
+                rotationY: rotateY,
+                z: 10, // Move 10px para frente (efeito 3D)
+                duration: 0.5,
                 ease: "power2.out",
                 overwrite: true
             });
@@ -170,48 +181,58 @@ function setupCardGlowEffect() {
         });
 
         card.addEventListener('mouseleave', () => {
-            gsap.to(card, { x: 0, y: 0, scale: 1, duration: 0.5, ease: "power3.out" });
+            gsap.to(card, {
+                rotationX: 0,
+                rotationY: 0,
+                z: 0,
+                scale: 1,
+                duration: 0.5,
+                ease: "power3.out"
+            });
         });
     });
 }
 
-function setupCardScrollAnimation() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        const cards = document.querySelectorAll('[data-gsap-card="true"]');
-        cards.forEach(card => {
-            card.classList.add('fade-in-on-scroll');
-        });
-        return;
-    }
+function setupServiceCardsParallax() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    const cards = document.querySelectorAll('[data-gsap-card="true"]');
+    const cards = gsap.utils.toArray('[data-gsap-card="true"]');
 
     cards.forEach((card, index) => {
-        gsap.set(card, {
+        // Animação de entrada dos cards
+        gsap.from(card, {
             opacity: 0,
             y: 50,
-            rotationX: -90,
-            transformOrigin: "center top"
+            rotationX: -45, 
+            transformOrigin: "center top",
+            duration: 1.2,
+            delay: 0.1 * index,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                toggleActions: "play none none none",
+                once: true
+            }
         });
+        
+        // Efeito Parallax sutil: move os cards um pouco para cima e para baixo durante o scroll
+        const isOffset = index % 2 === 1;
+        const yValue = isOffset ? 30 : -30;
 
-        ScrollTrigger.create({
-            trigger: card,
-            start: "top 90%",
-            end: "bottom 20%",
-            onEnter: () => {
-                gsap.to(card, {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 1.2,
-                    delay: 0.1 * index,
-                    ease: "elastic.out(1, 0.5)"
-                });
-            },
-            once: true
+        gsap.to(card, {
+            y: yValue,
+            ease: "none",
+            scrollTrigger: {
+                trigger: '#servicos-wrapper',
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            }
         });
     });
 }
+
 
 function setupProcessTimelineAnimation() {
     if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
@@ -314,12 +335,13 @@ function setupSobreAnimation() {
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
 
-    const TERMINAL_BACKGROUND_COLOR = '#111827';
+    // Usando uma cor mais próxima do fundo para o efeito de "limpeza"
+    const TERMINAL_BACKGROUND_COLOR = '#030712'; // Cor do body/section
 
     gsap.from(terminalContainer, {
         x: 50,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
             trigger: section,
@@ -332,7 +354,7 @@ function setupSobreAnimation() {
     gsap.from(textContainer, {
         x: -50,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
             trigger: section,
@@ -344,8 +366,11 @@ function setupSobreAnimation() {
 
     terminalCode.style.visibility = 'visible';
     const cover = document.createElement('div');
-    cover.style.cssText = `position: absolute; inset: 0; background-color: ${TERMINAL_BACKGROUND_COLOR};`;
-    terminalCode.parentElement.appendChild(cover);
+    cover.style.cssText = `position: absolute; inset: 0; background-color: ${TERMINAL_BACKGROUND_COLOR}; border-radius: 10px;`;
+    
+    const terminalWindow = terminalCode.closest('.terminal-window');
+    const coverClone = cover.cloneNode(true);
+    terminalWindow.appendChild(coverClone);
 
     const tl = gsap.timeline({
         scrollTrigger: {
@@ -357,19 +382,93 @@ function setupSobreAnimation() {
         }
     });
 
-    tl.to(cover, {
-        width: "0%",
+    // Animação de varredura do código
+    tl.to(coverClone, {
+        scaleX: 0, // Encolhe horizontalmente (esquerda para direita)
+        transformOrigin: "right center",
         duration: 2.5,
-        ease: "none",
+        ease: "power2.inOut",
         delay: 0.5
     })
-        .to(terminalCode, {
-            duration: 0.1,
-            onComplete: function () {
-                cover.remove();
+    .to(coverClone, {
+        opacity: 0,
+        duration: 0.1,
+        onComplete: function () {
+            coverClone.remove();
+        }
+    }, ">");
+}
+
+// CORRIGIDO: Garante que os cards apareçam corretamente.
+function setupResultsAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof window.innerWidth === 'undefined') return;
+
+    const resultsGrid = document.getElementById('results-grid');
+    const resultCards = gsap.utils.toArray('[data-gsap-result="true"]');
+
+    if (!resultsGrid || resultCards.length === 0) return;
+
+    // Função para animar o contador
+    function startCounter(targetElement) {
+        const valueDisplay = targetElement.querySelector('.counter-value');
+        const target = parseFloat(valueDisplay.getAttribute('data-target'));
+        const isDecimal = valueDisplay.hasAttribute('data-decimal');
+        const startValue = 0;
+
+        gsap.fromTo({ count: startValue }, {
+            count: target,
+            duration: 2,
+            ease: "power2.out",
+            onUpdate: function() {
+                let displayValue = this.targets()[0].count;
+                if (isDecimal) {
+                    displayValue = displayValue.toFixed(1);
+                } else {
+                    displayValue = Math.round(displayValue);
+                }
+                valueDisplay.textContent = displayValue;
+            },
+            onComplete: function() {
+                valueDisplay.textContent = isDecimal ? target.toFixed(1) : Math.round(target);
             }
         });
+    }
+
+    // Garante que os cards estejam na posição inicial correta antes da animação
+    gsap.set(resultCards, { opacity: 0, y: 100, rotation: 5 });
+
+    // Animação de entrada dos cards
+    gsap.to(resultCards, {
+        opacity: 1,
+        y: 0,
+        rotation: 0,
+        stagger: 0.2,
+        duration: 1.2,
+        ease: "elastic.out(1, 0.5)",
+        scrollTrigger: {
+            trigger: resultsGrid,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            once: true,
+            onEnter: () => {
+                resultCards.forEach(startCounter);
+            }
+        }
+    });
+
+    // Parallax de Fundo
+    gsap.to('#results-background-magic', {
+        y: -100, // Move o fundo 100px para cima ao longo do scroll
+        ease: "none",
+        scrollTrigger: {
+            trigger: '#resultados',
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.5,
+        }
+    });
 }
+
 
 function setupReviewsGridAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
@@ -604,6 +703,7 @@ let networkLines;
 let dataPanels = [];
 let energySpheres = [];
 let dataStreamParticles = [];
+let tickerAnimation; 
 
 const DENSITY = 15;
 const DATA_STREAM_COUNT = 30;
@@ -1075,8 +1175,8 @@ function setupThreeJS() {
     const heroH1Element = document.getElementById('hero-h1');
     const heroH1Text = heroH1Element ? "VENNITY." : h1Text;
 
-    const heroPElement = document.querySelector('#hero-canvas + div p.whitespace-nowrap');
-    const heroPText = heroPElement ? "PÁGINAS E GESTÃO DE ALTA PERFORMANCE" : subtitleText;
+    const heroPElement = document.querySelector('[data-gsap-hero="subtitle"] p');
+    const heroPText = heroPElement ? "DESENVOLVA SEU LEGADO." : subtitleText;
 
 
     const fontLoader = new THREE.FontLoader();
@@ -1156,11 +1256,9 @@ function setupThreeJS() {
         function animate() {
             requestAnimationFrame(animate);
 
-            textMesh.rotation.y += 0.003;
             textMesh.rotation.x += (mouseY * 0.1 - textMesh.rotation.x) * 0.05;
             textMesh.rotation.y += (mouseX * 0.1 - textMesh.rotation.y) * 0.05;
 
-            subtitleMesh.rotation.y += 0.003;
             subtitleMesh.rotation.x += (mouseY * 0.1 - subtitleMesh.rotation.x) * 0.05;
             subtitleMesh.rotation.y += (mouseX * 0.1 - subtitleMesh.rotation.y) * 0.05;
 
@@ -1186,6 +1284,16 @@ function setupThreeJS() {
 
             updateTextSizeAndCamera(parentContainer, camera, textMesh, subtitleMesh);
         }
+        
+        // NOVO: Garantir que o fallback desapareça e o texto 3D apareça
+        // Efeito de entrada para o texto 3D (opcional, mas bom para sincronizar)
+        gsap.to(textMesh.position, {
+            y: "+=0.1", 
+            duration: 1.5,
+            ease: "elastic.out(1, 0.5)", 
+            delay: 0.5 
+        });
+
 
     },
         function (xhr) {
@@ -1193,11 +1301,179 @@ function setupThreeJS() {
         },
         function (error) {
             console.error('An error happened loading the Three.js font:', error);
-            document.getElementById('hero-h1').style.opacity = 1;
+            document.getElementById('hero-h1-text-fallback').querySelector('span').style.opacity = 1;
             canvas.style.display = 'none';
         });
 
 }
+
+// NOVO: Função para animar a entrada dos elementos do Hero usando GSAP Timeline
+function setupHeroEntranceAnimation() {
+    if (typeof gsap === 'undefined') return;
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    // Elementos a animar
+    const h1Fallback = document.querySelector('[data-gsap-hero="h1"]'); // Fallback H1 (usado se Three.js falhar)
+    const subtitle = document.querySelector('[data-gsap-hero="subtitle"]');
+    const buttons = document.querySelector('[data-gsap-hero="buttons"]');
+    const logoTicker = document.getElementById('impacto');
+    const mainHeader = document.getElementById('main-header');
+    
+    // 1. Fade-in do H1 (Fallback) e Header (para cobrir Three.js load/fail)
+    if (h1Fallback) {
+        tl.fromTo(h1Fallback, {
+            y: 50,
+            opacity: 0,
+            scale: 0.95
+        }, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.5,
+            ease: "elastic.out(1, 0.5)",
+            delay: 0.5 // Delay para o fundo carregar
+        }, 0);
+    }
+    
+    // Animação do Header
+    tl.fromTo(mainHeader, {
+        opacity: 0,
+        y: -100
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)"
+    }, 0.2); // Começa logo depois do delay inicial
+
+    // 2. Fade-in do Subtítulo
+    tl.fromTo(subtitle, {
+        y: 30,
+        opacity: 0
+    }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+    }, 0.8); // Começa 0.8s após o início
+
+    // 3. Fade-in dos Botões
+    tl.fromTo(buttons, {
+        y: 30,
+        opacity: 0
+    }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+    }, 1.0); // Começa 1.0s após o início
+
+    // 4. Fade-in do Ticker de Logos
+    tl.fromTo(logoTicker, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95
+    }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+    }, 1.2); // Começa 1.2s após o início
+    
+    // Garante que o Three.js e o fallback não briguem - 
+    // O Three.js tem sua própria animação de "on load"
+    document.getElementById('hero-h1').style.display = 'none'; // Esconde o H1 que estava sendo usado para o Three.js
+}
+
+// NOVO: Função para o Ticker com GSAP e Pause on Hover
+function setupTickerAnimation() {
+    const tickerContainer = document.querySelector('.ticker-container');
+    const tickerContent = document.querySelector('.ticker-content');
+    if (!tickerContainer || !tickerContent) return;
+
+    // Remove a animação CSS padrão
+    tickerContainer.style.animation = 'none';
+
+    // Clona o conteúdo para o loop infinito
+    const clone = tickerContent.cloneNode(true);
+    tickerContainer.appendChild(clone);
+    
+    const distance = -tickerContent.clientWidth;
+    const duration = 15; // 15 segundos para um ciclo completo
+
+    tickerAnimation = gsap.to(tickerContainer, {
+        x: distance,
+        duration: duration,
+        ease: "linear",
+        repeat: -1,
+        paused: false
+    });
+
+    // Pause on Hover
+    tickerContainer.addEventListener('mouseenter', () => tickerAnimation.pause());
+    tickerContainer.addEventListener('mouseleave', () => tickerAnimation.play());
+}
+
+
+// NOVO: Função para o efeito Sticky Reveal na seção de vídeo
+function setupVideoStickyReveal() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    const videoSection = document.getElementById('video-mockup');
+    const videoMockup = videoSection.querySelector('.relative.w-full.max-w-6xl.mx-auto');
+
+    if (!videoSection || !videoMockup) return;
+
+    const scrollHeight = window.innerHeight * 1.5; 
+    videoSection.style.minHeight = `${scrollHeight}px`;
+
+    // 1. Animação de entrada do mockup
+    gsap.fromTo(videoMockup, {
+        opacity: 0,
+        y: 50,
+        scale: 0.9
+    }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: videoSection,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            once: true
+        }
+    });
+
+    // 2. O efeito Sticky/Pin
+    ScrollTrigger.create({
+        trigger: videoSection,
+        start: "top top",
+        end: "bottom bottom",
+        pin: videoMockup,
+        pinSpacing: true,
+        // O scrub faz com que a animação (paralaxe) acompanhe o scroll
+        scrub: 1,
+        onEnter: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
+        onLeave: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
+        onEnterBack: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
+        onLeaveBack: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
+    });
+
+    // Opcional: Paralaxe sutil dentro da seção para o Mockup
+    gsap.to(videoMockup, {
+        rotationX: 1, 
+        rotationY: -1,
+        ease: "none",
+        scrollTrigger: {
+            trigger: videoSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+        }
+    });
+}
+
 
 function setupDockEffect() {
     const dockLinks = document.querySelectorAll('.dock-link-text');
@@ -1230,6 +1506,8 @@ function setupDockEffect() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    setupHeroEntranceAnimation();
+    
     initMouseTracking();
 
     setupBackgroundScene();
@@ -1239,14 +1517,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMouseGlow();
 
     setupDockEffect();
-
-    setupCardGlowEffect();
-
-    setupCardScrollAnimation();
+    
+    // Animações de rolagem
+    setupServiceCardsParallax();
+    setupCardGlowEffect(); // Mantido para o efeito mouse-follow nos cards
 
     setupProcessTimelineAnimation();
 
     setupSobreAnimation();
+
+    setupResultsAnimation(); // Corrigido
 
     setupReviewsGridAnimation();
 
@@ -1256,6 +1536,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupContactAnimation();
     setupContactMouseGlow();
+    
+    // Chamada das novas funções
+    setupTickerAnimation();
+    setupVideoStickyReveal();
+
 
     setupSimpleParticlesScene('video-particles');
     setupSimpleParticlesScene('processo-particles-canvas');

@@ -263,13 +263,26 @@
                         </div>
 
                         <h1 id="hero-h1"
-                            class="uppercase absolute inset-0 text-5xl sm:text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse'"
+                            class="uppercase absolute inset-0 text-5xl sm:text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse"
                             title="Desenvolvimento Web, UX e Performance de Alto Nível">
+                        </h1>
+                        <h1 id="hero-h1-text-fallback"
+                            class="uppercase font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple leading-none pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem]"
+                            style="line-height: 0.8; height: 100%; width: 100%; top: -10px;">
+                            <span class="inline-block" style="opacity: 0;"
+                                data-gsap-hero="h1">VENNITY.</span>
                         </h1>
 
 
-                        <div
-                            class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up delay-600">
+                        <div class="mt-12 opacity-0" data-gsap-hero="subtitle">
+                            <p
+                                class="text-lg md:text-xl font-light text-transparent bg-clip-text gradient-blue-purple max-w-1xl mx-auto font-inter-tight whitespace-nowrap overflow-hidden text-ellipsis uppercase tracking-widest">
+                                DESENVOLVA SEU LEGADO.
+                            </p>
+                        </div>
+
+                        <div id="div-to-animate-1"
+                            class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0" data-gsap-hero="buttons">
                             <a href="#contato" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
                 text-white font-bold py-3 px-8 rounded-full shadow-xl shadow-blue-500/40 transform hover:scale-[1.03]
                 transition-all duration-300 flex items-center justify-center gap-2 text-base">
@@ -297,10 +310,7 @@
                                 class="absolute inset-0 h-0.5 mt-0.5 bg-gradient-to-r from-blue-500/0 via-purple-500/70 to-blue-500/0 opacity-90">
                             </div>
                         </div>
-                        <p class="mt-8 text-lg md:text-xl font-light text-transparent bg-clip-text gradient-blue-purple max-w-1xl mx-auto animate-fade-in-up delay-400 font-inter-tight 
-    whitespace-nowrap overflow-hidden text-ellipsis">
-                            DESENVOLVA SEU LEGADO.
-                        </p>
+
                     </div>
                 </div>
 
@@ -480,7 +490,7 @@
             <section id="video-mockup" class="pt-12 bg-gray-950/90 spacing-mega relative">
                 <canvas id="video-particles" class="absolute inset-0 w-full h-full z-0"></canvas>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="relative w-full max-w-6xl mx-auto animate-fade-in-up">
+                    <div class="relative w-full max-w-6xl mx-auto">
                         <div
                             class="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-40 blur-2xl transition-all duration-500 hover:opacity-70">
                         </div>
