@@ -451,8 +451,10 @@
             }
         }
 
-        .pb-spacing-mega {
+        .spacing-mega {
             padding-bottom: 12rem !important;
+            padding-top: 12rem !important;
+
         }
 
         .max-w-content {
