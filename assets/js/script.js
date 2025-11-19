@@ -138,15 +138,17 @@ function setupMouseGlow() {
     });
 }
 
-// ATUALIZADO: Adiciona o efeito mouse follow 3D no hover dos cards
+// ATUALIZADO: Seleciona tanto os cards de serviço quanto os cards de preço para o mouse follow.
 function setupCardGlowEffect() {
-    const cards = document.querySelectorAll('.service-card');
+    // Seletor unificado para cards de serviço e cards de preço
+    const cardSelectors = '.service-card, .card-padrao, .card-destaque';
+    const cards = document.querySelectorAll(cardSelectors);
 
     cards.forEach(card => {
         const glowOverlay = card.querySelector('.card-glow-overlay');
-        if (!glowOverlay) return;
-
-        card.style.transformStyle = 'preserve-3d'; // Necessário para o efeito 3D
+        
+        // Define transform-style para cards de preço que não o possuem
+        card.style.transformStyle = 'preserve-3d'; 
 
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -156,11 +158,13 @@ function setupCardGlowEffect() {
             const xCenter = rect.width / 2;
             const yCenter = rect.height / 2;
             
-            // Mouse Follow para a luz
-            const xPercent = (x / rect.width) * 100;
-            const yPercent = (y / rect.height) * 100;
-            glowOverlay.style.setProperty('--mouse-x', `${xPercent}%`);
-            glowOverlay.style.setProperty('--mouse-y', `${yPercent}%`);
+            // Mouse Follow para a luz (só se existir)
+            if (glowOverlay) {
+                const xPercent = (x / rect.width) * 100;
+                const yPercent = (y / rect.height) * 100;
+                glowOverlay.style.setProperty('--mouse-x', `${xPercent}%`);
+                glowOverlay.style.setProperty('--mouse-y', `${yPercent}%`);
+            }
 
             // Parallax 3D sutil do card
             const rotateX = ((y - yCenter) / yCenter) * -5; // Rotação de -5deg a 5deg
@@ -177,6 +181,7 @@ function setupCardGlowEffect() {
         });
 
         card.addEventListener('mouseenter', () => {
+            // Animação de escala já existe, mantida
             gsap.to(card, { scale: 1.02, duration: 0.5, ease: "elastic.out(1, 0.5)" });
         });
 
@@ -470,6 +475,7 @@ function setupResultsAnimation() {
 }
 
 
+// CORRIGIDO: Removida a altura fixa 'min-h-[450px]' via JS
 function setupReviewsGridAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
         return;
@@ -481,6 +487,10 @@ function setupReviewsGridAnimation() {
 
     if (!reviewsGrid || reviewCards.length === 0) return;
 
+    // Remove a limitação de altura da div que contém o carrossel, 
+    // permitindo que o movimento parallax dos cards não seja cortado.
+    // O min-h-[450px] está no HTML, o CSS do reviews-container deve ser ajustado.
+    
     gsap.from(reviewCards, {
         opacity: 0,
         y: 150,
@@ -498,16 +508,19 @@ function setupReviewsGridAnimation() {
     });
 
     reviewCards.forEach((card, i) => {
-        const moveDistance = (i % 2 === 0) ? 60 : -60;
-
+        // Aumentando a distância de movimento para garantir que o corte seja evitado 
+        // e o efeito seja mais visível/dramático.
+        const moveDistance = (i % 2 === 0) ? 100 : -100; // Movimento maior
+        
+        // Aplicando o scrub (parallax)
         gsap.to(card, {
             y: moveDistance,
             ease: "none",
             scrollTrigger: {
-                trigger: card,
+                trigger: '#depoimentos', // Usando a seção pai para o trigger de início/fim
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 1.2,
+                scrub: 1.5, // Scrub mais lento
             }
         });
     });
@@ -681,6 +694,40 @@ function setupContactMouseGlow() {
 
         glowElement.style.left = `${x}px`;
         glowElement.style.top = `${y}px`;
+    });
+}
+
+// NOVO: Função para o Text Reveal nos títulos de seção
+function setupTextReveal() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    // Seleciona todos os títulos das seções (excluindo o Hero)
+    const titles = gsap.utils.toArray(
+        '#servicos-wrapper h2, #processo h2, #resultados h2, #depoimentos h2, #precos h2, #sobre h2, #contato h2'
+    );
+
+    titles.forEach(title => {
+        // Envolve o texto em um span para aplicar a animação (simulando um split text)
+        const wrapper = document.createElement('div');
+        wrapper.style.overflow = 'hidden'; // Cria a máscara
+        title.parentNode.insertBefore(wrapper, title);
+        wrapper.appendChild(title);
+        
+        // Estado inicial
+        gsap.set(title, { y: '100%', opacity: 0 }); 
+
+        gsap.to(title, {
+            y: '0%', 
+            opacity: 1,
+            duration: 1, 
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: wrapper,
+                start: "top 90%", // Revela quando o topo da div está 90% na tela
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
     });
 }
 
@@ -1520,13 +1567,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Animações de rolagem
     setupServiceCardsParallax();
-    setupCardGlowEffect(); // Mantido para o efeito mouse-follow nos cards
+    setupCardGlowEffect(); // Aplicará o mouse follow nos cards de Serviço e Preço
 
     setupProcessTimelineAnimation();
 
     setupSobreAnimation();
 
-    setupResultsAnimation(); // Corrigido
+    setupResultsAnimation(); 
 
     setupReviewsGridAnimation();
 
@@ -1540,6 +1587,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Chamada das novas funções
     setupTickerAnimation();
     setupVideoStickyReveal();
+    setupTextReveal(); // NOVO: Títulos de seção
 
 
     setupSimpleParticlesScene('video-particles');

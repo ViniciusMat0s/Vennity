@@ -577,10 +577,21 @@ header img.invert {
     z-index: 20;
 }
 
-/* NOVO: Estilo para garantir que os cards de serviço renderizem corretamente em 3D */
+/* Estilos 3D para os Cards de Serviço */
 #servicos-wrapper .service-card {
     transform-style: preserve-3d;
 }
+
+/* NOVO: Estilos 3D para os Cards de Preço */
+#precos #pricing-grid {
+    perspective: 1000px; /* Perspectiva no container */
+}
+
+#precos .card-padrao,
+#precos .card-destaque {
+    transform-style: preserve-3d; /* Permite que o efeito 3D funcione */
+}
+
 
 /* Ajuste a classe #timeline-progress para usar um gradiente de 4 paradas (stops) */
 #timeline-progress {
@@ -611,6 +622,12 @@ header img.invert {
 .reviews-container {
     /* Habilita o Scroll Snap e a rolagem horizontal */
     scroll-behavior: smooth;
+
+    /* CORRIGIDO: Removido overflow: hidden ou overflow: scroll */
+    overflow-x: scroll !important;
+    
+    /* CORRIGIDO: Aumentando a altura mínima do container para acomodar o movimento vertical */
+    min-height: 550px !important; 
 
     /* Esconde a barra de rolagem (AWWWARDS style) */
     -ms-overflow-style: none;
