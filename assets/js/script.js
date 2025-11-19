@@ -215,6 +215,131 @@ function setupCardScrollAnimation() {
     });
 }
 
+function setupProcessTimelineAnimation() {
+    if (typeof ScrollTrigger === 'undefined') return;
+
+    const timeline = document.getElementById('timeline-line');
+    const progressLine = document.getElementById('timeline-progress');
+    const steps = document.querySelectorAll('.process-step-item');
+    const dots = document.querySelectorAll('.timeline-dot');
+
+    if (!timeline || steps.length === 0) return;
+
+    // 1. Animação da Linha de Progresso Principal
+    gsap.to(progressLine, {
+        height: "100%", // Cresce de 0 para 100%
+        ease: "power1.inOut",
+        scrollTrigger: {
+            trigger: timeline,
+            start: "top center", // Começa quando o topo da linha atinge o centro da tela
+            end: "bottom center", // Termina quando o final da linha atinge o centro da tela
+            scrub: true, // Liga a animação à rolagem
+        }
+    });
+
+    // 2. Animação de Revelação de Cada Passo
+    steps.forEach((step, index) => {
+        // Animação dos itens (fade-in e slide-up)
+        gsap.to(step, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: step,
+                start: "top 80%", // Quando o passo entra na tela
+                toggleActions: "play none none none",
+                once: true,
+            }
+        });
+
+        // Animação dos pontos (dot) da timeline
+        if (dots[index]) {
+            gsap.to(dots[index], {
+                scale: 1.5,
+                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)",
+                duration: 0.3,
+                yoyo: true,
+                repeat: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: step,
+                    start: "center center", // Quando o passo está bem no centro da tela
+                    toggleActions: "play none reverse none",
+                }
+            });
+        }
+    });
+}
+
+function setupSobreAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    const section = document.getElementById('sobre');
+    if (!section) return;
+
+    const terminalContainer = section.querySelector('[data-gsap-target="terminal"]');
+    const textContainer = section.querySelector('[data-gsap-target="text"]');
+    const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
+
+    // 1. Animação de Entrada dos Blocos (Terminal e Texto)
+    gsap.from(terminalContainer, {
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    gsap.from(textContainer, {
+        x: -50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    // 2. Efeito de Digitação (Typewriter Effect)
+
+    terminalCode.style.visibility = 'visible';
+    const cover = document.createElement('div');
+    cover.style.cssText = 'position: absolute; inset: 0; background-color: #030712;';
+    terminalCode.parentElement.appendChild(cover);
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: terminalContainer,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+            delay: 0.5
+        }
+    });
+
+    tl.to(cover, {
+        width: "0%",
+        duration: 2.5,
+        ease: "none",
+        delay: 0.5
+    })
+        .to(terminalCode, {
+            duration: 0.1,
+            onComplete: function () {
+                cover.remove();
+            }
+        });
+}
+
 
 // ----------------------------------------------------
 // CÓDIGO THREE.JS (VARS GLOBAIS E CONSTANTES)
@@ -822,7 +947,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupCardScrollAnimation();
 
+    setupProcessTimelineAnimation();
+
+    setupSobreAnimation();
+
     const mainHeader = document.getElementById('main-header');
+    const logoContainer = document.getElementById('logo-container');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -858,8 +988,108 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     scrollAnimatedElements.forEach(element => {
-        if (element.id !== 'hero') {
-            observer.observe(element);
+        if (element.id !== 'hero' && !element.hasAttribute('data-gsap-card')) {
+            if (!element.classList.contains('process-step-item')) {
+                observer.observe(element);
+            }
         }
     });
 });
+
+function setupProcessTimelineAnimation() {
+    if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
+        console.warn("GSAP ou ScrollTrigger não estão carregados. A animação da timeline não será iniciada.");
+        return;
+    }
+
+    const timeline = document.getElementById('timeline-line');
+    const progressLine = document.getElementById('timeline-progress');
+    const steps = document.querySelectorAll('.process-step-item');
+    const dots = document.querySelectorAll('.timeline-dot');
+
+    if (!timeline || steps.length === 0) return;
+
+    // 1. Animação da Linha de Progresso Principal
+    gsap.to(progressLine, {
+        height: "100%", // Cresce de 0 para 100%
+        ease: "power1.inOut",
+        scrollTrigger: {
+            trigger: timeline,
+            start: "top center", // Começa quando o topo da linha atinge o centro da tela
+            end: "bottom center", // Termina quando o final da linha atinge o centro da tela
+            scrub: true, // Liga a animação à rolagem
+        }
+    });
+
+    // 2. Animação de Revelação de Cada Passo (Intercalada)
+    steps.forEach((step, index) => {
+        const isEven = index % 2 === 0; // Para passos pares (0, 2, 4...) -> à esquerda
+        const startX = isEven ? -100 : 100; // Começa da esquerda (negativo) ou direita (positivo)
+
+        const stepDot = dots[index]; // O ponto correspondente na timeline
+
+        gsap.fromTo(step, {
+            opacity: 0,
+            y: 50, // Sempre começa um pouco abaixo
+            x: startX, // Movimento lateral intercalado
+        }, {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: step,
+                start: "top 80%", // Quando o passo entra na tela
+                toggleActions: "play none none none",
+                once: true,
+                onEnter: () => {
+                    // Animação do número do passo (PASSO 1, PASSO 2...)
+                    const stepNumber = step.querySelector('.process-step');
+                    if (stepNumber) {
+                        gsap.fromTo(stepNumber, {
+                            opacity: 0,
+                            scale: 0.8
+                        }, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "back.out(1.7)"
+                        });
+                    }
+
+                    // Animação do ponto na timeline
+                    if (stepDot) {
+                        gsap.fromTo(stepDot, {
+                            opacity: 0,
+                            scale: 0.5
+                        }, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.6,
+                            ease: "elastic.out(1, 0.5)"
+                        });
+                    }
+                }
+            }
+        });
+
+        // 3. Animação de Pulso dos Pontos quando no centro da tela
+        if (stepDot) {
+            gsap.to(stepDot, {
+                scale: 1.5,
+                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)", // Sombra roxa mais destacada
+                duration: 0.3,
+                yoyo: true, // Volta ao tamanho original
+                repeat: 1, // Repete uma vez para ter o efeito de pulso
+                ease: "none",
+                scrollTrigger: {
+                    trigger: step,
+                    start: "center center", // Quando o passo está bem no centro da tela
+                    toggleActions: "play reverse play reverse", // Play ao entrar, reverse ao sair do centro
+                    // markers: true // Descomente para depurar o ScrollTrigger
+                }
+            });
+        }
+    });
+}

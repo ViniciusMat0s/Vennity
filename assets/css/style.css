@@ -444,11 +444,19 @@
         .section-margin-huge {
             margin: 0 3rem;
         }
-        
+
         @media (max-width: 640px) {
             .section-margin-huge {
                 margin: 0 1rem;
             }
+        }
+
+        .pb-spacing-mega {
+            padding-bottom: 12rem !important;
+        }
+
+        .max-w-content {
+            max-width: 90rem;
         }
 
         .py-huge {
@@ -458,7 +466,23 @@
 
         .bg-glass-overlay {
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            opacity: 0.95 !important;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .light-mode .bg-glass-overlay {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0.98 !important;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .bg-glass-overlay {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             opacity: 0.95 !important;
             box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -533,6 +557,43 @@
             z-index: 20;
         }
 
+        /* Ajuste a classe #timeline-progress para usar um gradiente de 4 paradas (stops) */
+        #timeline-progress {
+            /* De: Roxo e Rosa (Antigo: background-image: linear-gradient(to bottom, #9333ea, #db2777); ) */
+            /* Novo Gradiente com 4 Cores: Azul -> Roxo -> Rosa/Vermelho -> Verde */
+            background-image: linear-gradient(to bottom,
+                    #3b82f6 0%,
+                    /* Passo 1: Azul */
+                    #a855f7 33%,
+                    /* Passo 2: Roxo */
+                    #ec4899 66%,
+                    /* Passo 3: Rosa/Pink */
+                    #22c55e 100%
+                    /* Passo 4: Verde */
+                );
+            transition: none !important;
+            /* Certifica que o GSAP controla a animação */
+        }
+
+        /* Certifique-se de que a linha original é bem clara para o contraste */
+        #timeline-line {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        /* Ajuste Light Mode - Cores mais escuras no Gradiente */
+        .light-mode #timeline-progress {
+            background-image: linear-gradient(to bottom,
+                    #2563eb 0%,
+                    /* Passo 1: Azul escuro */
+                    #9333ea 33%,
+                    /* Passo 2: Roxo escuro */
+                    #db2777 66%,
+                    /* Passo 3: Rosa/Pink escuro */
+                    #16a34a 100%
+                    /* Passo 4: Verde escuro */
+                );
+        }
+
         @keyframes fadeInUp {
 
             from {
@@ -554,6 +615,10 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .bg-deep-contrast {
+            background-color: #0d1117 !important;
         }
 
         .delay-200 {
@@ -618,6 +683,7 @@
         .terminal-code {
             line-height: 1.6;
             font-family: 'Inter Tight', monospace;
+            visibility: hidden;
         }
 
         @keyframes ticker-scroll {

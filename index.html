@@ -390,7 +390,7 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-                        <div class="lg:order-2 animate-slide-in-right lg:col-span-1">
+                        <div class="lg:order-2" data-gsap-target="text">
                             <h2
                                 class="text-6xl sm:text-7xl font-extrabold mb-6 text-transparent bg-clip-text gradient-purple-pink leading-tight">
                                 O Futuro Está Aqui.
@@ -421,18 +421,19 @@
                                 </li>
                             </ul>
                             <a href="#contato"
-                                class="mt-10 inline-flex items-center text-xl font-semibold text-purple-400 hover:text-purple-300 transition-all duration-300 border-b-2 border-purple-400/50 hover:border-purple-300">
+                                class="mt-10 inline-flex items-center text-xl font-semibold text-purple-400 hover:text-purple-300 transition-all duration-300 border-b-2 border-purple-400/50 hover:border-purple-300 group">
                                 Fale com um Especialista <span aria-hidden="true"
                                     class="ml-2 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                             </a>
                         </div>
 
-                        <div class="lg:order-1 relative lg:col-span-1 animate-slide-in-left">
+                        <div class="lg:order-1 relative" data-gsap-target="terminal">
 
                             <div
-                                class="relative p-1 rounded-xl bg-gradient-to-br from-purple-500/50 to-pink-500/20 shadow-2xl shadow-purple-900/50 transform hover:scale-[1.02] transition-transform duration-500">
+                                class="relative p-1 rounded-xl bg-gradient-to-br from-purple-500/50 to-pink-500/20 shadow-2xl shadow-purple-900/50 transform hover:scale-[1.02] transition-transform duration-500 terminal-container">
 
-                                <div class="relative p-8 rounded-[11px] bg-gray-900 border border-purple-500/40">
+                                <div
+                                    class="relative p-8 rounded-[11px] bg-gray-900 border border-purple-500/40 terminal-window">
 
                                     <div
                                         class="text-sm text-neutral-500 mb-4 flex justify-between items-center pb-2 border-b border-white/10">
@@ -444,7 +445,8 @@
                                         </div>
                                     </div>
 
-                                    <pre class="text-xs sm:text-sm text-green-400 overflow-x-auto terminal-code">
+                                    <pre class="text-xs sm:text-sm text-green-400 overflow-x-auto terminal-code"
+                                        data-gsap-terminal="true">
 <span class="text-blue-400">const</span> <span class="text-yellow-400">VBM Devs</span> = <span class="text-blue-400">class</span> {
     <span class="text-pink-400">constructor</span>() {
         <span class="text-white">this</span>.missao = <span class="text-red-400">"Maximizar seus ganhos"</span>;
@@ -471,7 +473,7 @@
                 </div>
             </section>
 
-            <section id="video-mockup" class="py-12 bg-gray-950/90">
+            <section id="video-mockup" class="pt-12 bg-gray-950/90 pb-spacing-mega">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="relative w-full max-w-6xl mx-auto animate-fade-in-up">
                         <div
@@ -504,13 +506,13 @@
                 </div>
             </section>
 
-            <section class="bg-gray-950 relative overflow-hidden section-margin-huge" id="servicos-wrapper">
+            <section class="bg-gray-950 relative overflow-hidden" id="servicos-wrapper">
 
                 <div aria-hidden="true"
                     class="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
                 </div>
 
-                <div class="max-w-gallery mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-huge">
+                <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-huge">
                     <div class="text-center mb-16">
                         <h2
                             class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
@@ -521,7 +523,7 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-4 grid-rows-2 gap-6 lg:gap-8 max-w-gallery mx-auto">
+                    <div class="grid grid-cols-4 grid-rows-2 gap-6 lg:gap-8 max-w-content mx-auto">
 
                         <div id="service-card-1" data-gsap-card="true"
                             class="service-card group relative p-8 sm:p-10 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-blue-purple col-span-4 lg:col-span-2 row-span-1 min-h-[300px]">
@@ -678,7 +680,7 @@
                 </div>
             </section>
 
-            <section id="processo" class="py-24 relative overflow-hidden bg-gray-950 fade-in-on-scroll">
+            <section id="processo" class="py-24 relative overflow-hidden bg-gray-950">
                 <div aria-hidden="true" class="absolute inset-0">
                     <div id="processo-particles" class="absolute inset-0"></div>
                 </div>
@@ -694,13 +696,16 @@
                     </div>
 
                     <div class="relative max-w-4xl mx-auto">
-                        <div
-                            class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-blue-500/20">
+                        <div id="timeline-line"
+                            class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-blue-500/20 hidden md:block">
+                            <div id="timeline-progress" class="absolute top-0 left-0 w-full h-0">
+                            </div>
                         </div>
 
-                        <div class="space-y-16">
-                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
-                                <div class="md:w-1/2 md:odd:pl-12 md:even:pl-12 text-center md:text-left">
+                        <div class="space-y-20">
+
+                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                                <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
                                     <div
                                         class="inline-block px-4 py-2 rounded-full border border-blue-500/50 bg-blue-950/40 text-blue-300 mb-2 process-step">
                                         PASSO 1
@@ -708,17 +713,16 @@
                                     <h3 class="text-3xl font-semibold mb-2 text-white">Estratégias Refinadas</h3>
                                     <p class="text-neutral-400">
                                         Mergulhamos nos seus objetivos de negócio e adaptamos seu negócio ao seu
-                                        público-alvo, definindo
-                                        a melhor estratégia possível.
+                                        público-alvo, definindo a melhor estratégia possível.
                                     </p>
                                 </div>
                                 <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                    class="hidden md:block w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
                                 </div>
                             </div>
 
-                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
-                                <div class="md:w-1/2 md:odd:pr-12 md:even:pl-12 text-center md:text-left">
+                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                                <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
                                     <div
                                         class="inline-block px-4 py-2 rounded-full border border-purple-500/50 bg-purple-950/40 text-purple-300 mb-2 process-step">
                                         PASSO 2
@@ -726,17 +730,16 @@
                                     <h3 class="text-3xl font-semibold mb-2 text-white">Páginas Impactantes</h3>
                                     <p class="text-neutral-400">
                                         Criamos páginas que convertem, com um design moderno e interface intuitiva, seu
-                                        site
-                                        é feito sob medida, pronto para receber novos clientes.
+                                        site é feito sob medida, pronto para receber novos clientes.
                                     </p>
                                 </div>
                                 <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-purple-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                    class="hidden md:block w-8 h-8 rounded-full bg-purple-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
                                 </div>
                             </div>
 
-                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
-                                <div class="md:w-1/2 md:odd:pl-12 md:even:pl-12 text-center md:text-left">
+                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                                <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
                                     <div
                                         class="inline-block px-4 py-2 rounded-full border border-pink-500/50 bg-pink-950/40 text-pink-300 mb-2 process-step">
                                         PASSO 3
@@ -744,17 +747,17 @@
                                     <h3 class="text-3xl font-semibold mb-2 text-white">Tráfego Certeiro</h3>
                                     <p class="text-neutral-400">
                                         Analisamos rigorosamente seu posicionamento de mercado e seu público alvo,
-                                        adaptamos
-                                        minuciosamente seus anúncios para diminuir seus gastos e aumentar seus ganhos.
+                                        adaptamos minuciosamente seus anúncios para diminuir seus gastos e aumentar seus
+                                        ganhos.
                                     </p>
                                 </div>
                                 <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-pink-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                    class="hidden md:block w-8 h-8 rounded-full bg-pink-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
                                 </div>
                             </div>
 
-                            <div class="md:flex items-center relative md:odd:flex-row-reverse fade-in-on-scroll">
-                                <div class="md:w-1/2 md:odd:pr-12 md:even:pl-12 text-center md:text-left">
+                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                                <div class="md:w-1/2 md:odd:pr-12 md:even:pr-12 text-center md:text-left">
                                     <div
                                         class="inline-block px-4 py-2 rounded-full border border-green-500/50 bg-green-950/40 text-green-300 mb-2 process-step">
                                         PASSO 4
@@ -762,14 +765,13 @@
                                     <h3 class="text-3xl font-semibold mb-2 text-white"> Lançamento e Manutenção</h3>
                                     <p class="text-neutral-400">
                                         Seu site é entregue com domínio e hospedagem própria, 100% seguro e com
-                                        certificado
-                                        SSL. Também, oferecemos suporte constante ao seu sistema, garantindo sua
-                                        integridade
-                                        máxima.
+                                        certificado SSL. Também, oferecemos suporte constante ao seu sistema, garantindo
+                                        sua
+                                        integridade máxima.
                                     </p>
                                 </div>
                                 <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-green-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2">
+                                    class="hidden md:block w-8 h-8 rounded-full bg-green-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
                                 </div>
                             </div>
 
