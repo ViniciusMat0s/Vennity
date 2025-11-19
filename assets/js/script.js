@@ -323,8 +323,8 @@ function setupSobreAnimation() {
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
 
     // O Terminal está dentro de .bg-gray-900 (que é #111827).
-    const TERMINAL_BACKGROUND_COLOR = '#111827'; 
-    
+    const TERMINAL_BACKGROUND_COLOR = '#111827';
+
     // 1. Animação de Entrada dos Blocos (Terminal e Texto)
     gsap.from(terminalContainer, {
         x: 50,
@@ -417,10 +417,10 @@ function setupReviewsGridAnimation() {
     // 2. Animação Parallax para cada Card (movimento vertical constante)
     reviewCards.forEach((card, i) => {
         // Define a distância de movimento vertical no Parallax (mais notável que antes)
-        const moveDistance = (i % 2 === 0) ? 60 : -60; 
+        const moveDistance = (i % 2 === 0) ? 60 : -60;
 
         gsap.to(card, {
-            y: moveDistance, 
+            y: moveDistance,
             ease: "none",
             scrollTrigger: {
                 trigger: card,
@@ -461,9 +461,9 @@ function setupPricingAnimation() {
 
     // 0. Define o estado inicial para TODOS os cards ANTES do ScrollTrigger ser criado.
     gsap.set(priceCards, {
-        opacity: 0, 
-        y: 80, 
-        visibility: "hidden" 
+        opacity: 0,
+        y: 80,
+        visibility: "hidden"
     });
 
 
@@ -496,26 +496,112 @@ function setupPricingAnimation() {
 
         // Adiciona um hover dinâmico que para a animação de fundo GSAP
         destaqueCard.addEventListener('mouseenter', () => {
-             // Garante que o CSS hover scale entre em vigor
+            // Garante que o CSS hover scale entre em vigor
         });
         destaqueCard.addEventListener('mouseleave', () => {
-             // Reinicia a animação GSAP no mouseleave
-             gsap.to(destaqueCard, { rotationY: 1, y: -10, duration: 5, ease: "sine.inOut", repeat: -1, yoyo: true });
+            // Reinicia a animação GSAP no mouseleave
+            gsap.to(destaqueCard, { rotationY: 1, y: -10, duration: 5, ease: "sine.inOut", repeat: -1, yoyo: true });
         });
     }
 }
 
-// NOVA FUNÇÃO: Aplica o brilho do mouse na seção de Preços
+function setupContactAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    const section = document.getElementById('contato');
+    if (!section) return;
+
+    const textBlock = section.querySelector('[data-gsap-contact="text"]');
+    const formBlock = section.querySelector('#contact-form-interactive'); // Usar o ID do container interativo
+    const formFields = gsap.utils.toArray('[data-gsap-field]');
+
+    // Timeline para a entrada dos blocos principais
+    const tlMain = gsap.timeline({
+        scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    // 1. Entrada dos Blocos (Texto da Esquerda, Formulário da Direita)
+    // Usamos from para definir o estado inicial e to para o estado final, garantindo a visibilidade.
+    tlMain.from(textBlock, {
+        opacity: 0,
+        x: -80, // Movimento mais dramático
+        duration: 1,
+        ease: "power3.out"
+    }, 0)
+        .from(formBlock, {
+            opacity: 0,
+            x: 80, // Movimento mais dramático
+            duration: 1,
+            ease: "power3.out"
+        }, 0);
+
+
+    // 2. Animação Escalona dos Campos do Formulário
+    // Inicialmente esconde os campos
+    gsap.set(formFields, { opacity: 0, y: 20 });
+
+    // Depois que os blocos principais entram, os campos individuais se revelam
+    // Adicionamos um pequeno delay para que esta animação comece após a entrada principal
+    gsap.to(formFields, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.1, // Atraso sutil entre cada campo
+        scrollTrigger: {
+            trigger: formBlock,
+            start: "top 90%", // Acionado quando o formulário está visível
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+}
+
 function setupPricingMouseGlow() {
     const glowElement = document.getElementById('mouse-glow-precos');
     const targetElement = document.getElementById('pricing-container-interactive');
-    
+
     if (!glowElement || !targetElement) return;
 
     // Define a opacidade inicial do glow como 0, apenas ativa no hover
     glowElement.classList.remove('active');
     glowElement.classList.add('opacity-0');
-    
+
+    targetElement.addEventListener('mouseenter', () => {
+        glowElement.classList.add('active', 'opacity-100');
+    });
+
+    targetElement.addEventListener('mouseleave', () => {
+        glowElement.classList.remove('active', 'opacity-100');
+        glowElement.classList.add('opacity-0');
+    });
+
+    targetElement.addEventListener('mousemove', (e) => {
+        const rect = targetElement.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Move o elemento de brilho
+        glowElement.style.left = `${x}px`;
+        glowElement.style.top = `${y}px`;
+    });
+}
+
+function setupContactMouseGlow() {
+    const glowElement = document.getElementById('mouse-glow-contato');
+    const targetElement = document.getElementById('contact-form-interactive');
+
+    if (!glowElement || !targetElement) return;
+
+    // Define a opacidade inicial do glow como 0, apenas ativa no hover
+    glowElement.classList.remove('active');
+    glowElement.classList.add('opacity-0');
+
     targetElement.addEventListener('mouseenter', () => {
         glowElement.classList.add('active', 'opacity-100');
     });
@@ -1148,10 +1234,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSobreAnimation();
 
     setupReviewsGridAnimation();
-    
-    setupPricingAnimation(); 
-    
-    setupPricingMouseGlow(); // Chamada adicionada
+
+    setupPricingAnimation();
+
+    setupPricingMouseGlow();
+
+    setupContactAnimation();
+    setupContactMouseGlow();
 
     const mainHeader = document.getElementById('main-header');
     const logoContainer = document.getElementById('logo-container');

@@ -669,14 +669,11 @@
             animation: price-pulse 4s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Garante que os cards de preço com animação GSAP estejam invisíveis inicialmente, 
-           para evitar que sumam antes do ScrollTrigger assumir. */
         [data-gsap-price="true"] {
             opacity: 0;
-            visibility: hidden;
-            transition: none;
-            /* Desabilita transições CSS para o GSAP ter controle total */
         }
+
+        [data-gsap-result="true"] {}
 
         @keyframes price-pulse {
 
@@ -1082,4 +1079,26 @@
 
         .light-mode .border-gradient-red-green {
             border-image: linear-gradient(135deg, #dc2626, #16a34a) 1;
+        }
+
+        /* Adicione esta classe de PADDING customizada */
+        .py-spacing-mega {
+            padding-top: 15rem;
+            /* 240px */
+            padding-bottom: 15rem;
+            /* 240px */
+        }
+
+        /* Ajuste a classe existente .py-huge (se necessário, ou remova se não for usada) */
+        .py-huge {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        /* Garantir que os ícones Font Awesome no texto apareçam corretamente */
+        .fa-whatsapp,
+        .fa-envelope,
+        .fa-map-marker-alt {
+            /* Se você usou Font Awesome, esta regra garante que eles sejam dimensionados */
+            font-size: 1.25rem;
         }
