@@ -123,11 +123,9 @@ function setupMouseGlow() {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // Move o elemento de brilho
         glowElement.style.left = `${x}px`;
         glowElement.style.top = `${y}px`;
 
-        // Controla a opacidade (mantém ativo se estiver sobre o canvas)
         if (isMouseOverTarget && !glowElement.classList.contains('active')) {
             glowElement.classList.add('active');
         } else if (!isMouseOverTarget && glowElement.classList.contains('active')) {
@@ -217,7 +215,6 @@ function setupCardScrollAnimation() {
 
 function setupProcessTimelineAnimation() {
     if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
-        console.warn("GSAP ou ScrollTrigger não estão carregados. A animação da timeline não será iniciada.");
         return;
     }
 
@@ -228,29 +225,27 @@ function setupProcessTimelineAnimation() {
 
     if (!timeline || steps.length === 0) return;
 
-    // 1. Animação da Linha de Progresso Principal
     gsap.to(progressLine, {
-        height: "100%", // Cresce de 0 para 100%
+        height: "100%",
         ease: "power1.inOut",
         scrollTrigger: {
             trigger: timeline,
-            start: "top center", // Começa quando o topo da linha atinge o centro da tela
-            end: "bottom center", // Termina quando o final da linha atinge o centro da tela
-            scrub: true, // Liga a animação à rolagem
+            start: "top center",
+            end: "bottom center",
+            scrub: true,
         }
     });
 
-    // 2. Animação de Revelação de Cada Passo (Intercalada)
     steps.forEach((step, index) => {
-        const isEven = index % 2 === 0; // Para passos pares (0, 2, 4...) -> à esquerda
-        const startX = isEven ? -100 : 100; // Começa da esquerda (negativo) ou direita (positivo)
+        const isEven = index % 2 === 0;
+        const startX = isEven ? -100 : 100;
 
-        const stepDot = dots[index]; // O ponto correspondente na timeline
+        const stepDot = dots[index];
 
         gsap.fromTo(step, {
             opacity: 0,
-            y: 50, // Sempre começa um pouco abaixo
-            x: startX, // Movimento lateral intercalado
+            y: 50,
+            x: startX,
         }, {
             opacity: 1,
             y: 0,
@@ -259,11 +254,10 @@ function setupProcessTimelineAnimation() {
             ease: "power3.out",
             scrollTrigger: {
                 trigger: step,
-                start: "top 80%", // Quando o passo entra na tela
+                start: "top 80%",
                 toggleActions: "play none none none",
                 once: true,
                 onEnter: () => {
-                    // Animação do número do passo (PASSO 1, PASSO 2...)
                     const stepNumber = step.querySelector('.process-step');
                     if (stepNumber) {
                         gsap.fromTo(stepNumber, {
@@ -277,7 +271,6 @@ function setupProcessTimelineAnimation() {
                         });
                     }
 
-                    // Animação do ponto na timeline
                     if (stepDot) {
                         gsap.fromTo(stepDot, {
                             opacity: 0,
@@ -293,19 +286,18 @@ function setupProcessTimelineAnimation() {
             }
         });
 
-        // 3. Animação de Pulso dos Pontos quando no centro da tela
         if (stepDot) {
             gsap.to(stepDot, {
                 scale: 1.5,
-                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)", // Sombra roxa mais destacada
+                boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)",
                 duration: 0.3,
-                yoyo: true, // Volta ao tamanho original
-                repeat: 1, // Repete uma vez para ter o efeito de pulso
+                yoyo: true,
+                repeat: 1,
                 ease: "none",
                 scrollTrigger: {
                     trigger: step,
-                    start: "center center", // Quando o passo está bem no centro da tela
-                    toggleActions: "play reverse play reverse", // Play ao entrar, reverse ao sair do centro
+                    start: "center center",
+                    toggleActions: "play reverse play reverse",
                 }
             });
         }
@@ -322,10 +314,8 @@ function setupSobreAnimation() {
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
 
-    // O Terminal está dentro de .bg-gray-900 (que é #111827).
     const TERMINAL_BACKGROUND_COLOR = '#111827';
 
-    // 1. Animação de Entrada dos Blocos (Terminal e Texto)
     gsap.from(terminalContainer, {
         x: 50,
         opacity: 0,
@@ -352,11 +342,8 @@ function setupSobreAnimation() {
         }
     });
 
-    // 2. Efeito de Digitação (Typewriter Effect)
-    // Garante que o código é visível para o GSAP ler o HTML, mas coberto para o efeito.
     terminalCode.style.visibility = 'visible';
     const cover = document.createElement('div');
-    // Corrigido para usar o fundo do terminal
     cover.style.cssText = `position: absolute; inset: 0; background-color: ${TERMINAL_BACKGROUND_COLOR};`;
     terminalCode.parentElement.appendChild(cover);
 
@@ -370,7 +357,6 @@ function setupSobreAnimation() {
         }
     });
 
-    // Anima o cover de 100% de largura para 0%, revelando o código por baixo.
     tl.to(cover, {
         width: "0%",
         duration: 2.5,
@@ -387,25 +373,23 @@ function setupSobreAnimation() {
 
 function setupReviewsGridAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        console.warn("GSAP ou ScrollTrigger não estão carregados. A animação da grade de reviews não será iniciada.");
         return;
     }
 
-    const reviewsGrid = document.getElementById('reviews-grid');
-    const reviewCards = gsap.utils.toArray('.review-grid-item');
+    const reviewsGrid = document.getElementById('reviews-carousel');
+    const reviewCards = gsap.utils.toArray('.review-card-full');
     const backgroundEffect = document.getElementById('reviews-background-effect');
 
     if (!reviewsGrid || reviewCards.length === 0) return;
 
-    // 1. Animação de Entrada dos Cards (Skewed Staggered Entry)
     gsap.from(reviewCards, {
         opacity: 0,
         y: 150,
-        skewY: 5, // Inclina o eixo Y
-        rotation: 3, // Rotação sutil
+        skewY: 5,
+        rotation: 3,
         duration: 1.5,
         ease: "power3.out",
-        stagger: 0.15, // Atraso entre cada card
+        stagger: 0.15,
         scrollTrigger: {
             trigger: reviewsGrid,
             start: "top 90%",
@@ -414,9 +398,7 @@ function setupReviewsGridAnimation() {
         }
     });
 
-    // 2. Animação Parallax para cada Card (movimento vertical constante)
     reviewCards.forEach((card, i) => {
-        // Define a distância de movimento vertical no Parallax (mais notável que antes)
         const moveDistance = (i % 2 === 0) ? 60 : -60;
 
         gsap.to(card, {
@@ -424,27 +406,25 @@ function setupReviewsGridAnimation() {
             ease: "none",
             scrollTrigger: {
                 trigger: card,
-                start: "top bottom", // Começa quando o topo do card entra na tela
-                end: "bottom top",   // Termina quando o fundo do card sai da tela
-                scrub: 1.2,          // Parallax suave
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
             }
         });
     });
 
-    // 3. Animação Parallax para o Fundo da Seção de Reviews (opcional, mas AWWWARDS)
     if (backgroundEffect) {
         gsap.to(backgroundEffect, {
-            yPercent: -10, // Move o background para cima 10% do seu próprio tamanho
+            yPercent: -10,
             ease: "none",
             scrollTrigger: {
                 trigger: reviewsGrid,
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.8, // Movimento mais suave que os cards
+                scrub: 0.8,
             }
         });
 
-        // Adiciona um gradiente radial no background como um toque AWWWARDS
         backgroundEffect.style.background = `radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, rgba(3, 7, 18, 0) 70%)`;
         backgroundEffect.style.pointerEvents = 'none';
     }
@@ -459,7 +439,6 @@ function setupPricingAnimation() {
 
     if (!pricingGrid || priceCards.length === 0) return;
 
-    // 0. Define o estado inicial para TODOS os cards ANTES do ScrollTrigger ser criado.
     gsap.set(priceCards, {
         opacity: 0,
         y: 80,
@@ -467,14 +446,13 @@ function setupPricingAnimation() {
     });
 
 
-    // 1. Animação de Entrada dos Cards (Staggered Fade-in)
     gsap.to(priceCards, {
         opacity: 1,
         y: 0,
         duration: 1,
         ease: "power3.out",
         stagger: 0.15,
-        visibility: "visible", // Torna visível ao final da animação
+        visibility: "visible",
         scrollTrigger: {
             trigger: pricingGrid,
             start: "top 80%",
@@ -483,23 +461,19 @@ function setupPricingAnimation() {
         }
     });
 
-    // 2. Animação de Rotação 3D sutil para o Card de Destaque no scroll
     if (destaqueCard) {
         gsap.to(destaqueCard, {
-            rotationY: 1, // Gira sutilmente 1 grau
-            y: -10, // Move 10px para cima
+            rotationY: 1,
+            y: -10,
             ease: "sine.inOut",
-            repeat: -1, // Loop infinito
-            yoyo: true, // Vai e volta
+            repeat: -1,
+            yoyo: true,
             duration: 5,
         });
 
-        // Adiciona um hover dinâmico que para a animação de fundo GSAP
         destaqueCard.addEventListener('mouseenter', () => {
-            // Garante que o CSS hover scale entre em vigor
         });
         destaqueCard.addEventListener('mouseleave', () => {
-            // Reinicia a animação GSAP no mouseleave
             gsap.to(destaqueCard, { rotationY: 1, y: -10, duration: 5, ease: "sine.inOut", repeat: -1, yoyo: true });
         });
     }
@@ -512,10 +486,9 @@ function setupContactAnimation() {
     if (!section) return;
 
     const textBlock = section.querySelector('[data-gsap-contact="text"]');
-    const formBlock = section.querySelector('#contact-form-interactive'); // Usar o ID do container interativo
+    const formBlock = section.querySelector('#contact-form-interactive');
     const formFields = gsap.utils.toArray('[data-gsap-field]');
 
-    // Timeline para a entrada dos blocos principais
     const tlMain = gsap.timeline({
         scrollTrigger: {
             trigger: section,
@@ -525,37 +498,31 @@ function setupContactAnimation() {
         }
     });
 
-    // 1. Entrada dos Blocos (Texto da Esquerda, Formulário da Direita)
-    // Usamos from para definir o estado inicial e to para o estado final, garantindo a visibilidade.
     tlMain.from(textBlock, {
         opacity: 0,
-        x: -80, // Movimento mais dramático
+        x: -80,
         duration: 1,
         ease: "power3.out"
     }, 0)
         .from(formBlock, {
             opacity: 0,
-            x: 80, // Movimento mais dramático
+            x: 80,
             duration: 1,
             ease: "power3.out"
         }, 0);
 
 
-    // 2. Animação Escalona dos Campos do Formulário
-    // Inicialmente esconde os campos
     gsap.set(formFields, { opacity: 0, y: 20 });
 
-    // Depois que os blocos principais entram, os campos individuais se revelam
-    // Adicionamos um pequeno delay para que esta animação comece após a entrada principal
     gsap.to(formFields, {
         opacity: 1,
         y: 0,
         duration: 0.5,
         ease: "power2.out",
-        stagger: 0.1, // Atraso sutil entre cada campo
+        stagger: 0.1,
         scrollTrigger: {
             trigger: formBlock,
-            start: "top 90%", // Acionado quando o formulário está visível
+            start: "top 90%",
             toggleActions: "play none none none",
             once: true,
         }
@@ -568,7 +535,6 @@ function setupPricingMouseGlow() {
 
     if (!glowElement || !targetElement) return;
 
-    // Define a opacidade inicial do glow como 0, apenas ativa no hover
     glowElement.classList.remove('active');
     glowElement.classList.add('opacity-0');
 
@@ -586,7 +552,6 @@ function setupPricingMouseGlow() {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // Move o elemento de brilho
         glowElement.style.left = `${x}px`;
         glowElement.style.top = `${y}px`;
     });
@@ -598,7 +563,6 @@ function setupContactMouseGlow() {
 
     if (!glowElement || !targetElement) return;
 
-    // Define a opacidade inicial do glow como 0, apenas ativa no hover
     glowElement.classList.remove('active');
     glowElement.classList.add('opacity-0');
 
@@ -616,16 +580,12 @@ function setupContactMouseGlow() {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // Move o elemento de brilho
         glowElement.style.left = `${x}px`;
         glowElement.style.top = `${y}px`;
     });
 }
 
 
-// ----------------------------------------------------
-// CÓDIGO THREE.JS (VARS GLOBAIS E CONSTANTES)
-// ----------------------------------------------------
 const COLOR_PRIMARY = 0x60a5fa;
 const COLOR_SECONDARY = 0xa855f7;
 
@@ -657,7 +617,6 @@ function initMouseTracking() {
     document.addEventListener('mousemove', onDocumentMouseMove, false);
 
     function onDocumentMouseMove(event) {
-        // Normaliza o movimento do mouse para valores entre -1 e 1
         mouseX = ((event.clientX - windowHalfX) * 0.005);
         mouseY = ((event.clientY - windowHalfY) * 0.005);
     }
@@ -678,7 +637,6 @@ function setupBackgroundScene() {
     bgRenderer.setPixelRatio(window.devicePixelRatio);
     bgRenderer.setClearColor(0x000000, 0);
 
-    // 1. Geração de Partículas 3D (Estrelas)
     const particleCount = 1500;
     const geometry = new THREE.BufferGeometry();
     const positions = [];
@@ -692,7 +650,6 @@ function setupBackgroundScene() {
 
         positions.push(x, y, z);
 
-        // Cores das estrelas baseadas em tons de azul/roxo
         const hue = Math.random() * 0.3 + 0.6;
         color.setHSL(hue, 0.5, 0.8);
         colors.push(color.r, color.g, color.b);
@@ -712,7 +669,6 @@ function setupBackgroundScene() {
     bgPoints = new THREE.Points(geometry, material);
     scene.add(bgPoints);
 
-    // 2. Adicionar Elementos Flutuantes (Geometria Abstrata)
     floatingObjects = [];
     const shapeCount = 10;
     const shapes = [
@@ -748,7 +704,6 @@ function setupBackgroundScene() {
         floatingObjects.push(mesh);
     }
 
-    // 3. Cilindros de Linhas Aleatórias (Grid Tech)
     techCylinders = [];
     const cylinderCount = 8;
     const cylinderMaterial = new THREE.MeshBasicMaterial({
@@ -781,7 +736,6 @@ function setupBackgroundScene() {
         techCylinders.push(cylinderMesh);
     }
 
-    // 4. Partículas Reativas (campo de força sutil)
     reactiveParticles = [];
     const reactiveParticleCount = 300;
     const reactiveParticleGeometry = new THREE.SphereGeometry(0.2, 8, 8);
@@ -804,7 +758,6 @@ function setupBackgroundScene() {
         reactiveParticles.push(particle);
     }
 
-    // 5. Linhas de Conexão (Network Graph)
     networkPoints = [];
     const networkGeometry = new THREE.BufferGeometry();
     const networkLineMaterial = new THREE.LineBasicMaterial({
@@ -829,7 +782,6 @@ function setupBackgroundScene() {
     networkLines = new THREE.LineSegments(networkGeometry, networkLineMaterial);
     scene.add(networkLines);
 
-    // 6. Painéis de Dados Flutuantes (Abstract UI)
     dataPanels = [];
     const panelCount = 5;
     const panelMaterial = new THREE.MeshBasicMaterial({
@@ -853,7 +805,6 @@ function setupBackgroundScene() {
         scene.add(panelMesh);
     }
 
-    // 7. Esferas de Energia Pulsante (Core Energy)
     energySpheres = [];
     const pulseLight = new THREE.PointLight(COLOR_SECONDARY, 5, 100);
     pulseLight.position.set(0, 0, -150);
@@ -877,7 +828,6 @@ function setupBackgroundScene() {
         scene.add(sphere);
     }
 
-    // 8. Partículas Sequenciais (Flowing Data Stream)
     dataStreamParticles = [];
     const streamGeometry = new THREE.BoxGeometry(1, 1, 1);
     const streamMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PRIMARY });
@@ -893,7 +843,6 @@ function setupBackgroundScene() {
 
     backgroundCamera.position.z = 200;
 
-    // Iluminação Geral da Cena (para os objetos Three.js)
     const ambientLight = new THREE.AmbientLight(0x1a1a1a, 1);
     scene.add(ambientLight);
 
@@ -902,20 +851,16 @@ function setupBackgroundScene() {
     scene.add(directionalLight);
 
 
-    // 9. Loop de Animação do Fundo
     function animateBackground() {
         requestAnimationFrame(animateBackground);
         const time = Date.now() * 0.001;
 
-        // Movimento de sincronização com o mouse
         backgroundCamera.rotation.x += (mouseY * 0.05 - backgroundCamera.rotation.x) * 0.05;
         backgroundCamera.rotation.y += (mouseX * 0.05 - backgroundCamera.rotation.y) * 0.05;
 
-        // Rotação automática das estrelas
         bgPoints.rotation.y += 0.0005;
         bgPoints.rotation.x += 0.0002;
 
-        // Animação das Formas Abstratas
         floatingObjects.forEach((mesh, index) => {
             mesh.rotation.x += 0.001 * (index % 2 === 0 ? 1 : -1);
             mesh.rotation.y += 0.0015 * (index % 3 === 0 ? 1 : -1);
@@ -923,14 +868,12 @@ function setupBackgroundScene() {
             mesh.position.x += Math.cos(Date.now() * 0.0002 + index) * 0.03;
         });
 
-        // Animação dos Cilindros de Linhas
         techCylinders.forEach((mesh, index) => {
             mesh.rotation.x += 0.0007 * (index % 2 === 0 ? 1 : -1);
             mesh.rotation.y += 0.0009 * (index % 3 === 0 ? 1 : -1);
             mesh.position.z += Math.sin(Date.now() * 0.0004 + index) * 0.02;
         });
 
-        // Animação e Interação das Partículas Reativas (Campo de Força)
         reactiveParticles.forEach(particle => {
             const distance = particle.position.distanceTo(backgroundCamera.position);
             const maxDistance = 150;
@@ -941,7 +884,6 @@ function setupBackgroundScene() {
             particle.position.y += (mouseY * effectFactor * 0.01);
         });
 
-        // Atualização da Rede de Conexão
         let vertexptr = 0;
         let p = networkPoints.length;
         const positions = networkLines.geometry.attributes.position.array;
@@ -954,7 +896,6 @@ function setupBackgroundScene() {
                 const distance = networkPoints[i].distanceTo(networkPoints[j]);
                 const maxDistance = 30;
                 if (distance < maxDistance) {
-                    // Adiciona as coordenadas da linha
                     positions[vertexptr++] = networkPoints[i].x;
                     positions[vertexptr++] = networkPoints[i].y;
                     positions[vertexptr++] = networkPoints[i].z;
@@ -968,16 +909,13 @@ function setupBackgroundScene() {
         networkLines.geometry.attributes.position.needsUpdate = true;
         networkLines.geometry.setDrawRange(0, vertexptr / 3);
 
-        // Animação dos Painéis de Dados
         dataPanels.forEach((mesh, index) => {
             mesh.rotation.x += 0.0005 * (index % 2 === 0 ? 1 : -1);
             mesh.rotation.y += 0.001;
 
-            // Pulsação de Opacidade (piscar)
             mesh.material.opacity = 0.05 + (Math.sin(time * 2 + index) * 0.03);
         });
 
-        // Animação das Esferas de Energia
         energySpheres.forEach((sphere, index) => {
             const pulse = 0.5 + Math.sin(time * 1.5 + index) * 0.5;
             sphere.material.emissiveIntensity = 0.2 + pulse * 0.5;
@@ -985,7 +923,6 @@ function setupBackgroundScene() {
         });
         pulseLight.intensity = 5 + Math.sin(time * 1.5) * 3;
 
-        // Animação do Fluxo de Dados Sequencial (movimento em onda)
         dataStreamParticles.forEach((particle, index) => {
             particle.t += 0.01 * particle.speed;
             const t = particle.t;
@@ -1002,7 +939,6 @@ function setupBackgroundScene() {
     }
     animateBackground();
 
-    // Resposta ao Redimensionamento
     window.addEventListener('resize', () => {
         const newWidth = canvas.clientWidth;
         const newHeight = canvas.clientHeight;
@@ -1011,6 +947,89 @@ function setupBackgroundScene() {
         backgroundCamera.updateProjectionMatrix();
 
         bgRenderer.setSize(newWidth, newHeight);
+    }, false);
+}
+
+function setupSimpleParticlesScene(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const parentContainer = canvas.parentElement;
+    const width = parentContainer.clientWidth;
+    const height = parentContainer.clientHeight;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x000000, 0);
+
+    const particleCount = 500;
+    const geometry = new THREE.BufferGeometry();
+    const positions = [];
+    const tempPositions = [];
+
+    for (let i = 0; i < particleCount; i++) {
+        const x = (Math.random() - 0.5) * 400;
+        const y = (Math.random() - 0.5) * 400;
+        const z = (Math.random() - 0.5) * 400;
+
+        positions.push(x, y, z);
+        tempPositions.push({ x, y, z, vx: (Math.random() - 0.5) * 0.1, vy: (Math.random() - 0.5) * 0.1, vz: (Math.random() - 0.5) * 0.1 });
+    }
+
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+    const material = new THREE.PointsMaterial({
+        size: 0.8,
+        color: COLOR_SECONDARY,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        opacity: 0.6
+    });
+
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    camera.position.z = 200;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        const positionsArray = geometry.attributes.position.array;
+        const time = Date.now() * 0.0001;
+
+        points.rotation.y = time * 0.2;
+        points.rotation.x = time * 0.1;
+
+        for (let i = 0; i < particleCount; i++) {
+            const i3 = i * 3;
+
+            tempPositions[i].x += tempPositions[i].vx * 0.1;
+            tempPositions[i].y += tempPositions[i].vy * 0.1;
+            tempPositions[i].z += tempPositions[i].vz * 0.1;
+
+            positionsArray[i3] = positionsArray[i3] + Math.sin(time * 5 + i) * 0.05;
+            positionsArray[i3 + 1] = positionsArray[i3 + 1] + Math.cos(time * 3 + i) * 0.05;
+
+            if (positionsArray[i3] > 400 || positionsArray[i3] < -400) positionsArray[i3] = (positionsArray[i3] < 0) ? 400 : -400;
+        }
+
+        geometry.attributes.position.needsUpdate = true;
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        const newWidth = parentContainer.clientWidth;
+        const newHeight = parentContainer.clientHeight;
+
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(newWidth, newHeight);
     }, false);
 }
 
@@ -1119,7 +1138,6 @@ function setupThreeJS() {
 
         camera.position.z = 12;
 
-        // **CHAMADA DE RESPONSIVIDADE INICIAL**
         updateTextSizeAndCamera(parentContainer, camera, textMesh, subtitleMesh);
 
         const ambientLight = new THREE.AmbientLight(COLOR_SECONDARY, 0.3);
@@ -1166,7 +1184,6 @@ function setupThreeJS() {
 
             textRenderer.setSize(newWidth, newHeight);
 
-            // **CHAMADA DE RESPONSIVIDADE NO REDIMENSIONAMENTO**
             updateTextSizeAndCamera(parentContainer, camera, textMesh, subtitleMesh);
         }
 
@@ -1195,11 +1212,9 @@ function setupDockEffect() {
         link.addEventListener('mouseenter', () => {
             removeHoverClasses();
 
-            // Vizinho Imediato Anterior
             if (index > 0) {
                 dockLinks[index - 1].classList.add('prev-hover');
             }
-            // Segundo Vizinho Anterior
             if (index > 1) {
                 dockLinks[index - 2].classList.add('prev-prev-hover');
             }
@@ -1241,6 +1256,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupContactAnimation();
     setupContactMouseGlow();
+
+    setupSimpleParticlesScene('video-particles');
+    setupSimpleParticlesScene('processo-particles-canvas');
+    setupSimpleParticlesScene('resultados-particles-canvas');
+    setupSimpleParticlesScene('contato-particles-canvas');
 
     const mainHeader = document.getElementById('main-header');
     const logoContainer = document.getElementById('logo-container');
