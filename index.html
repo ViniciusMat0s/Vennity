@@ -24,7 +24,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -502,8 +503,14 @@
                     </div>
                 </div>
             </section>
-            <section class="py-24 bg-gray-950" id="servicos-wrapper">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <section class="bg-gray-950 relative overflow-hidden section-margin-huge" id="servicos-wrapper">
+
+                <div aria-hidden="true"
+                    class="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
+                </div>
+
+                <div class="max-w-gallery mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-huge">
                     <div class="text-center mb-16">
                         <h2
                             class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
@@ -514,7 +521,7 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-4 grid-rows-2 gap-6 lg:gap-8">
+                    <div class="grid grid-cols-4 grid-rows-2 gap-6 lg:gap-8 max-w-gallery mx-auto">
 
                         <div id="service-card-1" data-gsap-card="true"
                             class="service-card group relative p-8 sm:p-10 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-blue-purple col-span-4 lg:col-span-2 row-span-1 min-h-[300px]">
