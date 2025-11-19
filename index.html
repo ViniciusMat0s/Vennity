@@ -960,7 +960,7 @@
                                 data-gsap-review="true">
 
                                 <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
-                                    "O suporte é incomparável. Resposta rápida e solução eficaz. Recomendo a VBM para
+                                    "O suporte é incomparável. Resposta rápida e solução eficaz. Recomendo a Vennity para
                                     qualquer negócio sério."
                                 </p>
                                 <div class="flex items-center">
@@ -1270,7 +1270,7 @@
                 </div>
             </section>
 
-            <section id="contato" class="py-24 bg-gray-900/70 relative overflow-hidden">
+            <section id="contato" class="py-spacing-mega bg-gray-900/70 relative overflow-hidden">
                 <canvas id="contato-particles-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
                 <div aria-hidden="true"
                     class="absolute inset-x-0 top-0 h-full bg-gradient-to-t from-gray-950/0 via-gray-950/20 to-gray-950/0">
@@ -1278,92 +1278,119 @@
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-                    <div id="contact-form-interactive" class="relative">
-
+                    <div id="contact-form-interactive" class="relative max-w-6xl mx-auto">
                         <div id="mouse-glow-contato" class="mouse-glow hidden lg:block"></div>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div data-gsap-contact="main"
+                            class="p-8 lg:p-10 rounded-3xl bg-gray-950/90 border border-purple-500/40 shadow-2xl shadow-purple-500/20 bg-glass-overlay relative z-20">
 
-                            <div data-gsap-contact="text">
+                            <div class="text-center mb-8" data-gsap-contact="header">
                                 <h2
-                                    class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-purple-pink">
-                                    Não perca tempo! Solicite seu orçamento AWWWARDS.
+                                    class="text-4xl font-extrabold mb-2 text-transparent bg-clip-text gradient-purple-pink">
+                                    SOLICITE SEU ORÇAMENTO
                                 </h2>
-                                <p class="text-lg text-neutral-400 mb-6">
-                                    Fale com nossos especialistas e comece a desenvolver seu legado digital. O retorno é
-                                    quase imediato.
+                                <p class="text-lg text-neutral-400 max-w-xl mx-auto">
+                                    Dê o próximo passo. Análise de projeto 100% gratuita!
                                 </p>
+                            </div>
 
-                                <div class="space-y-3 text-neutral-300">
-                                    <p class="flex items-center gap-3">
-                                        <span class="text-lg text-blue-400">🔗</span> <strong>E-mail</strong>
-                                        contato@vbmdevs.com
-                                    </p>
-                                    <p class="flex items-center gap-3">
-                                        <span class="text-lg text-blue-400">📞</span>
-                                        <strong>Telefone/WhatsApp:</strong>
-                                        +55
-                                        (51) 99629-9252
-                                    </p>
-                                    <p class="flex items-center gap-3">
-                                        <span class="text-lg text-blue-400">📍</span> <strong>Localização:</strong> Rio
-                                        Grande
-                                        do Sul/BR
-                                        (Atendimento Remoto)
-                                    </p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+
+                                <div data-gsap-contact="details">
+                                    <h3 class="text-xl font-bold mb-4 text-blue-400">
+                                        Fale Conosco Diretamente
+                                    </h3>
+
+                                    <div class="space-y-4 text-neutral-300 mb-6">
+                                        <p class="flex items-center gap-3">
+                                            <span class="text-lg text-purple-400"><i class="fas fa-envelope"></i></span>
+                                            <span class="font-bold text-white mr-2">E-mail:</span>
+                                            <a href="mailto:contato@vbmdevs.com"
+                                                class="text-neutral-400 hover:text-purple-400 transition-colors">contato@vbmdevs.com</a>
+                                        </p>
+
+                                        <p class="flex items-center gap-3">
+                                            <span class="text-lg text-blue-400"><i class="fab fa-whatsapp"></i></span>
+                                            <span class="font-bold text-white mr-2">WhatsApp:</span>
+                                            <a href="https://wa.me/5551996299252" target="_blank"
+                                                class="text-neutral-400 hover:text-blue-400 transition-colors">+55 (51)
+                                                99629-9252</a>
+                                        </p>
+
+                                        <p class="flex items-center gap-3">
+                                            <span class="text-lg text-pink-400"><i
+                                                    class="fas fa-map-marker-alt"></i></span>
+                                            <span class="font-bold text-white mr-2">Atendimento:</span>
+                                            <span class="text-neutral-400">Remoto Global (Base: RS/BR)</span>
+                                        </p>
+                                    </div>
+
+                                    <div class="pt-4 border-t border-white/10" data-gsap-contact="social">
+                                        <h4 class="text-base font-bold mb-3 text-white">Siga nas Redes</h4>
+                                        <div class="flex space-x-4">
+                                            <a href="https://www.instagram.com/vbmdev" target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 border border-transparent hover:border-purple-400/50 rounded-full">
+                                                <i class="fab fa-instagram text-xl"></i>
+                                            </a>
+                                            <a href="https://wa.me/5551996299252" target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 border border-transparent hover:border-blue-400/50 rounded-full">
+                                                <i class="fab fa-whatsapp text-xl"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div data-gsap-contact="form">
+                                    <form id="whatsappForm" onsubmit="return sendWhatsApp(event)" class="space-y-4">
+
+                                        <div data-gsap-field="1">
+                                            <label for="nome"
+                                                class="block text-sm font-medium text-neutral-300 mb-1">Nome
+                                                Completo</label>
+                                            <input type="text" id="nome" name="nome" required
+                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                        </div>
+
+                                        <div data-gsap-field="2">
+                                            <label for="email"
+                                                class="block text-sm font-medium text-neutral-300 mb-1">E-mail
+                                                Profissional</label>
+                                            <input type="email" id="email" name="email" required
+                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                        </div>
+
+                                        <div data-gsap-field="3">
+                                            <label for="assunto"
+                                                class="block text-sm font-medium text-neutral-300 mb-1">Serviço
+                                                Desejado</label>
+                                            <input type="text" id="assunto" name="assunto" required
+                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                                placeholder="Ex: Landing Page, Tráfego Pago...">
+                                        </div>
+
+                                        <div data-gsap-field="4">
+                                            <label for="mensagem"
+                                                class="block text-sm font-medium text-neutral-300 mb-1">Detalhes</label>
+                                            <textarea id="mensagem" name="mensagem" rows="3" required
+                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
+                                        </div>
+
+                                        <div data-gsap-field="5" class="pt-2">
+                                            <button type="submit"
+                                                class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                                             text-white font-bold py-3 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.01] uppercase text-base">
+                                                ENVIAR MENSAGEM
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-
-                            <div data-gsap-contact="form"
-                                class="p-8 rounded-2xl bg-gray-950/90 border border-purple-500/40 shadow-2xl shadow-purple-500/20 bg-glass-overlay relative z-20">
-                                <form id="whatsappForm" onsubmit="return sendWhatsApp(event)" class="space-y-6">
-
-                                    <div data-gsap-field="1">
-                                        <label for="nome" class="block text-sm font-medium text-neutral-300 mb-2">Nome
-                                            Completo</label>
-                                        <input type="text" id="nome" name="nome" required
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                                    </div>
-
-                                    <div data-gsap-field="2">
-                                        <label for="email"
-                                            class="block text-sm font-medium text-neutral-300 mb-2">E-mail
-                                            Profissional</label>
-                                        <input type="email" id="email" name="email" required
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                                    </div>
-
-                                    <div data-gsap-field="3">
-                                        <label for="assunto"
-                                            class="block text-sm font-medium text-neutral-300 mb-2">Assunto</label>
-                                        <input type="text" id="assunto" name="assunto" required
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
-                                            placeholder="Ex: Criação de Página, Tráfego Pago, Mídia Social...">
-                                    </div>
-
-                                    <div data-gsap-field="4">
-                                        <label for="mensagem"
-                                            class="block text-sm font-medium text-neutral-300 mb-2">Mensagem
-                                            (Detalhes do Projeto)</label>
-                                        <textarea id="mensagem" name="mensagem" rows="4" required
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
-                                    </div>
-
-                                    <div data-gsap-field="5">
-                                        <button type="submit"
-                                            class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                                         text-white font-bold py-3 rounded-lg shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.01]">
-                                            CONTATO VIA WHATSAPP (Retorno quase imediato!)
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </section>
-
         </main>
 
         <footer id="main-footer"
@@ -1394,34 +1421,24 @@
                     <a href="#contato"
                         class="footer-cta-button inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
                          text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.05] text-lg">
-                        <i class="fas fa-rocket mr-2"></i> INICIAR PROJETO
+                        <i class="fas fa-rocket mr-2"></i> INICIAR PROJETO AGORA
                     </a>
                 </div>
 
                 <div class="border-t border-white/10 pt-12">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 footer-links-container">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-12 lg:gap-8 footer-links-container">
 
-                        <div class="col-span-1 md:col-span-1 footer-link-group-left">
+                        <div class="col-span-2 md:col-span-1 footer-link-group-left">
                             <a href="#hero" class="flex items-center group mb-4">
                                 <img src="assets/images/icon.png" alt="Vennity Logo"
                                     class="h-10 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
                             </a>
                             <p class="text-sm text-neutral-500 max-w-xs">
-                                Foco em UI/UX de ponta, animações sofisticadas (GSAP, ThreeJs) e performance.
+                                Performance digital e desenvolvimento de alto nível.
                             </p>
-                            <div class="flex space-x-6 mt-6">
-                                <a href="https://www.instagram.com/vbmdev" target="_blank" rel="noopener noreferrer"
-                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">
-                                    <i class="fab fa-instagram text-2xl"></i>
-                                </a>
-                                <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
-                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">
-                                    <i class="fab fa-whatsapp text-2xl"></i>
-                                </a>
-                            </div>
                         </div>
 
-                        <div class="col-span-1 md:col-span-1">
+                        <div class="md:col-span-1">
                             <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Mapa do
                                 Site</h4>
                             <ul class="space-y-3 text-base">
@@ -1443,9 +1460,8 @@
                             </ul>
                         </div>
 
-                        <div class="col-span-1 md:col-span-1">
-                            <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Informações
-                            </h4>
+                        <div class="md:col-span-1">
+                            <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Legal</h4>
                             <ul class="space-y-3 text-base">
                                 <li class="footer-link-item"><a href="politica-e-termos.html"
                                         class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Política
@@ -1457,29 +1473,39 @@
                                         class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">FAQ</a>
                                 </li>
                                 <li class="footer-link-item"><a href="#contato"
-                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Ajuda
-                                        e Suporte</a></li>
+                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Suporte</a>
+                                </li>
                             </ul>
                         </div>
 
-                        <div class="col-span-1 md:col-span-1 footer-link-group-right">
+                        <div class="col-span-2 md:col-span-2 footer-link-group-right">
                             <h4 class="text-lg font-bold text-white mb-4 uppercase">Fale Conosco</h4>
                             <div class="space-y-3 text-base">
-                                <p class="flex items-center gap-3">
+                                <p class="flex items-center gap-3 footer-contact-item">
                                     <span class="text-purple-400"><i class="fas fa-envelope"></i></span>
                                     <a href="mailto:contato@vbmdevs.com"
                                         class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">contato@vbmdevs.com</a>
                                 </p>
-                                <p class="flex items-center gap-3">
+                                <p class="flex items-center gap-3 footer-contact-item">
                                     <span class="text-blue-400"><i class="fab fa-whatsapp"></i></span>
                                     <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
                                         class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">+55
                                         (51) 99629-9252</a>
                                 </p>
-                                <p class="flex items-center gap-3">
+                                <p class="flex items-center gap-3 footer-contact-item">
                                     <span class="text-pink-400"><i class="fas fa-map-marker-alt"></i></span>
                                     <span class="text-neutral-400">Rio Grande do Sul/BR (Remoto)</span>
                                 </p>
+                            </div>
+                            <div class="flex space-x-6 mt-6 footer-social-links">
+                                <a href="https://www.instagram.com/vbmdev" target="_blank" rel="noopener noreferrer"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-purple-400/50">
+                                    <i class="fab fa-instagram text-2xl"></i>
+                                </a>
+                                <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-blue-400/50">
+                                    <i class="fab fa-whatsapp text-2xl"></i>
+                                </a>
                             </div>
                         </div>
 

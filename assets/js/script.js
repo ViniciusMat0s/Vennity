@@ -330,7 +330,7 @@ function setupProcessTimelineAnimation() {
 }
 
 function setupSobreAnimation() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof TextPlugin === 'undefined') return;
 
     const section = document.getElementById('sobre');
     if (!section) return;
@@ -338,15 +338,20 @@ function setupSobreAnimation() {
     const terminalContainer = section.querySelector('[data-gsap-target="terminal"]');
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
+    
+    // --- CORREÇÃO DE ANIMAÇÃO DE DIGITAÇÃO PARA PRESERVAR CORES ---
+    
+    // 1. Extrai o conteúdo HTML completo e cria um backup temporário
+    const rawCodeHTML = terminalCode.innerHTML.trim();
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawCodeHTML;
 
-    // Usando uma cor mais próxima do fundo para o efeito de "limpeza"
-    const TERMINAL_BACKGROUND_COLOR = '#030712'; // Cor do body/section
+    // 2. Limpa o terminal para começar a animação, mas mantém o estilo de visibility
+    terminalCode.innerHTML = '';
+    terminalCode.style.visibility = 'visible';
 
-    gsap.from(terminalContainer, {
-        x: 50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
+    // 3. Timeline principal da seção "Sobre"
+    const tlMain = gsap.timeline({
         scrollTrigger: {
             trigger: section,
             start: "top 70%",
@@ -355,53 +360,88 @@ function setupSobreAnimation() {
         }
     });
 
-    gsap.from(textContainer, {
+    // Animação de entrada dos blocos (Texto e Terminal)
+    tlMain.from(textContainer, {
         x: -50,
         opacity: 0,
         duration: 1.2,
         ease: "power3.out",
-        scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-            toggleActions: "play none none none",
-            once: true,
-        }
-    });
-
-    terminalCode.style.visibility = 'visible';
-    const cover = document.createElement('div');
-    cover.style.cssText = `position: absolute; inset: 0; background-color: ${TERMINAL_BACKGROUND_COLOR}; border-radius: 10px;`;
-    
-    const terminalWindow = terminalCode.closest('.terminal-window');
-    const coverClone = cover.cloneNode(true);
-    terminalWindow.appendChild(coverClone);
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: terminalContainer,
-            start: "top 70%",
-            toggleActions: "play none none none",
-            once: true,
-            delay: 0.5
-        }
-    });
-
-    // Animação de varredura do código
-    tl.to(coverClone, {
-        scaleX: 0, // Encolhe horizontalmente (esquerda para direita)
-        transformOrigin: "right center",
-        duration: 2.5,
-        ease: "power2.inOut",
-        delay: 0.5
-    })
-    .to(coverClone, {
+    }, 0)
+    .from(terminalContainer, {
+        x: 50,
         opacity: 0,
-        duration: 0.1,
-        onComplete: function () {
-            coverClone.remove();
+        duration: 1.2,
+        ease: "power3.out",
+    }, 0);
+
+    // 4. Animação de digitação do código (Sequencial)
+    const tlTyping = gsap.timeline({
+        delay: 1.2, // Começa após a animação de entrada da seção
+        paused: true
+    });
+    
+    // NodeList que inclui elementos (tags <span>) e nós de texto
+    const originalNodes = Array.from(tempDiv.childNodes).filter(node => node.textContent.trim().length > 0 || node.nodeType === 1);
+
+    originalNodes.forEach(node => {
+        const isElement = node.nodeType === 1;
+        const targetContainer = document.createElement('div');
+        
+        // Mantemos a quebra de linha usando a div, mas queremos animar o conteúdo
+        if (isElement) {
+            // Se for um elemento (ex: <span class="text-blue-400">)
+            const targetElement = node.cloneNode(true);
+            const originalText = targetElement.innerHTML;
+            
+            // Limpa o conteúdo dentro da <span> de cor e insere um cursor <i> para o GSAP escrever
+            targetElement.innerHTML = `<i class="typing-target">${originalText}</i>`;
+            const typingTarget = targetElement.querySelector('.typing-target');
+            typingTarget.innerHTML = ''; // Limpa o alvo
+
+            targetContainer.appendChild(targetElement);
+            terminalCode.appendChild(targetContainer);
+            
+            tlTyping.from(targetContainer, {
+                opacity: 0, 
+                duration: 0.01 
+            }, ">")
+            .to(typingTarget, {
+                text: {
+                    value: originalText,
+                    speed: 1 
+                },
+                duration: originalText.length * 0.04,
+                ease: "none"
+            });
+            
+        } else {
+            // Se for um nó de texto puro (espaços ou texto sem cor)
+            const textContent = node.textContent;
+            targetContainer.innerHTML = `<i class="typing-target">${textContent}</i>`;
+            const typingTarget = targetContainer.querySelector('.typing-target');
+            typingTarget.innerHTML = ''; 
+            
+            terminalCode.appendChild(targetContainer);
+            
+            tlTyping.from(targetContainer, {
+                opacity: 0, 
+                duration: 0.01 
+            }, ">")
+            .to(typingTarget, {
+                text: {
+                    value: textContent,
+                    speed: 1 
+                },
+                duration: textContent.length * 0.04,
+                ease: "none"
+            });
         }
-    }, ">");
+    });
+
+    // Executa a animação de digitação após a entrada da seção
+    tlMain.add(() => tlTyping.play(), "-=0.2"); 
 }
+
 
 function setupResultsAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof window.innerWidth === 'undefined') return;
@@ -586,11 +626,13 @@ function setupContactAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     const section = document.getElementById('contato');
-    if (!section) return;
+    const mainBlock = section.querySelector('[data-gsap-contact="main"]'); // Novo bloco principal (o cartão)
+    if (!section || !mainBlock) return;
 
-    const textBlock = section.querySelector('[data-gsap-contact="text"]');
-    const formBlock = section.querySelector('#contact-form-interactive');
-    const formFields = gsap.utils.toArray('[data-gsap-field]');
+    const headerBlock = section.querySelector('[data-gsap-contact="header"]');
+    const detailsBlock = section.querySelector('[data-gsap-contact="details"]');
+    const socialBlock = section.querySelector('[data-gsap-contact="social"]');
+    const formFields = gsap.utils.toArray('#whatsappForm > div'); 
 
     const tlMain = gsap.timeline({
         scrollTrigger: {
@@ -601,30 +643,53 @@ function setupContactAnimation() {
         }
     });
 
-    tlMain.from(textBlock, {
+    // 1. Animação de entrada do Cartão Principal (Fly-in)
+    tlMain.from(mainBlock, {
         opacity: 0,
-        x: -80,
-        duration: 1,
+        y: 80, 
+        scale: 0.95,
+        rotationX: -10,
+        transformOrigin: "center center",
+        duration: 1.2,
         ease: "power3.out"
-    }, 0)
-        .from(formBlock, {
-            opacity: 0,
-            x: 80,
-            duration: 1,
-            ease: "power3.out"
-        }, 0);
+    }, 0); 
 
+    // 2. Animação de entrada dos elementos internos (Staggered)
+    gsap.from([headerBlock, detailsBlock], {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out"
+    }, 0.5); // Começa após 0.5s
 
-    gsap.set(formFields, { opacity: 0, y: 20 });
+    // 3. Animação dos campos do formulário (Staggered Reveal com rotação)
+    gsap.set(formFields, { opacity: 0, y: 30, rotationX: -90, transformOrigin: "top center" });
 
     gsap.to(formFields, {
         opacity: 1,
         y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        stagger: 0.1,
+        rotationX: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
         scrollTrigger: {
-            trigger: formBlock,
+            trigger: mainBlock,
+            start: "top 80%", 
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+    
+    // 4. Animação das redes sociais
+    gsap.from(socialBlock.querySelectorAll('a'), {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+            trigger: socialBlock,
             start: "top 90%",
             toggleActions: "play none none none",
             once: true,
@@ -1207,14 +1272,14 @@ function setupThreeJS() {
     textRenderer.setPixelRatio(window.devicePixelRatio);
     textRenderer.setClearColor(0x000000, 0);
 
-    const h1Text = "VENNITY.";
+    const h1Text = "VENNITY";
     const subtitleText = "PÁGINAS E GESTÃO DE ALTA PERFORMANCE";
 
     const heroH1Element = document.getElementById('hero-h1');
-    const heroH1Text = heroH1Element ? "VENNITY." : h1Text;
+    const heroH1Text = "VENNITY";
 
-    const heroPElement = document.querySelector('[data-gsap-hero="subtitle"] p');
-    const heroPText = heroPElement ? "DESENVOLVA SEU LEGADO." : subtitleText;
+    const heroPElement = document.querySelector('.max-w-1xl.mx-auto p');
+    const heroPText = "DESENVOLVA SEU LEGADO.";
 
 
     const fontLoader = new THREE.FontLoader();
@@ -1604,8 +1669,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Animações GSAP de Rolagem ---
     
     // Registra Plugins (se já não estiverem no topo do arquivo)
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger); 
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof TextPlugin !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger, TextPlugin); 
     }
 
     // Inicializa todas as animações
@@ -1618,11 +1683,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setupTextReveal(); 
         setupServiceCardsParallax();
         setupProcessTimelineAnimation();
-        setupSobreAnimation();
+        setupSobreAnimation(); // CORRIGIDA PARA TER TYPEWRITER FUNCIONAL
         setupResultsAnimation(); 
         setupReviewsGridAnimation();
         setupPricingAnimation();
-        setupContactAnimation();
+        setupContactAnimation(); // OTIMIZADA AQUI!
         
         // Footer (Novo)
         setupFooterAnimations();
