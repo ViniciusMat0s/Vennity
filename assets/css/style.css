@@ -27,6 +27,25 @@ h3 {
     font-family: 'Inter', sans-serif;
 }
 
+/* Correção de Especificidade para Links do Footer */
+#main-footer a {
+    /* Garante que a transição funcione e não seja bloqueada */
+    transition: color 0.3s ease !important;
+}
+
+/* Garante que a cor de hover do Tailwind prevaleça sobre qualquer cor base */
+#main-footer a:hover {
+    /* !important usado aqui apenas como medida de emergência para forçar o hover */
+    color: #ec4899 !important;
+    /* Cor pink-500 */
+}
+
+/* Para os ícones de contato */
+#main-footer .footer-social-links a:hover {
+    border-color: #ec4899 !important;
+    /* Cor pink-500 para a borda no hover */
+}
+
 header {
     top: 20px;
     left: 50%;
