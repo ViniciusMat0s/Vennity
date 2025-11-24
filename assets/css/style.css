@@ -616,17 +616,10 @@ header img.invert {
     background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Estilos para o NOVO LAYOUT de GRADE DE REVIEWS */
 
-/* Container do Carrossel e Scroll Snap */
 .reviews-container {
-    /* Habilita o Scroll Snap e a rolagem horizontal */
     scroll-behavior: smooth;
-
-    /* CORRIGIDO: Removido overflow: hidden ou overflow: scroll */
     overflow-x: scroll !important;
-    
-    /* CORRIGIDO: Aumentando a altura mínima do container para acomodar o movimento vertical */
     min-height: 550px !important; 
 
     /* Esconde a barra de rolagem (AWWWARDS style) */
@@ -820,21 +813,9 @@ header img.invert {
     font-family: 'Inter Tight', monospace;
 }
 
-/* REMOVENDO ANIMAÇÃO CSS DO TICKET, AGORA É GSAP */
-/* @keyframes ticker-scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(calc(-100% / 2));
-    }
-} */
-
 .ticker-container {
     display: flex;
     width: max-content;
-    /* animation: ticker-scroll 12s linear infinite; REMOVIDO */
     will-change: transform;
 }
 

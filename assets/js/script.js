@@ -1402,7 +1402,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica de Header e Scroll Genérico (Mantida) ---
     const mainHeader = document.getElementById('main-header');
-    const logoContainer = document.getElementById('logo-container');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
