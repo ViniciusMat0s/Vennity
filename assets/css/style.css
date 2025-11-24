@@ -120,7 +120,8 @@ h1#hero-h1 {
 
 /* NOVO: AUMENTANDO O TAMANHO DO HERO H1 PADRÃO E A LINHA DE BAIXO */
 #hero-h1-text-fallback {
-    font-size: 5rem; /* Default for non-js or small screens */
+    font-size: 5rem;
+    /* Default for non-js or small screens */
 }
 
 @media (min-width: 640px) {
@@ -584,12 +585,14 @@ header img.invert {
 
 /* NOVO: Estilos 3D para os Cards de Preço */
 #precos #pricing-grid {
-    perspective: 1000px; /* Perspectiva no container */
+    perspective: 1000px;
+    /* Perspectiva no container */
 }
 
 #precos .card-padrao,
 #precos .card-destaque {
-    transform-style: preserve-3d; /* Permite que o efeito 3D funcione */
+    transform-style: preserve-3d;
+    /* Permite que o efeito 3D funcione */
 }
 
 
@@ -620,7 +623,7 @@ header img.invert {
 .reviews-container {
     scroll-behavior: smooth;
     overflow-x: scroll !important;
-    min-height: 550px !important; 
+    min-height: 550px !important;
 
     /* Esconde a barra de rolagem (AWWWARDS style) */
     -ms-overflow-style: none;
@@ -901,18 +904,83 @@ header img.invert {
     z-index: 30;
 }
 
+/* ... Outras regras ... */
+
+/* Dock Link Efeito Aprimorado */
+.dock-link-text {
+    position: relative;
+    /* Necessário para posicionar o fundo */
+    z-index: 10;
+}
+
 .dock-link-text a {
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: scale(1);
-    display: inline-block;
-    padding: 0 8px;
-    color: white;
+    display: block;
+    /* Mantenha 'block' para o padding do hover */
+    padding: 8px 12px;
+    /* Aumenta a área de hover e padding */
+    border-radius: 9999px;
+    /* Cantos arredondados */
+    color: var(--nav-text-color, #d1d5db);
+    /* Usa variável para cor base */
+    position: relative;
+    z-index: 20;
+    /* Garante que o texto fique acima do efeito de fundo */
+    font-weight: 600;
+}
+
+.dock-link-text::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    opacity: 0;
+    transform: scale(0.8);
+    background: linear-gradient(90deg, rgba(96, 165, 250, 0.2), rgba(168, 85, 247, 0.2));
+    filter: blur(5px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dock-link-text:hover::before {
+    opacity: 1;
+    transform: scale(1.05);
+    /* Fundo sutilmente maior que o link */
 }
 
 .dock-link-text a:hover {
-    transform: scale(1.20);
-    z-index: 10;
-    position: relative;
+    transform: scale(1.15);
+    /* Efeito de bolha no texto */
+    color: #ffffff;
+    /* Texto branco no hover */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.dock-link-text a:hover::after {
+    /* Adicionando um sublinhado/highlight sutil */
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    transform: translateX(-50%);
+    opacity: 0.8;
+}
+
+/* Light Mode Adjustments (para garantir cores visíveis) */
+.light-mode .dock-link-text a {
+    color: var(--nav-text-color, #374151);
+}
+
+.light-mode .dock-link-text a:hover {
+    color: #111827;
+    text-shadow: none;
+}
+
+.light-mode .dock-link-text::before {
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.1), rgba(147, 51, 234, 0.1));
 }
 
 .shadow-gradient-bottom {

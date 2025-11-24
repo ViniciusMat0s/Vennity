@@ -1257,7 +1257,6 @@ function setupVideoStickyReveal() {
     });
 }
 
-
 function setupDockEffect() {
     const dockLinks = document.querySelectorAll('.dock-link-text');
 
