@@ -642,7 +642,7 @@ header img.invert {
 .reviews-container {
     scroll-behavior: smooth;
     overflow-x: scroll !important;
-    min-height: 550px !important;
+    min-height: 450px !important;
 
     /* Esconde a barra de rolagem (AWWWARDS style) */
     -ms-overflow-style: none;
