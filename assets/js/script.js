@@ -37,15 +37,16 @@ function applyTheme(isLight) {
 }
 
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
+if (savedTheme) {
+    applyTheme(savedTheme === 'light');
+} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
     applyTheme(true);
 } else {
     applyTheme(false);
 }
 
 toggleButton.addEventListener('click', () => {
-    const isLight = body.classList.contains(LIGHT_MODE_CLASS);
-    applyTheme(!isLight);
+    applyTheme(!body.classList.contains(LIGHT_MODE_CLASS));
 });
 
 function toggleMobileMenu() {
@@ -138,7 +139,6 @@ function setupMouseGlow() {
     });
 }
 
-// ATUALIZADO: Seleciona tanto os cards de serviço quanto os cards de preço para o mouse follow.
 function setupCardGlowEffect() {
     // Seletor unificado para cards de serviço e cards de preço
     const cardSelectors = '.service-card, .card-padrao, .card-destaque';
@@ -238,7 +238,6 @@ function setupServiceCardsParallax() {
     });
 }
 
-
 function setupProcessTimelineAnimation() {
     if (typeof ScrollTrigger === 'undefined' || typeof gsap === 'undefined') {
         return;
@@ -331,7 +330,7 @@ function setupProcessTimelineAnimation() {
 }
 
 function setupSobreAnimation() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof TextPlugin === 'undefined') return;
 
     const section = document.getElementById('sobre');
     if (!section) return;
@@ -339,15 +338,20 @@ function setupSobreAnimation() {
     const terminalContainer = section.querySelector('[data-gsap-target="terminal"]');
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
+    
+    // --- CORREÇÃO DE ANIMAÇÃO DE DIGITAÇÃO PARA PRESERVAR CORES ---
+    
+    // 1. Extrai o conteúdo HTML completo e cria um backup temporário
+    const rawCodeHTML = terminalCode.innerHTML.trim();
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawCodeHTML;
 
-    // Usando uma cor mais próxima do fundo para o efeito de "limpeza"
-    const TERMINAL_BACKGROUND_COLOR = '#030712'; // Cor do body/section
+    // 2. Limpa o terminal para começar a animação, mas mantém o estilo de visibility
+    terminalCode.innerHTML = '';
+    terminalCode.style.visibility = 'visible';
 
-    gsap.from(terminalContainer, {
-        x: 50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
+    // 3. Timeline principal da seção "Sobre"
+    const tlMain = gsap.timeline({
         scrollTrigger: {
             trigger: section,
             start: "top 70%",
@@ -356,55 +360,89 @@ function setupSobreAnimation() {
         }
     });
 
-    gsap.from(textContainer, {
+    // Animação de entrada dos blocos (Texto e Terminal)
+    tlMain.from(textContainer, {
         x: -50,
         opacity: 0,
         duration: 1.2,
         ease: "power3.out",
-        scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-            toggleActions: "play none none none",
-            once: true,
-        }
-    });
-
-    terminalCode.style.visibility = 'visible';
-    const cover = document.createElement('div');
-    cover.style.cssText = `position: absolute; inset: 0; background-color: ${TERMINAL_BACKGROUND_COLOR}; border-radius: 10px;`;
-    
-    const terminalWindow = terminalCode.closest('.terminal-window');
-    const coverClone = cover.cloneNode(true);
-    terminalWindow.appendChild(coverClone);
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: terminalContainer,
-            start: "top 70%",
-            toggleActions: "play none none none",
-            once: true,
-            delay: 0.5
-        }
-    });
-
-    // Animação de varredura do código
-    tl.to(coverClone, {
-        scaleX: 0, // Encolhe horizontalmente (esquerda para direita)
-        transformOrigin: "right center",
-        duration: 2.5,
-        ease: "power2.inOut",
-        delay: 0.5
-    })
-    .to(coverClone, {
+    }, 0)
+    .from(terminalContainer, {
+        x: 50,
         opacity: 0,
-        duration: 0.1,
-        onComplete: function () {
-            coverClone.remove();
+        duration: 1.2,
+        ease: "power3.out",
+    }, 0);
+
+    // 4. Animação de digitação do código (Sequencial)
+    const tlTyping = gsap.timeline({
+        delay: 1.2, // Começa após a animação de entrada da seção
+        paused: true
+    });
+    
+    // NodeList que inclui elementos (tags <span>) e nós de texto
+    const originalNodes = Array.from(tempDiv.childNodes).filter(node => node.textContent.trim().length > 0 || node.nodeType === 1);
+
+    originalNodes.forEach(node => {
+        const isElement = node.nodeType === 1;
+        const targetContainer = document.createElement('div');
+        
+        // Mantemos a quebra de linha usando a div, mas queremos animar o conteúdo
+        if (isElement) {
+            // Se for um elemento (ex: <span class="text-blue-400">)
+            const targetElement = node.cloneNode(true);
+            const originalText = targetElement.innerHTML;
+            
+            // Limpa o conteúdo dentro da <span> de cor e insere um cursor <i> para o GSAP escrever
+            targetElement.innerHTML = `<i class="typing-target">${originalText}</i>`;
+            const typingTarget = targetElement.querySelector('.typing-target');
+            typingTarget.innerHTML = ''; // Limpa o alvo
+
+            targetContainer.appendChild(targetElement);
+            terminalCode.appendChild(targetContainer);
+            
+            tlTyping.from(targetContainer, {
+                opacity: 0, 
+                duration: 0.01 
+            }, ">")
+            .to(typingTarget, {
+                text: {
+                    value: originalText,
+                    speed: 1 
+                },
+                duration: originalText.length * 0.04,
+                ease: "none"
+            });
+            
+        } else {
+            // Se for um nó de texto puro (espaços ou texto sem cor)
+            const textContent = node.textContent;
+            targetContainer.innerHTML = `<i class="typing-target">${textContent}</i>`;
+            const typingTarget = targetContainer.querySelector('.typing-target');
+            typingTarget.innerHTML = ''; 
+            
+            terminalCode.appendChild(targetContainer);
+            
+            tlTyping.from(targetContainer, {
+                opacity: 0, 
+                duration: 0.01 
+            }, ">")
+            .to(typingTarget, {
+                text: {
+                    value: textContent,
+                    speed: 1 
+                },
+                duration: textContent.length * 0.04,
+                ease: "none"
+            });
         }
-    }, ">");
+    });
+
+    // Executa a animação de digitação após a entrada da seção
+    tlMain.add(() => tlTyping.play(), "-=0.2"); 
 }
 
-// CORRIGIDO: Garante que os cards apareçam corretamente.
+
 function setupResultsAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof window.innerWidth === 'undefined') return;
 
@@ -474,8 +512,6 @@ function setupResultsAnimation() {
     });
 }
 
-
-// CORRIGIDO: Removida a altura fixa 'min-h-[450px]' via JS
 function setupReviewsGridAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
         return;
@@ -487,10 +523,6 @@ function setupReviewsGridAnimation() {
 
     if (!reviewsGrid || reviewCards.length === 0) return;
 
-    // Remove a limitação de altura da div que contém o carrossel, 
-    // permitindo que o movimento parallax dos cards não seja cortado.
-    // O min-h-[450px] está no HTML, o CSS do reviews-container deve ser ajustado.
-    
     gsap.from(reviewCards, {
         opacity: 0,
         y: 150,
@@ -509,7 +541,6 @@ function setupReviewsGridAnimation() {
 
     reviewCards.forEach((card, i) => {
         // Aumentando a distância de movimento para garantir que o corte seja evitado 
-        // e o efeito seja mais visível/dramático.
         const moveDistance = (i % 2 === 0) ? 100 : -100; // Movimento maior
         
         // Aplicando o scrub (parallax)
@@ -595,11 +626,13 @@ function setupContactAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     const section = document.getElementById('contato');
-    if (!section) return;
+    const mainBlock = section.querySelector('[data-gsap-contact="main"]'); // Novo bloco principal (o cartão)
+    if (!section || !mainBlock) return;
 
-    const textBlock = section.querySelector('[data-gsap-contact="text"]');
-    const formBlock = section.querySelector('#contact-form-interactive');
-    const formFields = gsap.utils.toArray('[data-gsap-field]');
+    const headerBlock = section.querySelector('[data-gsap-contact="header"]');
+    const detailsBlock = section.querySelector('[data-gsap-contact="details"]');
+    const socialBlock = section.querySelector('[data-gsap-contact="social"]');
+    const formFields = gsap.utils.toArray('#whatsappForm > div'); 
 
     const tlMain = gsap.timeline({
         scrollTrigger: {
@@ -610,30 +643,53 @@ function setupContactAnimation() {
         }
     });
 
-    tlMain.from(textBlock, {
+    // 1. Animação de entrada do Cartão Principal (Fly-in)
+    tlMain.from(mainBlock, {
         opacity: 0,
-        x: -80,
-        duration: 1,
+        y: 80, 
+        scale: 0.95,
+        rotationX: -10,
+        transformOrigin: "center center",
+        duration: 1.2,
         ease: "power3.out"
-    }, 0)
-        .from(formBlock, {
-            opacity: 0,
-            x: 80,
-            duration: 1,
-            ease: "power3.out"
-        }, 0);
+    }, 0); 
 
+    // 2. Animação de entrada dos elementos internos (Staggered)
+    gsap.from([headerBlock, detailsBlock], {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out"
+    }, 0.5); // Começa após 0.5s
 
-    gsap.set(formFields, { opacity: 0, y: 20 });
+    // 3. Animação dos campos do formulário (Staggered Reveal com rotação)
+    gsap.set(formFields, { opacity: 0, y: 30, rotationX: -90, transformOrigin: "top center" });
 
     gsap.to(formFields, {
         opacity: 1,
         y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        stagger: 0.1,
+        rotationX: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
         scrollTrigger: {
-            trigger: formBlock,
+            trigger: mainBlock,
+            start: "top 80%", 
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+    
+    // 4. Animação das redes sociais
+    gsap.from(socialBlock.querySelectorAll('a'), {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+            trigger: socialBlock,
             start: "top 90%",
             toggleActions: "play none none none",
             once: true,
@@ -790,6 +846,7 @@ function setupBackgroundScene() {
     const colors = [];
     const color = new THREE.Color();
 
+    // --- CÓDIGO RESTAURADO PARA PARTÍCULAS TIPO GALÁXIA (bgPoints) ---
     for (let i = 0; i < particleCount; i++) {
         const x = (Math.random() - 0.5) * 600;
         const y = (Math.random() - 0.5) * 600;
@@ -815,8 +872,11 @@ function setupBackgroundScene() {
 
     bgPoints = new THREE.Points(geometry, material);
     scene.add(bgPoints);
-
+    // --- FIM DO CÓDIGO RESTAURADO ---
+    
     floatingObjects = [];
+    // REMOVIDO: Objetos flutuantes. Deixamos apenas a declaração da lista vazia.
+    /*
     const shapeCount = 10;
     const shapes = [
         new THREE.TorusGeometry(3, 1.5, 3, 100),
@@ -850,143 +910,14 @@ function setupBackgroundScene() {
         scene.add(mesh);
         floatingObjects.push(mesh);
     }
+    */
 
     techCylinders = [];
-    const cylinderCount = 8;
-    const cylinderMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.1
-    });
-
-    for (let i = 0; i < cylinderCount; i++) {
-        const radius = Math.random() * 8 + 3;
-        const height = Math.random() * 20 + 10;
-        const radialSegments = Math.floor(Math.random() * 8) + 4;
-        const heightSegments = Math.floor(Math.random() * 5) + 2;
-
-        const cylinderGeometry = new THREE.CylinderGeometry(radius, radius, height, radialSegments, heightSegments);
-        const cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
-
-        cylinderMesh.position.set(
-            (Math.random() - 0.5) * 400,
-            (Math.random() - 0.5) * 400,
-            (Math.random() - 0.5) * 400 - 200
-        );
-
-        cylinderMesh.rotation.x = Math.random() * Math.PI;
-        cylinderMesh.rotation.y = Math.random() * Math.PI;
-        cylinderMesh.rotation.z = Math.random() * Math.PI;
-
-        scene.add(cylinderMesh);
-        techCylinders.push(cylinderMesh);
-    }
-
     reactiveParticles = [];
-    const reactiveParticleCount = 300;
-    const reactiveParticleGeometry = new THREE.SphereGeometry(0.2, 8, 8);
-    const reactiveParticleMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY,
-        transparent: true,
-        opacity: 0.05,
-        blending: THREE.AdditiveBlending
-    });
-
-    for (let i = 0; i < reactiveParticleCount; i++) {
-        const particle = new THREE.Mesh(reactiveParticleGeometry, reactiveParticleMaterial.clone());
-        particle.position.set(
-            (Math.random() - 0.5) * 200,
-            (Math.random() - 0.5) * 200,
-            (Math.random() - 0.5) * 200 - 50
-        );
-        particle.initialOpacity = particle.material.opacity;
-        scene.add(particle);
-        reactiveParticles.push(particle);
-    }
-
     networkPoints = [];
-    const networkGeometry = new THREE.BufferGeometry();
-    const networkLineMaterial = new THREE.LineBasicMaterial({
-        color: COLOR_PRIMARY,
-        transparent: true,
-        opacity: 0.1,
-        blending: THREE.AdditiveBlending
-    });
-    const maxDistance = 30;
-
-    for (let i = 0; i < DENSITY; i++) {
-        const point = new THREE.Vector3(
-            (Math.random() - 0.5) * 200,
-            (Math.random() - 0.5) * 200,
-            (Math.random() - 0.5) * 200 - 100
-        );
-        networkPoints.push(point);
-    }
-    const maxLines = DENSITY * DENSITY;
-    const positionsLines = new Float32Array(maxLines * 3 * 2);
-    networkGeometry.setAttribute('position', new THREE.BufferAttribute(positionsLines, 3).setUsage(THREE.DynamicDrawUsage));
-    networkLines = new THREE.LineSegments(networkGeometry, networkLineMaterial);
-    scene.add(networkLines);
-
     dataPanels = [];
-    const panelCount = 5;
-    const panelMaterial = new THREE.MeshBasicMaterial({
-        color: COLOR_PRIMARY,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.08
-    });
-
-    for (let i = 0; i < panelCount; i++) {
-        const panelGeometry = new THREE.PlaneGeometry(20, 10, 10, 5);
-        const panelMesh = new THREE.Mesh(panelGeometry, panelMaterial.clone());
-        panelMesh.position.set(
-            (Math.random() - 0.5) * 300,
-            (Math.random() - 0.5) * 300,
-            (Math.random() - 0.5) * 300 - 50
-        );
-        panelMesh.rotation.x = Math.random() * Math.PI;
-        panelMesh.rotation.y = Math.random() * Math.PI;
-        dataPanels.push(panelMesh);
-        scene.add(panelMesh);
-    }
-
     energySpheres = [];
-    const pulseLight = new THREE.PointLight(COLOR_SECONDARY, 5, 100);
-    pulseLight.position.set(0, 0, -150);
-    scene.add(pulseLight);
-
-    for (let i = 0; i < ENERGY_SPHERE_COUNT; i++) {
-        const sphereGeometry = new THREE.IcosahedronGeometry(8, 1);
-        const sphereMaterial = new THREE.MeshPhongMaterial({
-            color: 0x000000,
-            emissive: COLOR_SECONDARY,
-            emissiveIntensity: 0.2,
-            shininess: 10
-        });
-        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-        sphere.position.set(
-            (Math.random() - 0.5) * 200,
-            (Math.random() - 0.5) * 200,
-            (Math.random() - 0.5) * 200 - 150
-        );
-        energySpheres.push(sphere);
-        scene.add(sphere);
-    }
-
     dataStreamParticles = [];
-    const streamGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const streamMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PRIMARY });
-
-    for (let i = 0; i < DATA_STREAM_COUNT; i++) {
-        const particle = new THREE.Mesh(streamGeometry, streamMaterial.clone());
-        particle.position.set(100, 0, -100);
-        particle.speed = 1.0 + Math.random() * 0.5;
-        particle.t = Math.random() * 100;
-        dataStreamParticles.push(particle);
-        scene.add(particle);
-    }
 
     backgroundCamera.position.z = 200;
 
@@ -1005,83 +936,25 @@ function setupBackgroundScene() {
         backgroundCamera.rotation.x += (mouseY * 0.05 - backgroundCamera.rotation.x) * 0.05;
         backgroundCamera.rotation.y += (mouseX * 0.05 - backgroundCamera.rotation.y) * 0.05;
 
-        bgPoints.rotation.y += 0.0005;
-        bgPoints.rotation.x += 0.0002;
+        // --- CÓDIGO RESTAURADO PARA ANIMAÇÃO DA GALÁXIA ---
+        if (bgPoints) {
+            bgPoints.rotation.y += 0.0005;
+            bgPoints.rotation.x += 0.0002;
+        }
+        // --- FIM DO CÓDIGO RESTAURADO ---
 
+        // REMOVIDO: Animação de objetos flutuantes
+        /*
         floatingObjects.forEach((mesh, index) => {
             mesh.rotation.x += 0.001 * (index % 2 === 0 ? 1 : -1);
             mesh.rotation.y += 0.0015 * (index % 3 === 0 ? 1 : -1);
             mesh.position.y += Math.sin(Date.now() * 0.0003 + index) * 0.03;
             mesh.position.x += Math.cos(Date.now() * 0.0002 + index) * 0.03;
         });
-
-        techCylinders.forEach((mesh, index) => {
-            mesh.rotation.x += 0.0007 * (index % 2 === 0 ? 1 : -1);
-            mesh.rotation.y += 0.0009 * (index % 3 === 0 ? 1 : -1);
-            mesh.position.z += Math.sin(Date.now() * 0.0004 + index) * 0.02;
-        });
-
-        reactiveParticles.forEach(particle => {
-            const distance = particle.position.distanceTo(backgroundCamera.position);
-            const maxDistance = 150;
-            const effectFactor = Math.max(0, 1 - (distance / maxDistance));
-
-            particle.material.opacity = particle.initialOpacity + (effectFactor * 0.2);
-            particle.position.x += (mouseX * effectFactor * 0.01);
-            particle.position.y += (mouseY * effectFactor * 0.01);
-        });
-
-        let vertexptr = 0;
-        let p = networkPoints.length;
-        const positions = networkLines.geometry.attributes.position.array;
-
-        for (let i = 0; i < p; i++) {
-            networkPoints[i].y += Math.sin(time * 0.5 + i) * 0.05;
-            networkPoints[i].x += Math.cos(time * 0.3 + i) * 0.05;
-
-            for (let j = i + 1; j < p; j++) {
-                const distance = networkPoints[i].distanceTo(networkPoints[j]);
-                const maxDistance = 30;
-                if (distance < maxDistance) {
-                    positions[vertexptr++] = networkPoints[i].x;
-                    positions[vertexptr++] = networkPoints[i].y;
-                    positions[vertexptr++] = networkPoints[i].z;
-
-                    positions[vertexptr++] = networkPoints[j].x;
-                    positions[vertexptr++] = networkPoints[j].y;
-                    positions[vertexptr++] = networkPoints[j].z;
-                }
-            }
-        }
-        networkLines.geometry.attributes.position.needsUpdate = true;
-        networkLines.geometry.setDrawRange(0, vertexptr / 3);
-
-        dataPanels.forEach((mesh, index) => {
-            mesh.rotation.x += 0.0005 * (index % 2 === 0 ? 1 : -1);
-            mesh.rotation.y += 0.001;
-
-            mesh.material.opacity = 0.05 + (Math.sin(time * 2 + index) * 0.03);
-        });
-
-        energySpheres.forEach((sphere, index) => {
-            const pulse = 0.5 + Math.sin(time * 1.5 + index) * 0.5;
-            sphere.material.emissiveIntensity = 0.2 + pulse * 0.5;
-            sphere.scale.set(1 + pulse * 0.05, 1 + pulse * 0.05, 1 + pulse * 0.05);
-        });
-        pulseLight.intensity = 5 + Math.sin(time * 1.5) * 3;
-
-        dataStreamParticles.forEach((particle, index) => {
-            particle.t += 0.01 * particle.speed;
-            const t = particle.t;
-
-            particle.position.x = 80 * Math.sin(t * 0.5);
-            particle.position.y = 50 * Math.cos(t * 0.3 + index * 0.2);
-            particle.position.z = (t * -10) % 600 - 300;
-
-            particle.material.opacity = 0.6 + Math.sin(t * 2) * 0.4;
-        });
-
-
+        */
+        
+        // Outras animações de objetos (removidas)
+        
         bgRenderer.render(scene, backgroundCamera);
     }
     animateBackground();
@@ -1098,86 +971,8 @@ function setupBackgroundScene() {
 }
 
 function setupSimpleParticlesScene(canvasId) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-
-    const parentContainer = canvas.parentElement;
-    const width = parentContainer.clientWidth;
-    const height = parentContainer.clientHeight;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0x000000, 0);
-
-    const particleCount = 500;
-    const geometry = new THREE.BufferGeometry();
-    const positions = [];
-    const tempPositions = [];
-
-    for (let i = 0; i < particleCount; i++) {
-        const x = (Math.random() - 0.5) * 400;
-        const y = (Math.random() - 0.5) * 400;
-        const z = (Math.random() - 0.5) * 400;
-
-        positions.push(x, y, z);
-        tempPositions.push({ x, y, z, vx: (Math.random() - 0.5) * 0.1, vy: (Math.random() - 0.5) * 0.1, vz: (Math.random() - 0.5) * 0.1 });
-    }
-
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-
-    const material = new THREE.PointsMaterial({
-        size: 0.8,
-        color: COLOR_SECONDARY,
-        blending: THREE.AdditiveBlending,
-        transparent: true,
-        opacity: 0.6
-    });
-
-    const points = new THREE.Points(geometry, material);
-    scene.add(points);
-
-    camera.position.z = 200;
-
-    function animate() {
-        requestAnimationFrame(animate);
-        const positionsArray = geometry.attributes.position.array;
-        const time = Date.now() * 0.0001;
-
-        points.rotation.y = time * 0.2;
-        points.rotation.x = time * 0.1;
-
-        for (let i = 0; i < particleCount; i++) {
-            const i3 = i * 3;
-
-            tempPositions[i].x += tempPositions[i].vx * 0.1;
-            tempPositions[i].y += tempPositions[i].vy * 0.1;
-            tempPositions[i].z += tempPositions[i].vz * 0.1;
-
-            positionsArray[i3] = positionsArray[i3] + Math.sin(time * 5 + i) * 0.05;
-            positionsArray[i3 + 1] = positionsArray[i3 + 1] + Math.cos(time * 3 + i) * 0.05;
-
-            if (positionsArray[i3] > 400 || positionsArray[i3] < -400) positionsArray[i3] = (positionsArray[i3] < 0) ? 400 : -400;
-        }
-
-        geometry.attributes.position.needsUpdate = true;
-
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-        const newWidth = parentContainer.clientWidth;
-        const newHeight = parentContainer.clientHeight;
-
-        camera.aspect = newWidth / newHeight;
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(newWidth, newHeight);
-    }, false);
+    // Código de Three.js para partículas simples removido conforme solicitado
+    return;
 }
 
 function updateTextSizeAndCamera(container, camera, h1Mesh, pMesh) {
@@ -1216,14 +1011,14 @@ function setupThreeJS() {
     textRenderer.setPixelRatio(window.devicePixelRatio);
     textRenderer.setClearColor(0x000000, 0);
 
-    const h1Text = "VENNITY.";
+    const h1Text = "VENNITY";
     const subtitleText = "PÁGINAS E GESTÃO DE ALTA PERFORMANCE";
 
     const heroH1Element = document.getElementById('hero-h1');
-    const heroH1Text = heroH1Element ? "VENNITY." : h1Text;
+    const heroH1Text = "VENNITY";
 
-    const heroPElement = document.querySelector('[data-gsap-hero="subtitle"] p');
-    const heroPText = heroPElement ? "DESENVOLVA SEU LEGADO." : subtitleText;
+    const heroPElement = document.querySelector('.max-w-1xl.mx-auto p');
+    const heroPText = "DESENVOLVA SEU LEGADO.";
 
 
     const fontLoader = new THREE.FontLoader();
@@ -1348,7 +1143,7 @@ function setupThreeJS() {
         },
         function (error) {
             console.error('An error happened loading the Three.js font:', error);
-            document.getElementById('hero-h1-text-fallback').querySelector('span').style.opacity = 1;
+            document.getElementById('hero-h1').style.display = 'block'; // Mostra o H1 do HTML como fallback
             canvas.style.display = 'none';
         });
 
@@ -1361,9 +1156,9 @@ function setupHeroEntranceAnimation() {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     // Elementos a animar
-    const h1Fallback = document.querySelector('[data-gsap-hero="h1"]'); // Fallback H1 (usado se Three.js falhar)
-    const subtitle = document.querySelector('[data-gsap-hero="subtitle"]');
-    const buttons = document.querySelector('[data-gsap-hero="buttons"]');
+    const h1Fallback = document.getElementById('hero-h1'); 
+    const subtitle = document.querySelector('.max-w-1xl.mx-auto');
+    const buttons = document.querySelector('.mt-12.flex');
     const logoTicker = document.getElementById('impacto');
     const mainHeader = document.getElementById('main-header');
     
@@ -1425,10 +1220,6 @@ function setupHeroEntranceAnimation() {
         scale: 1,
         duration: 1,
     }, 1.2); // Começa 1.2s após o início
-    
-    // Garante que o Three.js e o fallback não briguem - 
-    // O Three.js tem sua própria animação de "on load"
-    document.getElementById('hero-h1').style.display = 'none'; // Esconde o H1 que estava sendo usado para o Three.js
 }
 
 // NOVO: Função para o Ticker com GSAP e Pause on Hover
@@ -1441,18 +1232,26 @@ function setupTickerAnimation() {
     tickerContainer.style.animation = 'none';
 
     // Clona o conteúdo para o loop infinito
-    const clone = tickerContent.cloneNode(true);
-    tickerContainer.appendChild(clone);
-    
-    const distance = -tickerContent.clientWidth;
+    const contentWidth = tickerContent.clientWidth;
+    const distance = -contentWidth;
     const duration = 15; // 15 segundos para um ciclo completo
+
+    // Cria o clone se ainda não existir
+    if (tickerContainer.children.length === 1) {
+        const clone = tickerContent.cloneNode(true);
+        tickerContainer.appendChild(clone);
+    }
 
     tickerAnimation = gsap.to(tickerContainer, {
         x: distance,
         duration: duration,
         ease: "linear",
         repeat: -1,
-        paused: false
+        paused: false,
+        onRepeat: function() {
+            // Reinicia a posição para simular o loop infinito
+            this.set(tickerContainer, {x: 0});
+        }
     });
 
     // Pause on Hover
@@ -1470,29 +1269,8 @@ function setupVideoStickyReveal() {
 
     if (!videoSection || !videoMockup) return;
 
-    const scrollHeight = window.innerHeight * 1.5; 
-    videoSection.style.minHeight = `${scrollHeight}px`;
-
-    // 1. Animação de entrada do mockup
-    gsap.fromTo(videoMockup, {
-        opacity: 0,
-        y: 50,
-        scale: 0.9
-    }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: videoSection,
-            start: "top 85%",
-            toggleActions: "play none none none",
-            once: true
-        }
-    });
-
-    // 2. O efeito Sticky/Pin
+    // O Mockup já tem uma animação de fade-in-up, vamos usar o GSAP para o Pin
+    
     ScrollTrigger.create({
         trigger: videoSection,
         start: "top top",
@@ -1501,10 +1279,6 @@ function setupVideoStickyReveal() {
         pinSpacing: true,
         // O scrub faz com que a animação (paralaxe) acompanhe o scroll
         scrub: 1,
-        onEnter: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
-        onLeave: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
-        onEnterBack: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
-        onLeaveBack: () => gsap.to(videoMockup, { opacity: 1, duration: 0.3 }),
     });
 
     // Opcional: Paralaxe sutil dentro da seção para o Mockup
@@ -1550,51 +1324,128 @@ function setupDockEffect() {
     });
 }
 
+// NOVO: Função de Animação do Footer (AWWWARDS Style)
+function setupFooterAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#main-footer",
+            start: "top 85%", // Começa a animação quando 85% do footer está visível
+            toggleActions: "play none none none",
+            once: true,
+        }
+    });
+
+    // 1. Animação do Título (Texto dividido por linha)
+    tl.from(".footer-title-line", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+    })
+
+    // 2. Animação da Descrição e Botão
+    .from(".footer-cta-subtitle", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "<0.2") // Inicia um pouco depois do título
+
+    .from(".footer-cta-button", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+    }, "<0.2")
+
+    // 3. Animação dos Grupos de Links (Staggered Reveal)
+    .from(".footer-link-group-left", {
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "<0.5")
+
+    .from(".footer-link-group-right", {
+        x: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "<0") // Inicia junto com o grupo esquerdo
+
+    .from(".footer-link-item", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "power1.out",
+    }, "<0.2") // Inicia um pouco depois dos grupos laterais
+
+    // 4. Animação do Copyright
+    .from(".footer-copyright", {
+        opacity: 0,
+        duration: 1,
+        ease: "power1.out",
+    }, ">-0.5"); // Termina com o copyright
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    setupHeroEntranceAnimation();
     
+    // --- Configuração e Init Three.js / Mouse ---
     initMouseTracking();
-
-    setupBackgroundScene();
-
+    setupBackgroundScene(); // Partículas Three.js reduzidas
     setupThreeJS();
-
     setupMouseGlow();
-
     setupDockEffect();
     
-    // Animações de rolagem
-    setupServiceCardsParallax();
-    setupCardGlowEffect(); // Aplicará o mouse follow nos cards de Serviço e Preço
-
-    setupProcessTimelineAnimation();
-
-    setupSobreAnimation();
-
-    setupResultsAnimation(); 
-
-    setupReviewsGridAnimation();
-
-    setupPricingAnimation();
-
-    setupPricingMouseGlow();
-
-    setupContactAnimation();
-    setupContactMouseGlow();
+    // É importante chamar o Hero Entrance logo no início
+    setupHeroEntranceAnimation();
     
-    // Chamada das novas funções
-    setupTickerAnimation();
-    setupVideoStickyReveal();
-    setupTextReveal(); // NOVO: Títulos de seção
+    // --- Animações GSAP de Rolagem ---
+    
+    // Registra Plugins (se já não estiverem no topo do arquivo)
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof TextPlugin !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger, TextPlugin); 
+    }
 
+    // Inicializa todas as animações
+    let ctx = gsap.context(() => {
+        // Hero
+        setupTickerAnimation();
+        
+        // Seções
+        setupVideoStickyReveal();
+        setupTextReveal(); 
+        setupServiceCardsParallax();
+        setupProcessTimelineAnimation();
+        setupSobreAnimation(); // CORRIGIDA PARA TER TYPEWRITER FUNCIONAL
+        setupResultsAnimation(); 
+        setupReviewsGridAnimation();
+        setupPricingAnimation();
+        setupContactAnimation(); // OTIMIZADA PARA O NOVO LAYOUT COMPACTO
+        
+        // Footer (Novo)
+        setupFooterAnimations();
+    });
 
+    // --- Efeitos Interativos / Mouse ---
+    setupCardGlowEffect();
+    setupPricingMouseGlow();
+    setupContactMouseGlow();
+    // REMOVIDO: Partículas simples dessas seções
+    /*
     setupSimpleParticlesScene('video-particles');
     setupSimpleParticlesScene('processo-particles-canvas');
     setupSimpleParticlesScene('resultados-particles-canvas');
     setupSimpleParticlesScene('contato-particles-canvas');
+    */
 
+
+    // --- Lógica de Header e Scroll Genérico (Mantida) ---
     const mainHeader = document.getElementById('main-header');
     const logoContainer = document.getElementById('logo-container');
 
@@ -1612,6 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Fallback/Animação genérica para elementos que não usam GSAP dedicado
     const scrollAnimatedElements = document.querySelectorAll('.fade-in-on-scroll');
     const observerOptions = {
         root: null,
