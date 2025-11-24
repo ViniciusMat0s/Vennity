@@ -329,8 +329,9 @@ function setupProcessTimelineAnimation() {
     });
 }
 
+// ** FUNÇÃO CORRIGIDA PARA HOVER INTERATIVO **
 function setupSobreAnimation() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof TextPlugin === 'undefined') return;
+    if (typeof gsap === 'undefined' || typeof TextPlugin === 'undefined') return;
 
     const section = document.getElementById('sobre');
     if (!section) return;
@@ -339,19 +340,22 @@ function setupSobreAnimation() {
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
     
-    // --- CORREÇÃO DE ANIMAÇÃO DE DIGITAÇÃO PARA PRESERVAR CORES ---
+    // O terminal-window é o elemento onde o mouseover ocorre no HTML
+    const terminalWindow = terminalCode.closest('.terminal-window'); 
     
-    // 1. Extrai o conteúdo HTML completo e cria um backup temporário
+    if (!terminalWindow) return;
+
+    // 1. Captura e armazena o conteúdo HTML original
     const rawCodeHTML = terminalCode.innerHTML.trim();
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = rawCodeHTML;
 
-    // 2. Limpa o terminal para começar a animação, mas mantém o estilo de visibility
-    terminalCode.innerHTML = '';
-    terminalCode.style.visibility = 'visible';
-
-    // 3. Timeline principal da seção "Sobre"
-    const tlMain = gsap.timeline({
+    // Animação de entrada dos blocos de texto/terminal (mantida com ScrollTrigger)
+    gsap.from(textContainer, {
+        x: -50,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
         scrollTrigger: {
             trigger: section,
             start: "top 70%",
@@ -359,87 +363,102 @@ function setupSobreAnimation() {
             once: true,
         }
     });
-
-    // Animação de entrada dos blocos (Texto e Terminal)
-    tlMain.from(textContainer, {
-        x: -50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-    }, 0)
-    .from(terminalContainer, {
+    
+    gsap.from(terminalContainer, {
         x: 50,
-        opacity: 0,
+        opacity: 0.3, // Opacidade inicial reduzida
         duration: 1.2,
         ease: "power3.out",
-    }, 0);
-
-    // 4. Animação de digitação do código (Sequencial)
-    const tlTyping = gsap.timeline({
-        delay: 1.2, // Começa após a animação de entrada da seção
-        paused: true
+        scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+        }
     });
     
-    // NodeList que inclui elementos (tags <span>) e nós de texto
+    // 2. Esconde o conteúdo inicial do DOM, delegando o controle total ao GSAP.
+    gsap.set(terminalCode, { autoAlpha: 0 }); 
+
+    // 3. Cria a Timeline de Digitação (Pausada)
+    const tlTyping = gsap.timeline({
+        paused: true,
+        onStart: () => {
+             // Limpa o conteúdo e torna o terminal visível (autoAlpha: 1)
+             terminalCode.innerHTML = '';
+             gsap.set(terminalCode, { autoAlpha: 1 }); 
+             gsap.to(terminalContainer, { opacity: 1, duration: 0.3 }); // Aumenta a opacidade do container
+        },
+        onReverseComplete: () => {
+            // Ao reverter, volta para o estado inicial (invisível e limpo)
+            terminalCode.innerHTML = '';
+            gsap.set(terminalCode, { autoAlpha: 0 });
+            gsap.to(terminalContainer, { opacity: 0.3, duration: 0.5 }); // Diminui opacidade no reset
+        }
+    });
+    
     const originalNodes = Array.from(tempDiv.childNodes).filter(node => node.textContent.trim().length > 0 || node.nodeType === 1);
 
     originalNodes.forEach(node => {
         const isElement = node.nodeType === 1;
-        const targetContainer = document.createElement('div');
         
-        // Mantemos a quebra de linha usando a div, mas queremos animar o conteúdo
-        if (isElement) {
-            // Se for um elemento (ex: <span class="text-blue-400">)
-            const targetElement = node.cloneNode(true);
-            const originalText = targetElement.innerHTML;
-            
-            // Limpa o conteúdo dentro da <span> de cor e insere um cursor <i> para o GSAP escrever
-            targetElement.innerHTML = `<i class="typing-target">${originalText}</i>`;
-            const typingTarget = targetElement.querySelector('.typing-target');
-            typingTarget.innerHTML = ''; // Limpa o alvo
+        const lineContainer = document.createElement('div'); 
+        lineContainer.classList.add('typing-line-container');
+        
+        let typingTarget; 
+        let originalText;
 
-            targetContainer.appendChild(targetElement);
-            terminalCode.appendChild(targetContainer);
+        if (isElement) {
+            const targetElement = node.cloneNode(true);
+            originalText = targetElement.innerHTML;
             
-            tlTyping.from(targetContainer, {
-                opacity: 0, 
-                duration: 0.01 
-            }, ">")
-            .to(typingTarget, {
-                text: {
-                    value: originalText,
-                    speed: 1 
-                },
-                duration: originalText.length * 0.04,
-                ease: "none"
-            });
+            targetElement.innerHTML = `<i class="typing-target">${originalText}</i>`;
+            typingTarget = targetElement.querySelector('.typing-target');
+            typingTarget.innerHTML = ''; 
+
+            lineContainer.appendChild(targetElement);
             
         } else {
-            // Se for um nó de texto puro (espaços ou texto sem cor)
-            const textContent = node.textContent;
-            targetContainer.innerHTML = `<i class="typing-target">${textContent}</i>`;
-            const typingTarget = targetContainer.querySelector('.typing-target');
+            originalText = node.textContent;
+            lineContainer.innerHTML = `<i class="typing-target">${originalText}</i>`;
+            typingTarget = lineContainer.querySelector('.typing-target');
             typingTarget.innerHTML = ''; 
-            
-            terminalCode.appendChild(targetContainer);
-            
-            tlTyping.from(targetContainer, {
-                opacity: 0, 
-                duration: 0.01 
-            }, ">")
-            .to(typingTarget, {
-                text: {
-                    value: textContent,
-                    speed: 1 
-                },
-                duration: textContent.length * 0.04,
-                ease: "none"
-            });
+        }
+
+        terminalCode.appendChild(lineContainer);
+        
+        tlTyping.from(lineContainer, {
+            opacity: 0, 
+            duration: 0.01 
+        }, ">")
+        .to(typingTarget, {
+            text: {
+                value: originalText,
+                speed: 1 
+            },
+            duration: originalText.length * 0.04,
+            ease: "none",
+            onStart: () => {
+                typingTarget.innerHTML = '';
+            }
+        });
+    });
+
+    // 4. Configuração dos eventos de Mouse (Hover)
+    terminalWindow.addEventListener('mouseenter', () => {
+        // Reproduz a animação se não estiver ativa ou se estiver sendo revertida.
+        if (!tlTyping.isActive() || tlTyping.reversed()) {
+            tlTyping.play();
         }
     });
 
-    // Executa a animação de digitação após a entrada da seção
-    tlMain.add(() => tlTyping.play(), "-=0.2"); 
+    terminalWindow.addEventListener('mouseleave', () => {
+        // Reverte a animação, apagando o texto
+        // Só reverte se a animação não estiver completamente no início (progress > 0).
+        if (tlTyping.progress() > 0) {
+            tlTyping.reverse();
+        }
+    });
 }
 
 
@@ -626,7 +645,7 @@ function setupContactAnimation() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     const section = document.getElementById('contato');
-    const mainBlock = section.querySelector('[data-gsap-contact="main"]'); // Novo bloco principal (o cartão)
+    const mainBlock = section.querySelector('[data-gsap-contact="main"]');
     if (!section || !mainBlock) return;
 
     const headerBlock = section.querySelector('[data-gsap-contact="header"]');
@@ -661,7 +680,7 @@ function setupContactAnimation() {
         duration: 0.8,
         stagger: 0.15,
         ease: "power2.out"
-    }, 0.5); // Começa após 0.5s
+    }, 0.5); 
 
     // 3. Animação dos campos do formulário (Staggered Reveal com rotação)
     gsap.set(formFields, { opacity: 0, y: 30, rotationX: -90, transformOrigin: "top center" });
@@ -846,7 +865,6 @@ function setupBackgroundScene() {
     const colors = [];
     const color = new THREE.Color();
 
-    // --- CÓDIGO RESTAURADO PARA PARTÍCULAS TIPO GALÁXIA (bgPoints) ---
     for (let i = 0; i < particleCount; i++) {
         const x = (Math.random() - 0.5) * 600;
         const y = (Math.random() - 0.5) * 600;
@@ -872,46 +890,8 @@ function setupBackgroundScene() {
 
     bgPoints = new THREE.Points(geometry, material);
     scene.add(bgPoints);
-    // --- FIM DO CÓDIGO RESTAURADO ---
     
     floatingObjects = [];
-    // REMOVIDO: Objetos flutuantes. Deixamos apenas a declaração da lista vazia.
-    /*
-    const shapeCount = 10;
-    const shapes = [
-        new THREE.TorusGeometry(3, 1.5, 3, 100),
-        new THREE.DodecahedronGeometry(5, 0),
-        new THREE.IcosahedronGeometry(4, 0),
-    ];
-
-    const shapeMaterial = new THREE.MeshPhongMaterial({
-        color: COLOR_SECONDARY,
-        emissive: COLOR_PRIMARY,
-        emissiveIntensity: 0.1,
-        shininess: 100,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.15
-    });
-
-    for (let i = 0; i < shapeCount; i++) {
-        const shapeGeometry = shapes[Math.floor(Math.random() * shapes.length)];
-        const mesh = new THREE.Mesh(shapeGeometry, shapeMaterial);
-
-        mesh.position.set(
-            (Math.random() - 0.5) * 300,
-            (Math.random() - 0.5) * 300,
-            (Math.random() - 0.5) * 300 - 100
-        );
-
-        mesh.rotation.x = Math.random() * Math.PI;
-        mesh.rotation.y = Math.random() * Math.PI;
-
-        scene.add(mesh);
-        floatingObjects.push(mesh);
-    }
-    */
-
     techCylinders = [];
     reactiveParticles = [];
     networkPoints = [];
@@ -936,24 +916,10 @@ function setupBackgroundScene() {
         backgroundCamera.rotation.x += (mouseY * 0.05 - backgroundCamera.rotation.x) * 0.05;
         backgroundCamera.rotation.y += (mouseX * 0.05 - backgroundCamera.rotation.y) * 0.05;
 
-        // --- CÓDIGO RESTAURADO PARA ANIMAÇÃO DA GALÁXIA ---
         if (bgPoints) {
             bgPoints.rotation.y += 0.0005;
             bgPoints.rotation.x += 0.0002;
         }
-        // --- FIM DO CÓDIGO RESTAURADO ---
-
-        // REMOVIDO: Animação de objetos flutuantes
-        /*
-        floatingObjects.forEach((mesh, index) => {
-            mesh.rotation.x += 0.001 * (index % 2 === 0 ? 1 : -1);
-            mesh.rotation.y += 0.0015 * (index % 3 === 0 ? 1 : -1);
-            mesh.position.y += Math.sin(Date.now() * 0.0003 + index) * 0.03;
-            mesh.position.x += Math.cos(Date.now() * 0.0002 + index) * 0.03;
-        });
-        */
-        
-        // Outras animações de objetos (removidas)
         
         bgRenderer.render(scene, backgroundCamera);
     }
@@ -971,7 +937,6 @@ function setupBackgroundScene() {
 }
 
 function setupSimpleParticlesScene(canvasId) {
-    // Código de Three.js para partículas simples removido conforme solicitado
     return;
 }
 
@@ -1143,7 +1108,7 @@ function setupThreeJS() {
         },
         function (error) {
             console.error('An error happened loading the Three.js font:', error);
-            document.getElementById('hero-h1').style.display = 'block'; // Mostra o H1 do HTML como fallback
+            document.getElementById('hero-h1').style.display = 'block'; 
             canvas.style.display = 'none';
         });
 
@@ -1174,7 +1139,7 @@ function setupHeroEntranceAnimation() {
             scale: 1,
             duration: 1.5,
             ease: "elastic.out(1, 0.5)",
-            delay: 0.5 // Delay para o fundo carregar
+            delay: 0.5 
         }, 0);
     }
     
@@ -1187,7 +1152,7 @@ function setupHeroEntranceAnimation() {
         y: 0,
         duration: 0.8,
         ease: "back.out(1.7)"
-    }, 0.2); // Começa logo depois do delay inicial
+    }, 0.2); 
 
     // 2. Fade-in do Subtítulo
     tl.fromTo(subtitle, {
@@ -1197,7 +1162,7 @@ function setupHeroEntranceAnimation() {
         y: 0,
         opacity: 1,
         duration: 1,
-    }, 0.8); // Começa 0.8s após o início
+    }, 0.8); 
 
     // 3. Fade-in dos Botões
     tl.fromTo(buttons, {
@@ -1207,7 +1172,7 @@ function setupHeroEntranceAnimation() {
         y: 0,
         opacity: 1,
         duration: 1,
-    }, 1.0); // Começa 1.0s após o início
+    }, 1.0); 
 
     // 4. Fade-in do Ticker de Logos
     tl.fromTo(logoTicker, {
@@ -1219,7 +1184,7 @@ function setupHeroEntranceAnimation() {
         y: 0,
         scale: 1,
         duration: 1,
-    }, 1.2); // Começa 1.2s após o início
+    }, 1.2); 
 }
 
 // NOVO: Função para o Ticker com GSAP e Pause on Hover
@@ -1269,15 +1234,12 @@ function setupVideoStickyReveal() {
 
     if (!videoSection || !videoMockup) return;
 
-    // O Mockup já tem uma animação de fade-in-up, vamos usar o GSAP para o Pin
-    
     ScrollTrigger.create({
         trigger: videoSection,
         start: "top top",
         end: "bottom bottom",
         pin: videoMockup,
         pinSpacing: true,
-        // O scrub faz com que a animação (paralaxe) acompanhe o scroll
         scrub: 1,
     });
 
@@ -1331,7 +1293,7 @@ function setupFooterAnimations() {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: "#main-footer",
-            start: "top 85%", // Começa a animação quando 85% do footer está visível
+            start: "top 85%", 
             toggleActions: "play none none none",
             once: true,
         }
@@ -1352,7 +1314,7 @@ function setupFooterAnimations() {
         opacity: 0,
         duration: 0.8,
         ease: "power2.out",
-    }, "<0.2") // Inicia um pouco depois do título
+    }, "<0.2") 
 
     .from(".footer-cta-button", {
         scale: 0.8,
@@ -1374,7 +1336,7 @@ function setupFooterAnimations() {
         opacity: 0,
         duration: 0.8,
         ease: "power2.out",
-    }, "<0") // Inicia junto com o grupo esquerdo
+    }, "<0") 
 
     .from(".footer-link-item", {
         y: 20,
@@ -1382,14 +1344,14 @@ function setupFooterAnimations() {
         duration: 0.5,
         stagger: 0.05,
         ease: "power1.out",
-    }, "<0.2") // Inicia um pouco depois dos grupos laterais
+    }, "<0.2") 
 
     // 4. Animação do Copyright
     .from(".footer-copyright", {
         opacity: 0,
         duration: 1,
         ease: "power1.out",
-    }, ">-0.5"); // Termina com o copyright
+    }, ">-0.5"); 
 }
 
 
@@ -1397,7 +1359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Configuração e Init Three.js / Mouse ---
     initMouseTracking();
-    setupBackgroundScene(); // Partículas Three.js reduzidas
+    setupBackgroundScene(); 
     setupThreeJS();
     setupMouseGlow();
     setupDockEffect();
@@ -1422,11 +1384,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setupTextReveal(); 
         setupServiceCardsParallax();
         setupProcessTimelineAnimation();
-        setupSobreAnimation(); // CORRIGIDA PARA TER TYPEWRITER FUNCIONAL
+        setupSobreAnimation(); // AGORA COM HOVER INTERATIVO
         setupResultsAnimation(); 
         setupReviewsGridAnimation();
         setupPricingAnimation();
-        setupContactAnimation(); // OTIMIZADA PARA O NOVO LAYOUT COMPACTO
+        setupContactAnimation(); 
         
         // Footer (Novo)
         setupFooterAnimations();
@@ -1436,14 +1398,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCardGlowEffect();
     setupPricingMouseGlow();
     setupContactMouseGlow();
-    // REMOVIDO: Partículas simples dessas seções
-    /*
-    setupSimpleParticlesScene('video-particles');
-    setupSimpleParticlesScene('processo-particles-canvas');
-    setupSimpleParticlesScene('resultados-particles-canvas');
-    setupSimpleParticlesScene('contato-particles-canvas');
-    */
-
+    
 
     // --- Lógica de Header e Scroll Genérico (Mantida) ---
     const mainHeader = document.getElementById('main-header');

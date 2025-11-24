@@ -818,7 +818,6 @@ header img.invert {
 .terminal-code {
     line-height: 1.6;
     font-family: 'Inter Tight', monospace;
-    visibility: hidden;
 }
 
 /* REMOVENDO ANIMAÇÃO CSS DO TICKET, AGORA É GSAP */
