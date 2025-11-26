@@ -65,21 +65,6 @@
 
     <div id="google_translate_element" style="display: none;"></div>
 
-    <button id="theme-toggle"
-        class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-50 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white">
-        <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-        <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-            </path>
-        </svg>
-    </button>
-
     <div id="mobile-menu-overlay" onclick="toggleMobileMenu()" class="hidden fixed inset-0 bg-black/50 z-40"></div>
 
     <nav id="mobile-menu"
@@ -87,7 +72,7 @@
         <div class="flex justify-between items-center mb-10">
             <a href="#" class="flex items-center group px-4 py-2">
                 <img src="assets/images/icon.png" alt="Vennity Logo"
-                    class="h-8 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+                    class="h-12 w-auto logo-text-link" />
             </a>
             <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
                 <i class="fas fa-times text-xl"></i>
@@ -129,7 +114,7 @@
             <div class="flex justify-between items-center mb-10">
                 <a href="#hero" onclick="toggleMobileMenu()" class="flex items-center group px-0 py-2">
                     <img src="assets/images/icon.png" alt="Vennity Logo"
-                        class="h-8 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+                        class="h-12 w-auto logo-text-link" />
                 </a>
                 <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
                     <i class="fas fa-times text-xl"></i>
@@ -167,12 +152,12 @@
             <div id="logo-container" class="fixed top-5 left-5 z-50 hidden md:block">
                 <a href="#hero" class="flex items-center group px-4 py-2 dock-link-logo">
                     <img src="assets/images/icon.png" alt="Vennity Logo"
-                        class="h-10 w-auto group-[.light-mode_&]:filter-none logo-text-link transition-transform duration-300" />
+                        class="h-20 w-auto logo-text-link transition-transform duration-300" />
                 </a>
             </div>
 
             <header id="main-header"
-                class="fixed top-5 left-1/2 transform -translate-x-1/2 w-fit max-w-none z-50 rounded-full transition-all duration-300">
+                class="fixed top-5 left-1/2 transform -translate-x-1/2 w-full max-w-none md:w-fit z-50 rounded-full transition-all duration-300">
                 <div
                     class="uppercase flex justify-center items-center h-20 md:h-16 w-full backdrop-blur-p bg-black/20 border border-white/5 rounded-full px-4 sm:px-6 shadow-gradient-bottom">
 
@@ -217,7 +202,7 @@
 
                     <a href="#hero" class="flex items-center group md:hidden">
                         <img src="assets/images/icon.png" alt="Vennity Logo"
-                            class="h-9 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+                            class="h-14 w-auto logo-text-link" />
                     </a>
 
                     <button id="menu-toggle-button" onclick="toggleMobileMenu()"
@@ -392,7 +377,8 @@
                 </div>
             </section>
 
-            <section id="sobre" class="relative overflow-hidden bg-gray-950/90 spacing-mega">
+            <section id="sobre"
+                class="relative overflow-hidden bg-gray-950/90 spacing-mega">
 
                 <div aria-hidden="true"
                     class="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-900/40 via-blue-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
@@ -488,7 +474,7 @@
             </section>
 
             <section id="video-mockup" class="pt-12 bg-gray-950/90 spacing-mega relative">
-                <canvas id="video-particles" class="absolute inset-0 w-full h-full z-0"></canvas>
+                <canvas id="video-particles"></canvas>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="relative w-full max-w-6xl mx-auto">
                         <div
@@ -696,9 +682,7 @@
             </section>
 
             <section id="processo" class="py-24 relative overflow-hidden bg-gray-950">
-                <div aria-hidden="true" class="absolute inset-0">
-                    <div id="processo-particles-canvas" class="absolute inset-0 w-full h-full z-0"></div>
-                </div>
+                <canvas id="processo-particles-canvas"></canvas>
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="text-center mb-16">
@@ -798,8 +782,8 @@
             <section id="resultados" class="py-24 bg-gray-950 relative overflow-hidden">
 
                 <div aria-hidden="true" class="absolute inset-0 z-0">
-                    <div id="results-background-magic" class="absolute inset-0"></div>
-                    <canvas id="resultados-particles-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+                    <div id="results-background-magic"></div>
+                    <canvas id="resultados-particles-canvas"></canvas>
                 </div>
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -984,17 +968,14 @@
                 </div>
             </section>
 
-            <section id="precos" class="relative py-24 bg-gray-950 overflow-hidden">
+            <section id="precos" class="py-24 bg-gray-950 relative overflow-hidden">
 
-                <div aria-hidden="true"
-                    class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
+                <div aria-hidden="true" class="absolute inset-0 z-0">
+                    <div id="results-background-magic"></div>
+                    <canvas id="resultados-particles-canvas"></canvas>
                 </div>
 
-                <div id="pricing-container-interactive"
-                    class="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 z-10">
-
-                    <div id="mouse-glow-precos" class="mouse-glow hidden lg:block"></div>
-
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="text-center mb-16">
                         <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
                             Nossos Planos de Crescimento
@@ -1120,8 +1101,7 @@
                     </div>
 
                     <div class="mt-20">
-                        <h3
-                            class="text-2xl sm:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                             Serviços Avulsos: Soluções Focadas no Seu Projeto
                         </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -1271,7 +1251,7 @@
             </section>
 
             <section id="contato" class="py-spacing-mega bg-gray-900/70 relative overflow-hidden">
-                <canvas id="contato-particles-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+                <canvas id="contato-particles-canvas"></canvas>
                 <div aria-hidden="true"
                     class="absolute inset-x-0 top-0 h-full bg-gradient-to-t from-gray-950/0 via-gray-950/20 to-gray-950/0">
                 </div>
@@ -1417,7 +1397,7 @@
 
                     <a href="#contato"
                         class="footer-cta-button inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                         text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.05] text-lg">
+                             text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.05] text-lg">
                         <i class="fas fa-rocket mr-2"></i> INICIAR PROJETO AGORA
                     </a>
                 </div>
@@ -1429,7 +1409,7 @@
                         <div class="col-span-2 md:col-span-1 footer-link-group-left text-left">
                             <a href="#hero" class="flex items-center group mb-4">
                                 <img src="assets/images/icon.png" alt="Vennity Logo"
-                                    class="h-10 w-auto group-[.light-mode_&]:filter-none logo-text-link" />
+                                    class="h-20 w-auto logo-text-link" />
                             </a>
                             <p class="text-sm text-neutral-500 max-w-xs">
                                 Performance digital e desenvolvimento de alto nível.
@@ -1476,7 +1456,7 @@
                             </ul>
                         </div>
 
-                        <div class="col-span-2 md:col-span-1 footer-link-group-right text-left">
+                        <div class="col-span-2 md:col-span-1 text-left">
                             <h4 class="text-lg font-bold text-white mb-4 uppercase">Fale Conosco</h4>
                             <div class="space-y-3 text-base">
                                 <p class="flex items-center gap-3 footer-contact-item">

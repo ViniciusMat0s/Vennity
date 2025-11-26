@@ -16,38 +16,7 @@ function translatePage(targetLang) {
 }
 
 const body = document.body;
-const toggleButton = document.getElementById('theme-toggle');
-const sunIcon = document.getElementById('sun-icon');
-const moonIcon = document.getElementById('moon-icon');
-const LIGHT_MODE_CLASS = 'light-mode';
 const WHATSAPP_NUMBER = '5551996299252';
-
-function applyTheme(isLight) {
-    if (isLight) {
-        body.classList.add(LIGHT_MODE_CLASS);
-        localStorage.setItem('theme', 'light');
-        sunIcon.classList.remove('hidden');
-        moonIcon.classList.add('hidden');
-    } else {
-        body.classList.remove(LIGHT_MODE_CLASS);
-        localStorage.setItem('theme', 'dark');
-        moonIcon.classList.remove('hidden');
-        sunIcon.classList.add('hidden');
-    }
-}
-
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    applyTheme(savedTheme === 'light');
-} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    applyTheme(true);
-} else {
-    applyTheme(false);
-}
-
-toggleButton.addEventListener('click', () => {
-    applyTheme(!body.classList.contains(LIGHT_MODE_CLASS));
-});
 
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -140,14 +109,12 @@ function setupMouseGlow() {
 }
 
 function setupCardGlowEffect() {
-    // Seletor unificado para cards de serviço e cards de preço
     const cardSelectors = '.service-card, .card-padrao, .card-destaque';
     const cards = document.querySelectorAll(cardSelectors);
 
     cards.forEach(card => {
         const glowOverlay = card.querySelector('.card-glow-overlay');
         
-        // Define transform-style para cards de preço que não o possuem
         card.style.transformStyle = 'preserve-3d'; 
 
         card.addEventListener('mousemove', (e) => {
@@ -158,7 +125,6 @@ function setupCardGlowEffect() {
             const xCenter = rect.width / 2;
             const yCenter = rect.height / 2;
             
-            // Mouse Follow para a luz (só se existir)
             if (glowOverlay) {
                 const xPercent = (x / rect.width) * 100;
                 const yPercent = (y / rect.height) * 100;
@@ -166,14 +132,13 @@ function setupCardGlowEffect() {
                 glowOverlay.style.setProperty('--mouse-y', `${yPercent}%`);
             }
 
-            // Parallax 3D sutil do card
-            const rotateX = ((y - yCenter) / yCenter) * -5; // Rotação de -5deg a 5deg
-            const rotateY = ((x - xCenter) / xCenter) * 5; // Rotação de -5deg a 5deg
+            const rotateX = ((y - yCenter) / yCenter) * -5;
+            const rotateY = ((x - xCenter) / xCenter) * 5;
 
             gsap.to(card, {
                 rotationX: rotateX,
                 rotationY: rotateY,
-                z: 10, // Move 10px para frente (efeito 3D)
+                z: 10,
                 duration: 0.5,
                 ease: "power2.out",
                 overwrite: true
@@ -181,7 +146,6 @@ function setupCardGlowEffect() {
         });
 
         card.addEventListener('mouseenter', () => {
-            // Animação de escala já existe, mantida
             gsap.to(card, { scale: 1.02, duration: 0.5, ease: "elastic.out(1, 0.5)" });
         });
 
@@ -204,7 +168,6 @@ function setupServiceCardsParallax() {
     const cards = gsap.utils.toArray('[data-gsap-card="true"]');
 
     cards.forEach((card, index) => {
-        // Animação de entrada dos cards
         gsap.from(card, {
             opacity: 0,
             y: 50,
@@ -221,7 +184,6 @@ function setupServiceCardsParallax() {
             }
         });
         
-        // Efeito Parallax sutil: move os cards um pouco para cima e para baixo durante o scroll
         const isOffset = index % 2 === 1;
         const yValue = isOffset ? 30 : -30;
 
@@ -329,7 +291,6 @@ function setupProcessTimelineAnimation() {
     });
 }
 
-// ** FUNÇÃO CORRIGIDA PARA HOVER INTERATIVO **
 function setupSobreAnimation() {
     if (typeof gsap === 'undefined' || typeof TextPlugin === 'undefined') return;
 
@@ -340,17 +301,14 @@ function setupSobreAnimation() {
     const textContainer = section.querySelector('[data-gsap-target="text"]');
     const terminalCode = section.querySelector('[data-gsap-terminal="true"]');
     
-    // O terminal-window é o elemento onde o mouseover ocorre no HTML
     const terminalWindow = terminalCode.closest('.terminal-window'); 
     
     if (!terminalWindow) return;
 
-    // 1. Captura e armazena o conteúdo HTML original
     const rawCodeHTML = terminalCode.innerHTML.trim();
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = rawCodeHTML;
 
-    // Animação de entrada dos blocos de texto/terminal (mantida com ScrollTrigger)
     gsap.from(textContainer, {
         x: -50,
         opacity: 0,
@@ -366,7 +324,7 @@ function setupSobreAnimation() {
     
     gsap.from(terminalContainer, {
         x: 50,
-        opacity: 0.3, // Opacidade inicial reduzida
+        opacity: 0.3,
         duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
@@ -377,23 +335,19 @@ function setupSobreAnimation() {
         }
     });
     
-    // 2. Esconde o conteúdo inicial do DOM, delegando o controle total ao GSAP.
     gsap.set(terminalCode, { autoAlpha: 0 }); 
 
-    // 3. Cria a Timeline de Digitação (Pausada)
     const tlTyping = gsap.timeline({
         paused: true,
         onStart: () => {
-             // Limpa o conteúdo e torna o terminal visível (autoAlpha: 1)
              terminalCode.innerHTML = '';
              gsap.set(terminalCode, { autoAlpha: 1 }); 
-             gsap.to(terminalContainer, { opacity: 1, duration: 0.3 }); // Aumenta a opacidade do container
+             gsap.to(terminalContainer, { opacity: 1, duration: 0.3 });
         },
         onReverseComplete: () => {
-            // Ao reverter, volta para o estado inicial (invisível e limpo)
             terminalCode.innerHTML = '';
             gsap.set(terminalCode, { autoAlpha: 0 });
-            gsap.to(terminalContainer, { opacity: 0.3, duration: 0.5 }); // Diminui opacidade no reset
+            gsap.to(terminalContainer, { opacity: 0.3, duration: 0.5 });
         }
     });
     
@@ -444,17 +398,13 @@ function setupSobreAnimation() {
         });
     });
 
-    // 4. Configuração dos eventos de Mouse (Hover)
     terminalWindow.addEventListener('mouseenter', () => {
-        // Reproduz a animação se não estiver ativa ou se estiver sendo revertida.
         if (!tlTyping.isActive() || tlTyping.reversed()) {
             tlTyping.play();
         }
     });
 
     terminalWindow.addEventListener('mouseleave', () => {
-        // Reverte a animação, apagando o texto
-        // Só reverte se a animação não estiver completamente no início (progress > 0).
         if (tlTyping.progress() > 0) {
             tlTyping.reverse();
         }
@@ -470,7 +420,6 @@ function setupResultsAnimation() {
 
     if (!resultsGrid || resultCards.length === 0) return;
 
-    // Função para animar o contador
     function startCounter(targetElement) {
         const valueDisplay = targetElement.querySelector('.counter-value');
         const target = parseFloat(valueDisplay.getAttribute('data-target'));
@@ -496,10 +445,8 @@ function setupResultsAnimation() {
         });
     }
 
-    // Garante que os cards estejam na posição inicial correta antes da animação
     gsap.set(resultCards, { opacity: 0, y: 100, rotation: 5 });
 
-    // Animação de entrada dos cards
     gsap.to(resultCards, {
         opacity: 1,
         y: 0,
@@ -518,9 +465,8 @@ function setupResultsAnimation() {
         }
     });
 
-    // Parallax de Fundo
     gsap.to('#results-background-magic', {
-        y: -100, // Move o fundo 100px para cima ao longo do scroll
+        y: -100,
         ease: "none",
         scrollTrigger: {
             trigger: '#resultados',
@@ -559,18 +505,16 @@ function setupReviewsGridAnimation() {
     });
 
     reviewCards.forEach((card, i) => {
-        // Aumentando a distância de movimento para garantir que o corte seja evitado 
-        const moveDistance = (i % 2 === 0) ? 100 : -100; // Movimento maior
+        const moveDistance = (i % 2 === 0) ? 100 : -100;
         
-        // Aplicando o scrub (parallax)
         gsap.to(card, {
             y: moveDistance,
             ease: "none",
             scrollTrigger: {
-                trigger: '#depoimentos', // Usando a seção pai para o trigger de início/fim
+                trigger: '#depoimentos',
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 1.5, // Scrub mais lento
+                scrub: 1.5,
             }
         });
     });
@@ -662,7 +606,6 @@ function setupContactAnimation() {
         }
     });
 
-    // 1. Animação de entrada do Cartão Principal (Fly-in)
     tlMain.from(mainBlock, {
         opacity: 0,
         y: 80, 
@@ -673,7 +616,6 @@ function setupContactAnimation() {
         ease: "power3.out"
     }, 0); 
 
-    // 2. Animação de entrada dos elementos internos (Staggered)
     gsap.from([headerBlock, detailsBlock], {
         opacity: 0,
         y: 30,
@@ -682,7 +624,6 @@ function setupContactAnimation() {
         ease: "power2.out"
     }, 0.5); 
 
-    // 3. Animação dos campos do formulário (Staggered Reveal com rotação)
     gsap.set(formFields, { opacity: 0, y: 30, rotationX: -90, transformOrigin: "top center" });
 
     gsap.to(formFields, {
@@ -700,7 +641,6 @@ function setupContactAnimation() {
         }
     });
     
-    // 4. Animação das redes sociais
     gsap.from(socialBlock.querySelectorAll('a'), {
         opacity: 0,
         scale: 0.5,
@@ -772,23 +712,19 @@ function setupContactMouseGlow() {
     });
 }
 
-// NOVO: Função para o Text Reveal nos títulos de seção
 function setupTextReveal() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    // Seleciona todos os títulos das seções (excluindo o Hero)
     const titles = gsap.utils.toArray(
         '#servicos-wrapper h2, #processo h2, #resultados h2, #depoimentos h2, #precos h2, #sobre h2, #contato h2'
     );
 
     titles.forEach(title => {
-        // Envolve o texto em um span para aplicar a animação (simulando um split text)
         const wrapper = document.createElement('div');
-        wrapper.style.overflow = 'hidden'; // Cria a máscara
+        wrapper.style.overflow = 'hidden';
         title.parentNode.insertBefore(wrapper, title);
         wrapper.appendChild(title);
         
-        // Estado inicial
         gsap.set(title, { y: '100%', opacity: 0 }); 
 
         gsap.to(title, {
@@ -798,7 +734,7 @@ function setupTextReveal() {
             ease: "power4.out",
             scrollTrigger: {
                 trigger: wrapper,
-                start: "top 90%", // Revela quando o topo da div está 90% na tela
+                start: "top 90%",
                 toggleActions: "play none none none",
                 once: true,
             }
@@ -976,15 +912,8 @@ function setupThreeJS() {
     textRenderer.setPixelRatio(window.devicePixelRatio);
     textRenderer.setClearColor(0x000000, 0);
 
-    const h1Text = "VENNITY";
-    const subtitleText = "PÁGINAS E GESTÃO DE ALTA PERFORMANCE";
-
-    const heroH1Element = document.getElementById('hero-h1');
     const heroH1Text = "VENNITY";
-
-    const heroPElement = document.querySelector('.max-w-1xl.mx-auto p');
     const heroPText = "DESENVOLVA SEU LEGADO.";
-
 
     const fontLoader = new THREE.FontLoader();
     const fontUrl = '/assets/fonts/inter-tight.json';
@@ -1092,8 +1021,6 @@ function setupThreeJS() {
             updateTextSizeAndCamera(parentContainer, camera, textMesh, subtitleMesh);
         }
         
-        // NOVO: Garantir que o fallback desapareça e o texto 3D apareça
-        // Efeito de entrada para o texto 3D (opcional, mas bom para sincronizar)
         gsap.to(textMesh.position, {
             y: "+=0.1", 
             duration: 1.5,
@@ -1104,30 +1031,25 @@ function setupThreeJS() {
 
     },
         function (xhr) {
-            console.log('Three.js Font load progress: ' + (xhr.loaded / xhr.total * 100) + '% loaded');
         },
         function (error) {
-            console.error('An error happened loading the Three.js font:', error);
             document.getElementById('hero-h1').style.display = 'block'; 
             canvas.style.display = 'none';
         });
 
 }
 
-// NOVO: Função para animar a entrada dos elementos do Hero usando GSAP Timeline
 function setupHeroEntranceAnimation() {
     if (typeof gsap === 'undefined') return;
 
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Elementos a animar
     const h1Fallback = document.getElementById('hero-h1'); 
     const subtitle = document.querySelector('.max-w-1xl.mx-auto');
     const buttons = document.querySelector('.mt-12.flex');
     const logoTicker = document.getElementById('impacto');
     const mainHeader = document.getElementById('main-header');
     
-    // 1. Fade-in do H1 (Fallback) e Header (para cobrir Three.js load/fail)
     if (h1Fallback) {
         tl.fromTo(h1Fallback, {
             y: 50,
@@ -1143,7 +1065,6 @@ function setupHeroEntranceAnimation() {
         }, 0);
     }
     
-    // Animação do Header
     tl.fromTo(mainHeader, {
         opacity: 0,
         y: -100
@@ -1154,7 +1075,6 @@ function setupHeroEntranceAnimation() {
         ease: "back.out(1.7)"
     }, 0.2); 
 
-    // 2. Fade-in do Subtítulo
     tl.fromTo(subtitle, {
         y: 30,
         opacity: 0
@@ -1164,7 +1084,6 @@ function setupHeroEntranceAnimation() {
         duration: 1,
     }, 0.8); 
 
-    // 3. Fade-in dos Botões
     tl.fromTo(buttons, {
         y: 30,
         opacity: 0
@@ -1174,7 +1093,6 @@ function setupHeroEntranceAnimation() {
         duration: 1,
     }, 1.0); 
 
-    // 4. Fade-in do Ticker de Logos
     tl.fromTo(logoTicker, {
         opacity: 0,
         y: 50,
@@ -1187,21 +1105,17 @@ function setupHeroEntranceAnimation() {
     }, 1.2); 
 }
 
-// NOVO: Função para o Ticker com GSAP e Pause on Hover
 function setupTickerAnimation() {
     const tickerContainer = document.querySelector('.ticker-container');
     const tickerContent = document.querySelector('.ticker-content');
     if (!tickerContainer || !tickerContent) return;
 
-    // Remove a animação CSS padrão
     tickerContainer.style.animation = 'none';
 
-    // Clona o conteúdo para o loop infinito
     const contentWidth = tickerContent.clientWidth;
     const distance = -contentWidth;
-    const duration = 15; // 15 segundos para um ciclo completo
+    const duration = 15;
 
-    // Cria o clone se ainda não existir
     if (tickerContainer.children.length === 1) {
         const clone = tickerContent.cloneNode(true);
         tickerContainer.appendChild(clone);
@@ -1214,18 +1128,15 @@ function setupTickerAnimation() {
         repeat: -1,
         paused: false,
         onRepeat: function() {
-            // Reinicia a posição para simular o loop infinito
             this.set(tickerContainer, {x: 0});
         }
     });
 
-    // Pause on Hover
     tickerContainer.addEventListener('mouseenter', () => tickerAnimation.pause());
     tickerContainer.addEventListener('mouseleave', () => tickerAnimation.play());
 }
 
 
-// NOVO: Função para o efeito Sticky Reveal na seção de vídeo
 function setupVideoStickyReveal() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
@@ -1243,7 +1154,6 @@ function setupVideoStickyReveal() {
         scrub: 1,
     });
 
-    // Opcional: Paralaxe sutil dentro da seção para o Mockup
     gsap.to(videoMockup, {
         rotationX: 1, 
         rotationY: -1,
@@ -1285,7 +1195,6 @@ function setupDockEffect() {
     });
 }
 
-// NOVO: Função de Animação do Footer (AWWWARDS Style)
 function setupFooterAnimations() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     
@@ -1298,7 +1207,6 @@ function setupFooterAnimations() {
         }
     });
 
-    // 1. Animação do Título (Texto dividido por linha)
     tl.from(".footer-title-line", {
         y: 100,
         opacity: 0,
@@ -1307,7 +1215,6 @@ function setupFooterAnimations() {
         ease: "power3.out",
     })
 
-    // 2. Animação da Descrição e Botão
     .from(".footer-cta-subtitle", {
         y: 30,
         opacity: 0,
@@ -1322,7 +1229,6 @@ function setupFooterAnimations() {
         ease: "back.out(1.7)",
     }, "<0.2")
 
-    // 3. Animação dos Grupos de Links (Staggered Reveal)
     .from(".footer-link-group-left", {
         x: -50,
         opacity: 0,
@@ -1345,7 +1251,6 @@ function setupFooterAnimations() {
         ease: "power1.out",
     }, "<0.2") 
 
-    // 4. Animação do Copyright
     .from(".footer-copyright", {
         opacity: 0,
         duration: 1,
@@ -1356,50 +1261,39 @@ function setupFooterAnimations() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Configuração e Init Three.js / Mouse ---
     initMouseTracking();
     setupBackgroundScene(); 
     setupThreeJS();
     setupMouseGlow();
     setupDockEffect();
     
-    // É importante chamar o Hero Entrance logo no início
     setupHeroEntranceAnimation();
     
-    // --- Animações GSAP de Rolagem ---
-    
-    // Registra Plugins (se já não estiverem no topo do arquivo)
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof TextPlugin !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger, TextPlugin); 
     }
 
-    // Inicializa todas as animações
     let ctx = gsap.context(() => {
-        // Hero
         setupTickerAnimation();
         
-        // Seções
         setupVideoStickyReveal();
         setupTextReveal(); 
         setupServiceCardsParallax();
         setupProcessTimelineAnimation();
-        setupSobreAnimation(); // AGORA COM HOVER INTERATIVO
+        setupSobreAnimation();
         setupResultsAnimation(); 
         setupReviewsGridAnimation();
         setupPricingAnimation();
         setupContactAnimation(); 
         
-        // Footer (Novo)
         setupFooterAnimations();
     });
 
-    // --- Efeitos Interativos / Mouse ---
     setupCardGlowEffect();
     setupPricingMouseGlow();
     setupContactMouseGlow();
     
 
-    // --- Lógica de Header e Scroll Genérico (Mantida) ---
     const mainHeader = document.getElementById('main-header');
 
     window.addEventListener('scroll', () => {
@@ -1416,7 +1310,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fallback/Animação genérica para elementos que não usam GSAP dedicado
     const scrollAnimatedElements = document.querySelectorAll('.fade-in-on-scroll');
     const observerOptions = {
         root: null,

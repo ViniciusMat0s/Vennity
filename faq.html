@@ -5,178 +5,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VBM Devs: FAQ - Perguntas Frequentes e Resultados</title>
+    <title>Vennity: FAQ - Perguntas Frequentes</title>
 
     <meta name="description"
-        content="Respostas para as dúvidas mais comuns sobre desenvolvimento web, tráfego pago, performance e design da VBM Devs. Veja os resultados que garantimos.">
+        content="Respostas para as dúvidas mais comuns sobre desenvolvimento web, tráfego pago, performance e design da Vennity. Veja os resultados que garantimos.">
 
     <link rel="icon" type="image/png" href="assets/images/icon.png">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400;1,700&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'pt',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
 
     <style>
         .font-body {
-            font-family: 'Quantico', monospace;
-        }
-
-        .font-header {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            font-family: 'Quantico', monospace;
-            background-color: #030712;
-            color: #ffffff;
-            transition: background-color 0.5s, color 0.5s;
+            font-family: 'Inter Tight', sans-serif;
         }
 
         h1,
         h2,
         h3 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
-        header .backdrop-blur-md {
-            background-color: rgba(0, 0, 0, 0.3) !important;
-            border-color: #374151 !important;
+        body {
+            font-family: 'Inter Tight', sans-serif;
+            background-color: #030712;
+            color: #ffffff;
+            transition: background-color 0.5s, color 0.5s;
+            padding-top: 100px;
         }
 
-        .bg-black\/50 {
-            background-color: rgba(0, 0, 0, 0.5) !important;
+        /* Classes de Cor e Gradiente - Consistência com o site principal */
+        .bg-gray-950 { background-color: #030712 !important; }
+        .gradient-blue-purple { background-image: linear-gradient(to right, #60a5fa, #a855f7); }
+        .gradient-purple-pink { background-image: linear-gradient(to right, #a855f7, #f472b6); }
+        .bg-clip-text { -webkit-background-clip: text; background-clip: text; }
+        .shadow-glow { filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.7)); }
+        
+        /* Corrigido: Usando a classe Tailwind bg-black/20 para o fundo do header fixo, e ajustando o backdrop-blur */
+        #main-header > div {
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .logo-h-mobile { height: 36px; }
+        .logo-h-desktop { height: 80px; }
+        
+        @media (max-width: 767px) {
+            #main-header {
+                top: 20px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: calc(100% - 40px) !important;
+                max-width: 1400px;
+            }
+            #main-header > div {
+                justify-content: space-between;
+                padding: 0 1rem;
+            }
+            .logo-h-mobile { height: 36px; }
         }
 
-        .bg-gray-950 {
-            background-color: #030712 !important;
+        /* Estilo do Card FAQ (Largura mais generosa e ajuste de padding) */
+        #faq-container-wrapper {
+            max-width: 1000px; 
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .bg-gray-950\/80 {
-            background-color: rgba(3, 7, 18, 0.8) !important;
-        }
-
-        .bg-gray-900\/70 {
-            background-color: rgba(17, 24, 39, 0.7) !important;
-        }
-
-        .bg-gray-900\/60 {
-            background-color: rgba(17, 24, 39, 0.6) !important;
-        }
-
-        .bg-gray-800\/70 {
-            background-color: rgba(31, 41, 55, 0.7) !important;
-        }
-
-        .bg-gray-800\/80 {
-            background-color: rgba(31, 41, 55, 0.8) !important;
-        }
-
-        .bg-gray-950\/90 {
-            background-color: rgba(3, 7, 18, 0.9) !important;
-        }
-
-        .bg-purple-950\/30 {
-            background-color: rgba(23, 7, 39, 0.3) !important;
-        }
-
-        .bg-blue-950\/30 {
-            background-color: rgba(7, 14, 39, 0.3) !important;
-        }
-
-        .bg-gray-800 {
-            background-color: #1f2937 !important;
-        }
-
-        .text-neutral-300 {
-            color: #d1d5db !important;
-        }
-
-        .text-neutral-400 {
-            color: #9ca3af !important;
-        }
-
-        .text-neutral-500 {
-            color: #6b7280 !important;
-        }
-
-        .text-neutral-600 {
-            color: #9ca3af !important;
-        }
-
-        .text-neutral-700 {
-            color: #d1d5db !important;
-        }
-
-        .text-gray-900 {
-            color: #ffffff !important;
-        }
-
-        .text-gray-700 {
-            color: #d1d5db !important;
-        }
-
-        .text-white {
-            color: #ffffff !important;
-        }
-
-        .text-blue-600 {
-            color: #3b82f6 !important;
-        }
-
-        .text-purple-600 {
-            color: #a855f7 !important;
-        }
-
-        header img {
-            filter: invert(1) !important;
-        }
-
-        .gradient-blue-purple {
-            background-image: linear-gradient(to right, #60a5fa, #a855f7);
-        }
-
-        .gradient-purple-pink {
-            background-image: linear-gradient(to right, #a855f7, #f472b6);
-        }
-
-        .gradient-pink-red {
-            background-image: linear-gradient(to right, #f472b6, #f87171);
-        }
-
+        
+        /* Estilos do Accordion */
         .faq-item {
             cursor: pointer;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s;
+        }
+        
+        .faq-item:hover {
+            background-color: rgba(31, 41, 55, 0.5);
+        }
+
+        .faq-item:hover .faq-question {
+            background-color: rgba(3, 7, 18, 0.9);
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             padding-left: 1.5rem;
             padding-right: 1.5rem;
+            opacity: 0;
+            word-wrap: break-word;
         }
 
         .faq-answer.open {
-            max-height: 500px;
-            /* Valor alto para permitir expansão */
+            max-height: 500px; 
             padding-top: 1rem;
             padding-bottom: 2rem;
+            opacity: 1;
         }
 
         .faq-question svg {
@@ -188,215 +126,179 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-fade-in-up {
             animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) both;
         }
 
-        /* --- LIGHT MODE STYLES REPLICATED --- */
-
-        .light-mode {
-            background-color: #F3F4F6;
-            color: #1F2937;
-        }
-
-        .light-mode .bg-gray-950,
-        .light-mode .bg-gray-950\/80,
-        .light-mode .bg-gray-950\/40 {
-            background-color: #F3F4F6 !important;
-        }
-
-        /* Corrigindo elementos específicos do FAQ e Header */
-        .light-mode header .backdrop-blur-md {
-            background-color: rgba(255, 255, 255, 0.7) !important;
-            border-color: #D1D5DB !important;
-        }
-
-        .light-mode .faq-item,
-        .light-mode .bg-gray-900\/70 {
-            background-color: #ffffff !important;
-            border-color: #D1D5DB !important;
-        }
-
-        .light-mode .text-neutral-300 {
-            color: #374151 !important;
-        }
-
-        .light-mode .text-neutral-400 {
-            color: #6b7280 !important;
-        }
-
-        .light-mode .text-white {
-            color: #1F2937 !important;
-        }
-
-        .light-mode header img {
-            filter: none !important;
-        }
-
-        .light-mode .gradient-blue-purple {
-            background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
-        }
-
-        /* Fim dos estilos Light Mode */
     </style>
 
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833">
-</script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'AW-17620440833');
-</script>
-
 <body class="min-h-screen">
+    
+    <canvas id="background-canvas" class="fixed inset-0 w-full h-full z-0"></canvas>
 
-    <div id="google_translate_element" style="display: none;"></div>
-
-    <button id="theme-toggle"
-        class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-50 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white">
-        <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-        <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-            </path>
-        </svg>
-    </button>
-    <header class="w-full">
-        <div class="flex justify-center items-center h-20 w-full backdrop-blur-md bg-black/30 border-b border-white/10">
-            <div class="flex justify-between items-center w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-                <a href="index.html" class="flex items-center">
-                    <img src="assets/images/logo.png" alt="VBM Devs Logo" class="h-8 w-auto invert" />
-                </a>
-
-                <nav class="flex text-neutral-300">
-                    <ul class="flex space-x-8">
-                        <li><a href="index.html#hero"
-                                class="hover:text-purple-400 transition-colors duration-200">Início</a></li>
-                        <li><a href="index.html#depoimentos"
-                                class="hover:text-purple-400 transition-colors duration-200">Reviews</a></li>
-                        <li><a href="index.html#processo"
-                                class="hover:text-purple-400 transition-colors duration-200">Processo</a></li>
-                        <li><a href="index.html#sobre"
-                                class="hover:text-purple-400 transition-colors duration-200">Sobre</a></li>
-                        <li><a href="index.html#precos"
-                                class="hover:text-purple-400 transition-colors duration-200">Preços</a></li>
-                        <li><a href="index.html#contato"
-                                class="hover:text-purple-400 transition-colors duration-200">Contato</a></li>
-                        <li><a href="politica-e-termos.html"
-                                class="hover:text-pink-400 transition-colors duration-200">Política e Termos</a></li>
-                        <li><a href="faq.html" class="hover:text-purple-400 transition-colors duration-200">FAQ</a></li>
-                    </ul>
-                </nav>
+    <section id="fixed-header-wrapper" class="relative w-full max-w-full z-50 transition-all duration-300 fixed top-0 left-0">
+        <header id="main-header"
+            class="top-5 left-1/2 transform -translate-x-1/2 w-fit max-w-none z-50 rounded-full transition-all duration-300 fixed">
+            <div
+                class="uppercase flex justify-center items-center h-20 md:h-16 w-full bg-black/20 border border-white/5 rounded-full px-4 sm:px-6 shadow-gradient-bottom">
+                
                 <a href="index.html#contato"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 shadow-md shadow-blue-500/30">
-                    Trabalhe conosco!
+                    class="cta-button-header text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 text-sm md:hidden uppercase shadow-gradient-bottom">
+                    Fale Conosco
                 </a>
-            </div>
-        </div>
-    </header>
 
-    <main class="py-24 bg-gray-950">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 animate-fade-in-up">
+                <div class="hidden md:flex space-x-6 items-center">
+
+                    <nav class="text-neutral-300">
+                        <ul class="flex space-x-4 items-center">
+                            <li class="dock-link-text">
+                                <a href="index.html#sobre"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Sobre</a>
+                            </li>
+                            <li class="dock-link-text">
+                                <a href="index.html#depoimentos"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Reviews</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <a href="index.html#hero" class="text-neutral-300 hover:text-purple-400 transition-colors duration-200 
+                px-6 py-3 rounded-full bg-white/10 hover:bg-white/20">
+                        <i class="fas fa-home text-xl"></i>
+                    </a>
+
+                    <nav class="text-neutral-300">
+                        <ul class="flex space-x-4 items-center">
+                            <li class="dock-link-text">
+                                <a href="index.html#precos"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Preços</a>
+                            </li>
+                            <li class="dock-link-text">
+                                <a href="index.html#contato"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Contato</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <a href="index.html#hero" class="flex items-center group md:hidden">
+                    <img src="assets/images/icon.png" alt="Vennity Logo"
+                        class="h-14 w-auto logo-text-link logo-h-mobile" />
+                </a>
+
+                <button id="menu-toggle-button" 
+                    class="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+            </div>
+        </header>
+        <div id="logo-container" class="fixed top-5 left-5 z-50 hidden md:block">
+            <a href="index.html#hero" class="flex items-center group px-4 py-2 dock-link-logo">
+                <img src="assets/images/icon.png" alt="Vennity Logo"
+                    class="h-20 w-auto logo-text-link transition-transform duration-300 logo-h-desktop" />
+            </a>
+        </div>
+        <div id="contact-button-container" class="fixed top-7 right-5 z-50 hidden md:block">
+            <a href="index.html#contato"
+                class="flex items-center cta-button-header text-white font-bold py-2.5 px-6 rounded-full shadow-lg transition-all duration-300 text-sm uppercase shadow-gradient-bottom">
+                FALE CONOSCO
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+            </a>
+        </div>
+    </section>
+
+    <main class="py-24 bg-gray-950 min-h-[calc(100vh-80px)] relative z-10">
+        <div id="faq-container-wrapper" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 p-8 sm:p-12 rounded-2xl bg-gray-950/80 border border-purple-500/30 shadow-2xl shadow-purple-900/50">
+            
+            <div class="text-center mb-10">
+                <img src="assets/images/icon.png" alt="Vennity Icon" 
+                    class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 shadow-glow" />
+                
                 <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
                     FAQ: Perguntas Frequentes
                 </h1>
-                <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
-                    Respostas diretas e focadas em **resultados reais** para as suas maiores dúvidas.
+                <p class="text-xl text-neutral-400 max-w-2xl mx-auto font-body">
+                    Respostas diretas e focadas em <strong>resultados reais</strong> para as suas maiores dúvidas.
                 </p>
             </div>
 
             <div class="space-y-4">
 
-                <div
+                <div id="faq-1"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-100">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>1. Em quanto tempo terei o retorno (ROI) do meu investimento em Tráfego?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">O tempo de retorno varia pela complexidade do projeto, o nicho empresarial e a
                             estratégia de marketing. No entanto, nossos clientes de planos com gestão de tráfego
-                            integrada alcançam um <strong>ROI médio de 300% em menos de 18 meses (200% de lucro).</p>
-                        <p class="text-sm text-purple-400"><strong>Resultado:</strong> Nosso foco análise incremental
-                            começa na captação de leads qualificados desde o lançamento, minimizando o tempo de retorno
+                            integrada alcançam um <strong>ROI médio de 300% em menos de 18 meses (200% de lucro).</strong></p>
+                        <p class="text-sm text-purple-400"><strong>Resultado:</strong> Nosso foco em análise incremental
+                            começa na captação de leads qualificados desde o lançamento, minimizando o tempo de retorno.
                         </p>
                     </div>
                 </div>
 
-                <div
+                <div id="faq-2"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-pink-500 transition-colors duration-300 animate-fade-in-up delay-200">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>2. O serviço de Tráfego Pago realmente traz clientes qualificados?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Sim. Nós não geramos apenas cliques, mas sim <strong>conexões
-                                estratégicas</strong>. Utilizamos o Tráfego Pago com uma estratégia cirúrgica, focando
+                            estratégicas</strong>. Utilizamos o Tráfego Pago com uma estratégia cirúrgica, focando
                             na segmentação ideal do seu público para <strong>reduzir custos e aumentar a
-                                qualidade</strong> dos leads.</p>
+                            qualidade</strong> dos leads.</p>
                         <p class="text-sm text-pink-400"><strong>Resultado:</strong> Redução de até <strong>30% no Custo
-                                por Aquisição (CPA)</strong> no primeiro trimestre, focando principalmente em clientes
+                            por Aquisição (CPA)</strong> no primeiro trimestre, focando principalmente em clientes
                             com alta intenção de compra.</p>
                     </div>
                 </div>
 
-                <div
+                <div id="faq-3"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-blue-500 transition-colors duration-300 animate-fade-in-up delay-300">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>3. O design do meu site será moderno e 100% adaptável (responsivo)?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Com certeza. Entregamos páginas 100% responsivas, que funcionam perfeitamente em
                             celulares, tablets e desktops. Nosso foco é a <strong>experiência imersiva do
-                                usuário</strong>, otimizando o acesso em qualquer dispositivo.</p>
+                            usuário</strong>, otimizando o acesso em qualquer dispositivo.</p>
                         <p class="text-sm text-blue-400"><strong>Resultado:</strong> Design focado em conversão, que
                             melhora a experiência e a credibilidade da sua marca, independentemente de qual dispositvo o
                             cliente acessa.</p>
                     </div>
                 </div>
 
-                <div
+                <div id="faq-4"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-400">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>4. Vocês garantem a velocidade do meu site? Isso afeta meu SEO?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Absolutamente. A velocidade é crucial para o SEO. Nossos projetos são otimizados
                             para alcançar scores máximos de <strong>performance e velocidade</strong>, garantindo que
                             sua página carregue instantaneamente. Isso é essencial para seu ranqueamento no Google.</p>
@@ -405,16 +307,16 @@
                     </div>
                 </div>
 
-                <div
+                <div id="faq-5"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-pink-500 transition-colors duration-300 animate-fade-in-up delay-500">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>5. Quais tecnologias vocês utilizam para garantir a longevidade do meu projeto?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Utilizamos uma stack <strong>moderna</strong> que inclui
                             <strong>React/Next.js</strong> para Front-end dinâmico e <strong>Node.js</strong> para
                             Back-end robusto. Isso garante que seu sistema seja escalável, moderno e de fácil
@@ -427,34 +329,34 @@
                     </div>
                 </div>
 
-                <div
+                <div id="faq-6"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-blue-500 transition-colors duration-300 animate-fade-in-up delay-600">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>6. Qual tipo de suporte receberei após o lançamento?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Oferecemos <strong>Suporte Prioritário</strong> (de acordo com o plano
                             contratado) para garantir a integridade do sistema. Além disso, garantimos <strong>99.9% de
-                                Uptime</strong> do seu sistema, utilizando hospedagem de alta performance.</p>
+                            Uptime</strong> do seu sistema, utilizando hospedagem de alta performance.</p>
                         <p class="text-sm text-blue-400"><strong>Resultado:</strong> Tranquilidade total. Você foca no
                             seu negócio, e nós garantimos que sua plataforma esteja segura e 100% funcional.</p>
                     </div>
                 </div>
 
-                <div
+                <div id="faq-7"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-700">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>7. O design para redes sociais pode aumentar meu engajamento?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Sim. Nós criamos <strong>uma identidade visual marcante</strong>. Cada peça de
                             design é pensada para <strong>cativar sua audiência</strong> no feed, gerando mais cliques e
                             compartilhamentos. O design profissional é a base da sua credibilidade online.</p>
@@ -465,16 +367,16 @@
                     </div>
                 </div>
 
-                <div
+                <div id="faq-8"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-pink-500 transition-colors duration-300 animate-fade-in-up delay-800">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>8. Terei custos adicionais ou mensais?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Além do serviço, cobramos apenas o valor de manutenção, domínio e hospedagem,
                             mudanças pontuais de estrutura terão um valor tratado separadamente.</p>
                         <p class="text-sm text-pink-400"><strong>Resultado:</strong> Sistema impecável. Garantimos que
@@ -484,17 +386,17 @@
                     </div>
                 </div>
 
-                <div
+                <div id="faq-9"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-blue-500 transition-colors duration-300 animate-fade-in-up delay-900">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>9. Já tenho meu sistema, mas quero fazer alterações nele, vocês modificam projetos de
                             outras empresas?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Sim, oferecemos serviços de <strong>Reengenharia e Otimização</strong>.
                             Analisamos sua plataforma atual (WordPress, código legado, etc.) e realizamos a migração
                             para nossa stack de alta performance, mantendo todos os dados e modernizando seu sistema.
@@ -505,16 +407,16 @@
                     </div>
                 </div>
 
-                <div
+                <div id="faq-10"
                     class="faq-item rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition-colors duration-300 animate-fade-in-up delay-1000">
                     <div class="faq-question flex justify-between items-center p-6 text-xl font-semibold text-white">
                         <span>10. Posso contratar serviços individuais ou vocês trabalham somente com planos?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400 flex-shrink-0 ml-4" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </div>
-                    <div class="faq-answer text-neutral-300">
+                    <div class="faq-answer text-neutral-300 font-body">
                         <p class="mb-4">Você pode contratar qualquer um de nossos serviços individualmente. Nossos
                             planos de serviço oferecem um pacote completo e com mais economia, porém, nossos serviços
                             individuais estão prontos para te atender, independente de sua necessidade.</p>
@@ -535,14 +437,253 @@
         </div>
     </main>
 
-    <footer class="py-8 bg-black/50 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-neutral-500 font-body">
-            &copy; 2022 VBM Devs - Todos os direitos reservados.
+    <footer id="main-footer"
+        class="bg-deep-contrast pt-24 pb-12 border-t border-white/10 overflow-hidden gsap-footer-reveal">
+        <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-24">
+                <div class="footer-cta-title overflow-hidden">
+                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-white leading-tight">
+                        <span class="inline-block footer-title-line">
+                            PRONTO PARA
+                        </span>
+                        <br class="hidden sm:block" />
+                        <span
+                            class="inline-block footer-title-line text-transparent bg-clip-text gradient-blue-purple">
+                            MUDAR O JOGO?
+                        </span>
+                    </h2>
+                </div>
+
+                <p class="text-xl text-pink-500 max-w-4xl mx-auto mb-10 footer-cta-subtitle">
+                    Sua jornada começa aqui.
+                </p>
+
+                <a href="index.html#contato"
+                    class="footer-cta-button inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                         text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.05] text-lg">
+                    <i class="fas fa-rocket mr-2"></i> INICIAR PROJETO AGORA
+                </a>
+            </div>
+
+            <div class="border-t border-white/10 pt-12">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-8 footer-links-container mx-auto max-w-6xl">
+
+                    <div class="col-span-2 md:col-span-1 footer-link-group-left text-left">
+                        <a href="index.html#hero" class="flex items-center group mb-4">
+                            <img src="assets/images/icon.png" alt="Vennity Logo"
+                                class="h-20 w-auto logo-text-link" />
+                        </a>
+                        <p class="text-sm text-neutral-500 max-w-xs">
+                            Performance digital e desenvolvimento de alto nível.
+                        </p>
+                    </div>
+
+                    <div class="md:col-span-1 text-left md:text-center">
+                        <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Mapa do
+                            Site</h4>
+                        <ul class="space-y-3 text-base inline-block md:mx-auto">
+                            <li class="footer-link-item"><a href="index.html#sobre"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Sobre</a>
+                            </li>
+                            <li class="footer-link-item"><a href="index.html#servicos-wrapper"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Serviços</a>
+                            </li>
+                            <li class="footer-link-item"><a href="index.html#processo"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Processo</a>
+                            </li>
+                            <li class="footer-link-item"><a href="index.html#precos"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Preços</a>
+                            </li>
+                            <li class="footer-link-item"><a href="index.html#depoimentos"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Reviews</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="md:col-span-1 text-left md:text-center">
+                        <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Legal</h4>
+                        <ul class="space-y-3 text-base inline-block md:mx-auto">
+                            <li class="footer-link-item"><a href="politica-e-termos.html"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Política
+                                    de Privacidade</a></li>
+                            <li class="footer-link-item"><a href="politica-e-termos.html"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Termos
+                                    de Uso</a></li>
+                            <li class="footer-link-item"><a href="faq.html"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">FAQ</a>
+                            </li>
+                            <li class="footer-link-item"><a href="index.html#contato"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Suporte</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-span-2 md:col-span-1 footer-link-group-right text-left">
+                        <h4 class="text-lg font-bold text-white mb-4 uppercase">Fale Conosco</h4>
+                        <div class="space-y-3 text-base">
+                            <p class="flex items-center gap-3 footer-contact-item">
+                                <span class="text-purple-400"><i class="fas fa-envelope"></i></span>
+                                <a href="mailto:contato@vbmdevs.com"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">contato@vbmdevs.com</a>
+                            </p>
+                            <p class="flex items-center gap-3 footer-contact-item">
+                                <span class="text-blue-400"><i class="fab fa-whatsapp"></i></span>
+                                <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">+55
+                                    (51) 99629-9252</a>
+                            </p>
+                            <p class="flex items-center gap-3 footer-contact-item">
+                                <span class="text-pink-400"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="text-neutral-400">Rio Grande do Sul/BR (Remoto)</span>
+                            </p>
+                        </div>
+                        <div class="flex space-x-6 mt-6 footer-social-links">
+                            <a href="https://www.instagram.com/vbmdev" target="_blank" rel="noopener noreferrer"
+                                class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-purple-400/50">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                            <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
+                                class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-blue-400/50">
+                                <i class="fab fa-whatsapp text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div
+                class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-neutral-600 font-body footer-copyright">
+                &copy; 2022 Vennity. - Todos os direitos reservados.
+            </div>
         </div>
     </footer>
 
     <script>
+        // TRHEE.JS SIMPLIFICADO PARA PARTÍCULAS
+        const COLOR_PRIMARY = 0x60a5fa;
+        const COLOR_SECONDARY = 0xa855f7;
+        let bgPoints;
+        let backgroundCamera;
+        let bgRenderer;
+
+        function setupBackgroundScene() {
+            const canvas = document.getElementById('background-canvas');
+            if (!canvas || typeof THREE === 'undefined') return;
+
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            const scene = new THREE.Scene();
+            backgroundCamera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            bgRenderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+
+            bgRenderer.setSize(width, height);
+            bgRenderer.setPixelRatio(window.devicePixelRatio);
+            bgRenderer.setClearColor(0x000000, 0);
+
+            const particleCount = 1500;
+            const geometry = new THREE.BufferGeometry();
+            const positions = [];
+            const colors = [];
+            const color = new THREE.Color();
+
+            for (let i = 0; i < particleCount; i++) {
+                const x = (Math.random() - 0.5) * 600;
+                const y = (Math.random() - 0.5) * 600;
+                const z = (Math.random() - 0.5) * 600;
+
+                positions.push(x, y, z);
+
+                const hue = Math.random() * 0.3 + 0.6; 
+                color.setHSL(hue, 0.5, 0.8);
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.6,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 0.8
+            });
+
+            bgPoints = new THREE.Points(geometry, material);
+            scene.add(bgPoints);
+            
+            backgroundCamera.position.z = 200;
+
+            const ambientLight = new THREE.AmbientLight(0x1a1a1a, 1);
+            scene.add(ambientLight);
+
+            function animateBackground() {
+                requestAnimationFrame(animateBackground);
+
+                if (bgPoints) {
+                    bgPoints.rotation.y += 0.0005;
+                    bgPoints.rotation.x += 0.0002;
+                }
+                
+                bgRenderer.render(scene, backgroundCamera);
+            }
+            animateBackground();
+
+            window.addEventListener('resize', () => {
+                const newWidth = window.innerWidth;
+                const newHeight = window.innerHeight;
+
+                backgroundCamera.aspect = newWidth / newHeight;
+                backgroundCamera.updateProjectionMatrix();
+
+                bgRenderer.setSize(newWidth, newHeight);
+            }, false);
+        }
+
+        // Lógica de Acordeão (FAQ)
+        function setupFAQAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', () => {
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            const otherQuestion = otherItem.querySelector('.faq-question');
+                            const otherAnswer = otherItem.querySelector('.faq-answer');
+
+                            otherQuestion.classList.remove('active');
+                            otherAnswer.classList.remove('open');
+                        }
+                    });
+
+                    question.classList.toggle('active');
+                    answer.classList.toggle('open');
+                });
+            });
+        }
         
+        // Função para simular a animação do header (necessária pois não estamos usando o script.js principal)
+        document.addEventListener('scroll', () => {
+            const mainHeader = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('header-scrolled');
+            } else {
+                mainHeader.classList.remove('header-scrolled');
+            }
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupBackgroundScene();
+            setupFAQAccordion();
+        });
     </script>
 </body>
 

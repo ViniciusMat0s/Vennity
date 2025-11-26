@@ -5,59 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Obrigado! Sua Análise Foi Solicitada - VBM Devs</title>
+    <title>Análise Solicitada! - Vennity</title>
 
     <meta name="description"
-        content="Sua solicitação de orçamento e análise de projeto foi recebida com sucesso pela VBM Devs. Clique para finalizar o contato via WhatsApp.">
+        content="Sua solicitação de orçamento e análise de projeto foi recebida com sucesso pela Vennity. Finalize o contato via WhatsApp para atendimento prioritário.">
 
     <link rel="icon" type="image/png" href="assets/images/icon.png">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400;1,700&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'AW-17620440833');
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        /* BASE STYLES & FONTS */
         .font-body {
-            font-family: 'Quantico', monospace;
+            font-family: 'Inter Tight', sans-serif;
         }
 
         h1,
         h2,
         h3 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Quantico', monospace;
+            font-family: 'Inter Tight', sans-serif;
             background-color: #030712;
             color: #ffffff;
             transition: background-color 0.5s, color 0.5s;
             padding-top: 80px;
-            /* Espaço para o header fixo */
         }
 
-        /* DARK MODE COLORS */
         .bg-gray-950 {
             background-color: #030712 !important;
-        }
-
-        .bg-black\/50 {
-            background-color: rgba(0, 0, 0, 0.5) !important;
-        }
-
-        .text-neutral-400 {
-            color: #9ca3af !important;
         }
 
         .gradient-blue-purple {
@@ -73,125 +63,63 @@
             background-clip: text;
         }
 
-        /* HEADER STYLES */
-        header .backdrop-blur-md {
+        .shadow-glow {
+            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.7));
+        }
+
+        .header-bg {
             background-color: rgba(0, 0, 0, 0.3) !important;
-            border-color: #374151 !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+        }
+        
+        .logo-h {
+             height: 3.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .logo-h {
+                 height: 5rem;
+            }
         }
 
-        header img {
-            filter: invert(1) !important;
-        }
-
-        /* LIGHT MODE IMPLEMENTATION */
-        .light-mode {
-            background-color: #F3F4F6 !important;
-            color: #1F2937 !important;
-        }
-
-        .light-mode header .backdrop-blur-md {
-            background-color: rgba(255, 255, 255, 0.7) !important;
-            border-color: #D1D5DB !important;
-        }
-
-        .light-mode header img {
-            filter: none !important;
-        }
-
-        .light-mode .bg-black\/50 {
-            background-color: #E5E7EB !important;
-        }
-
-        .light-mode .border-white\/10 {
-            border-color: #D1D5DB !important;
-        }
-
-        .light-mode .text-neutral-300 {
-            color: #374151 !important;
-        }
-
-        .light-mode .text-white {
-            color: #1F2937 !important;
-        }
-
-        .light-mode .gradient-blue-purple {
-            background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
-        }
-
-        .light-mode .gradient-purple-pink {
-            background-image: linear-gradient(to right, #9333ea, #db2777) !important;
+        #thank-you-card {
+            max-width: 900px;
         }
     </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-17620440833');
+    </script>
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833">
-</script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<body class="min-h-screen relative overflow-hidden">
+    
+    <canvas id="background-canvas" class="fixed inset-0 w-full h-full z-0"></canvas>
 
-    gtag('config', 'AW-17620440833');
-</script>
-
-<body class="min-h-screen">
-
-    <button id="theme-toggle"
-        class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-50 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white">
-        <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-        <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-            </path>
-        </svg>
-        
-    </button>
     <header class="fixed top-0 left-0 w-full z-50">
-        <div class="flex justify-center items-center h-20 w-full backdrop-blur-md bg-black/30 border-b border-white/10">
-            <div class="flex justify-between items-center w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-center items-center h-20 w-full backdrop-blur-md header-bg border-b border-white/10">
+            <div class="flex justify-start items-center w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                 <a href="index.html" class="flex items-center">
-                    <img src="assets/images/logo.png" alt="VBM Devs Logo" class="h-8 w-auto invert" />
-                </a>
-
-                <nav class="hidden md:flex text-neutral-300">
-                    <ul class="flex space-x-8">
-                        <li><a href="index.html#hero"
-                                class="hover:text-purple-400 transition-colors duration-200">Início</a></li>
-                        <li><a href="index.html#depoimentos"
-                                class="hover:text-purple-400 transition-colors duration-200">Reviews</a></li>
-                        <li><a href="index.html#processo"
-                                class="hover:text-purple-400 transition-colors duration-200">Processo</a></li>
-                        <li><a href="index.html#sobre"
-                                class="hover:text-purple-400 transition-colors duration-200">Sobre</a></li>
-                        <li><a href="index.html#precos"
-                                class="hover:text-purple-400 transition-colors duration-200">Preços</a></li>
-                        <li><a href="index.html#contato"
-                                class="hover:text-purple-400 transition-colors duration-200">Contato</a></li>
-                        <li><a href="politica-e-termos.html"
-                                class="hover:text-pink-400 transition-colors duration-200">Política e Termos</a></li>
-                        <li><a href="faq.html" class="hover:text-purple-400 transition-colors duration-200">FAQ</a></li>
-                    </ul>
-                </nav>
-                <a href="index.html#contato"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200 shadow-md shadow-blue-500/30">
-                    Trabalhe conosco!
+                    <img src="assets/images/icon.png" alt="Vennity Logo" class="logo-h w-auto" />
                 </a>
             </div>
         </div>
     </header>
-    <main class="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 py-12 sm:py-24">
 
-        <div class="max-w-2xl text-center">
+    <main class="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 py-12 sm:py-24 relative z-10">
+
+        <div id="thank-you-card" class="max-w-4xl w-full text-center p-8 sm:p-12 rounded-2xl bg-gray-950/80 border border-purple-500/30 shadow-2xl shadow-purple-900/50">
+
+            <img src="assets/images/icon.png" alt="Vennity Icon" 
+                class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 shadow-glow" />
 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-24 h-24 mx-auto mb-6 text-transparent bg-clip-text gradient-purple-pink"
-                style="filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.7));">
+                stroke="currentColor" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 text-transparent bg-clip-text gradient-purple-pink shadow-glow"
+                style="filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.7)); display: none;">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9 12.75 11.25 15l4.5-4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
@@ -202,18 +130,19 @@
                 ANÁLISE SOLICITADA!
             </h1>
 
-            <p class="mt-8 text-xl text-neutral-300 mb-6">
-                Sua solicitação de orçamento e análise de projeto foi recebida pela nossa equipe.
+            <p class="mt-8 text-xl text-neutral-300 mb-6 font-body">
+                Sua solicitação de orçamento e análise de projeto foi recebida.
+                Nossa equipe entrará em contato em breve.
             </p>
 
             <p class="text-2xl font-bold text-white mb-10">
                 Acelere o processo: finalize o contato no WhatsApp para atendimento imediato.
             </p>
 
-            <a id="whatsapp-link" href="#" target="_blank"
+            <a id="whatsapp-link" href="https://wa.me/5551996299252" target="_blank"
                 class="inline-block w-full sm:w-auto px-12 py-4 text-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600
-                      text-white font-black rounded-full shadow-xl shadow-purple-500/40 transform hover:scale-[1.02] transition-all duration-300">
-                FINALIZAR VIA WHATSAPP (Atendimento Prioritário)
+                         text-white font-black rounded-full shadow-xl shadow-purple-500/40 transform hover:scale-[1.02] transition-all duration-300 clicavel">
+                <i class="fab fa-whatsapp mr-2"></i> FINALIZAR VIA WHATSAPP
             </a>
 
             <a href="index.html" class="block mt-6 text-neutral-400 hover:text-blue-400 transition-colors duration-200">
@@ -224,88 +153,115 @@
     </main>
 
     <script>
-        // ... (Outras variáveis e funções, como applyTheme e getBrowserLanguage) ...
+        // Lógica de Partículas (Simplificada para a thank-you page)
+        const COLOR_PRIMARY = 0x60a5fa;
+        const COLOR_SECONDARY = 0xa855f7;
+        let bgPoints;
+        let backgroundCamera;
+        let bgRenderer;
 
-        const WHATSAPP_NUMBER = '5551996299252'; // Seu número de WhatsApp
+        function setupBackgroundScene() {
+            const canvas = document.getElementById('background-canvas');
+            if (!canvas) return;
 
-        // 1. FUNÇÃO DO FORMULÁRIO DE CONTATO (sendWhatsApp)
-        function sendWhatsApp(event) {
-            event.preventDefault(); // Impede o envio tradicional do formulário
+            const width = window.innerWidth;
+            const height = window.innerHeight;
 
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const assunto = document.getElementById('assunto').value;
-            const mensagem = document.getElementById('mensagem').value;
+            const scene = new THREE.Scene();
+            backgroundCamera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            bgRenderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 
-            // Monta a mensagem final e a codifica para URL
-            const templateMensagem =
-                `Ol%C3%A1!%20Me%20chamo%20${encodeURIComponent(nome)}%2C%20gostaria%20de%20saber%20mais%20sobre%20${encodeURIComponent(assunto)}.%0A` +
-                `%5BE-mail%20para%20contato%5D%3A%20${encodeURIComponent(email)}%0A` +
-                `%0A` +
-                `${encodeURIComponent(mensagem)}`;
+            bgRenderer.setSize(width, height);
+            bgRenderer.setPixelRatio(window.devicePixelRatio);
+            bgRenderer.setClearColor(0x000000, 0);
 
-            // *************** CORREÇÃO CRÍTICA AQUI ***************
-            // REDIRECIONA PARA A THANK-YOU PAGE PASSANDO A MENSAGEM
-            window.location.href = `obrigado.html?msg=${templateMensagem}`;
-            // *****************************************************
-        }
+            const particleCount = 1500;
+            const geometry = new THREE.BufferGeometry();
+            const positions = [];
+            const colors = [];
+            const color = new THREE.Color();
 
-        // 2. FUNÇÃO DOS BOTÕES DE PACOTES (sendWhatsAppPackage)
-        function sendWhatsAppPackage(packageName) {
-            let message;
-            // ... (Define a mensagem pré-escrita) ...
+            for (let i = 0; i < particleCount; i++) {
+                const x = (Math.random() - 0.5) * 600;
+                const y = (Math.random() - 0.5) * 600;
+                const z = (Math.random() - 0.5) * 600;
 
-            if (packageName === 'BASIC') {
-                message = `Ol%C3%A1%2C%20gostaria%20de%20contratar%20o%20%2A` + encodeURIComponent(`Pacote BASIC`) + `%2A%20e%20come%C3%A7ar%20meu%20projeto%20de%20Landing%20Page%20e%20Tr%C3%A1fego%20Pago.%20Estou%20pronto%28a%29%20para%20iniciar%20o%20projeto.`;
+                positions.push(x, y, z);
 
-            } else if (packageName === 'PREMIUM') {
-                message = `Ol%C3%A1%2C%20quero%20contratar%20o%20%2A` + encodeURIComponent(`Pacote PREMIUM`) + `%2A%20para%20ter%20a%20solu%C3%A7%C3%A3o%20completa%20%28Landing%20Page%2C%20Tr%C3%A1fego%2C%20M%C3%ADdia%20Social%20e%20Google%20Empresas%29.%20Estou%20pronto%28a%29%20para%20iniciar%20o%20projeto.`;
-
-            } else if (packageName === 'CUSTOM') {
-                message = `Ol%C3%A1%2C%20tenho%20um%20projeto%20diferente%20dos%20anunciados%20e%20gostaria%20de%20solicitar%20uma%20%2AConsultoria%20Custom%2A.%20Estou%20pronto%28a%29%20para%20iniciar%20o%20projeto.`;
-
-            } else {
-                message = `Ol%C3%A1%2C%20entrei%20na%20p%C3%A1gina%20de%20Pre%C3%A7os%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20pacotes%20de%20servi%C3%A7o.`;
+                const hue = Math.random() * 0.3 + 0.6; 
+                color.setHSL(hue, 0.5, 0.8);
+                colors.push(color.r, color.g, color.b);
             }
 
-            // **************** CORREÇÃO CRÍTICA AQUI ***************
-            // REDIRECIONA PARA A THANK-YOU PAGE PASSANDO A MENSAGEM
-            window.location.href = `obrigado.html?msg=${message}`;
-            // *****************************************************
-        }
-    </script>
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
-    <script>
-        const body = document.body;
-        const toggleButton = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const LIGHT_MODE_CLASS = 'light-mode';
+            const material = new THREE.PointsMaterial({
+                size: 0.6,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 0.8
+            });
 
-        function applyTheme(isLight) {
-            if (isLight) {
-                body.classList.add(LIGHT_MODE_CLASS);
-                localStorage.setItem('theme', 'light');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                body.classList.remove(LIGHT_MODE_CLASS);
-                localStorage.setItem('theme', 'dark');
-                moonIcon.classList.remove('hidden');
-                sunIcon.classList.add('hidden');
+            bgPoints = new THREE.Points(geometry, material);
+            scene.add(bgPoints);
+            
+            backgroundCamera.position.z = 200;
+
+            const ambientLight = new THREE.AmbientLight(0x1a1a1a, 1);
+            scene.add(ambientLight);
+
+            function animateBackground() {
+                requestAnimationFrame(animateBackground);
+
+                if (bgPoints) {
+                    bgPoints.rotation.y += 0.0005;
+                    bgPoints.rotation.x += 0.0002;
+                }
+                
+                bgRenderer.render(scene, backgroundCamera);
             }
+            animateBackground();
+
+            window.addEventListener('resize', () => {
+                const newWidth = window.innerWidth;
+                const newHeight = window.innerHeight;
+
+                backgroundCamera.aspect = newWidth / newHeight;
+                backgroundCamera.updateProjectionMatrix();
+
+                bgRenderer.setSize(newWidth, newHeight);
+            }, false);
         }
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            applyTheme(true);
-        } else {
-            applyTheme(false);
-        }
 
-        toggleButton.addEventListener('click', () => {
-            const isLight = body.classList.contains(LIGHT_MODE_CLASS);
-            applyTheme(!isLight);
+        // Lógica de WhatsApp
+        const WHATSAPP_NUMBER = '5551996299252';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupBackgroundScene(); // Inicializa as partículas
+
+            const whatsappLink = document.getElementById('whatsapp-link');
+            const urlParams = new URLSearchParams(window.location.search);
+            const messageParam = urlParams.get('msg');
+            
+            let finalMessage = "Olá! Gostaria de prosseguir com a minha solicitação de orçamento que acabei de enviar pelo site.";
+
+            if (messageParam) {
+                try {
+                    // Decodifica a mensagem para que as quebras de linha e caracteres especiais sejam mantidos
+                    finalMessage = decodeURIComponent(messageParam);
+                } catch (e) {
+                    finalMessage = messageParam;
+                }
+            }
+            
+            // Re-encoda a mensagem final para garantir que o link do WhatsApp funcione
+            const encodedFinalMessage = encodeURIComponent(finalMessage);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedFinalMessage}`;
+
+            whatsappLink.href = whatsappUrl;
         });
     </script>
 </body>

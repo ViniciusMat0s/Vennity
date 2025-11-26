@@ -27,23 +27,16 @@ h3 {
     font-family: 'Inter', sans-serif;
 }
 
-/* Correção de Especificidade para Links do Footer */
 #main-footer a {
-    /* Garante que a transição funcione e não seja bloqueada */
     transition: color 0.3s ease !important;
 }
 
-/* Garante que a cor de hover do Tailwind prevaleça sobre qualquer cor base */
 #main-footer a:hover {
-    /* !important usado aqui apenas como medida de emergência para forçar o hover */
     color: #ec4899 !important;
-    /* Cor pink-500 */
 }
 
-/* Para os ícones de contato */
 #main-footer .footer-social-links a:hover {
     border-color: #ec4899 !important;
-    /* Cor pink-500 para a borda no hover */
 }
 
 header {
@@ -56,6 +49,20 @@ header {
     overflow: hidden;
     transition: all 0.3s ease-in-out;
 }
+
+@media (max-width: 767px) {
+    #main-header {
+        width: calc(100% - 40px);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #main-header > div {
+        justify-content: space-between;
+        padding: 0 1rem;
+    }
+}
+
 
 .shadow-gradient-bottom {
     box-shadow:
@@ -137,10 +144,8 @@ h1#hero-h1 {
     position: relative;
 }
 
-/* NOVO: AUMENTANDO O TAMANHO DO HERO H1 PADRÃO E A LINHA DE BAIXO */
 #hero-h1-text-fallback {
     font-size: 5rem;
-    /* Default for non-js or small screens */
 }
 
 @media (min-width: 640px) {
@@ -154,7 +159,6 @@ h1#hero-h1 {
         font-size: 10rem;
     }
 }
-
 
 header .backdrop-blur-xl {
     background-color: rgba(0, 0, 0, 0.2) !important;
@@ -261,181 +265,8 @@ header img.invert {
     background-image: linear-gradient(to right, #f472b6, #f87171);
 }
 
-.light-mode {
-    background-color: #F3F4F6;
-    color: #1F2937;
-}
-
-.light-mode .bg-gray-950,
-.light-mode .bg-gray-950\/80,
-.light-mode .bg-gray-950\/40,
-.light-mode .bg-gray-900\/60 {
-    background-color: #F3F4F6 !important;
-}
-
-.light-mode .bg-gray-900\/70,
-.light-mode .bg-gray-950\/90,
-.light-mode .bg-gray-800\/70,
-.light-mode .bg-gray-800\/80 {
-    background-color: #ffffff !important;
-}
-
-.light-mode .bg-black\/50 {
-    background-color: #E5E7EB !important;
-}
-
-.light-mode .gradient-blue-purple {
-    background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
-}
-
-.light-mode .gradient-purple-pink {
-    background-image: linear-gradient(to right, #9333ea, #db2777) !important;
-}
-
-.light-mode .gradient-pink-red {
-    background-image: linear-gradient(to right, #db2777, #dc2626) !important;
-}
-
-.light-mode h1.bg-clip-text,
-.light-mode #servicos h2.bg-clip-text,
-.light-mode #resultados h2.bg-clip-text,
-.light-mode #precos h2.bg-clip-text {
-    background-image: linear-gradient(to bottom, #2563eb, #9333ea) !important;
-}
-
-.light-mode #depoimentos h2.bg-clip-text,
-.light-mode #sobre h2.bg-clip-text,
-.light-mode #contato h2.bg-clip-text {
-    background-image: linear-gradient(to bottom, #9333ea, #db2777) !important;
-}
-
-.light-mode #processo h2.bg-clip-text,
-.light-mode #tecnologias h2.bg-clip-text {
-    background-image: linear-gradient(to bottom, #db2777, #dc2626) !important;
-}
-
-
-.light-mode .mockup-bg {
-    background-color: rgba(209, 213, 219, 0.8) !important;
-}
-
-.light-mode .aspect-video.bg-gray-950 {
-    background-color: #ffffff !important;
-    border-color: #E5E7EB !important;
-}
-
-.light-mode .bg-purple-950\/30 {
-    background-color: #E5E7EB !important;
-    border-color: #9CA3AF !important;
-    color: #1F2937 !important;
-}
-
-.light-mode #depoimentos .p-8,
-.light-mode #tecnologias .p-4,
-.light-mode #contato input,
-.light-mode #contato textarea,
-.light-mode .bg-gray-800 {
-    background-color: #E5E7EB !important;
-    border-color: #D1D5DB !important;
-}
-
-.light-mode .bg-blue-950\/30 {
-    background-color: #E5E7EB !important;
-    border-color: #9CA3AF !important;
-    color: #1F2937 !important;
-}
-
-
-.light-mode .process-step {
-    background-color: transparent !important;
-    border-color: #D1D5DB !important;
-    color: #1F2937 !important;
-}
-
-.light-mode .process-step.border-blue-500\/50 {
-    border-color: #3b82f6 !important;
-}
-
-.light-mode .process-step.border-purple-500\/50 {
-    border-color: #a855f7 !important;
-}
-
-.light-mode .process-step.border-pink-500\/50 {
-    border-color: #ec4899 !important;
-}
-
-.light-mode .process-step.border-green-500\/50 {
-    border-color: #22c55e !important;
-}
-
-.light-mode .border-gray-950 {
-    border-color: #F3F4F6 !important;
-}
-
-.light-mode header .backdrop-blur-xl {
-    background-color: rgba(255, 255, 255, 0.85) !important;
-    border-color: #D1D5DB !important;
-}
-
-.light-mode .border-white\/10 {
-    border-color: #D1D5DB !important;
-}
-
-.light-mode .border-gray-700 {
-    border-color: #E5E7EB !important;
-}
-
-.light-mode .border-gray-400 {
-    border-color: #9CA3AF !important;
-}
-
-.light-mode header button.bg-blue-600 {
-    color: #F3F4F6 !important;
-}
-
-.light-mode #hero button.bg-gradient-to-r {
-    color: #F3F4F6 !important;
-}
-
-.light-mode #contato button.bg-gradient-to-r {
-    color: #F3F4F6 !important;
-}
-
-.light-mode .text-white {
-    color: #1F2937 !important;
-}
-
-.light-mode .text-neutral-300 {
-    color: #374151 !important;
-}
-
-.light-mode .text-neutral-400 {
-    color: #6b7280 !important;
-}
-
-.light-mode .text-neutral-500 {
-    color: #9CA3AF !important;
-}
-
-.light-mode .text-neutral-600 {
-    color: #4b5563 !important;
-}
-
-.light-mode .text-neutral-700 {
-    color: #374151 !important;
-}
-
-.light-mode .text-gray-900 {
-    color: #111827 !important;
-}
-
-.light-mode header img.invert {
-    filter: none !important;
-}
-
 .individual-service-card {
     background-color: #0d1117;
-    /* Borda cinza */
     transition: all 0.3s;
 }
 
@@ -450,33 +281,6 @@ header img.invert {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.light-mode .individual-service-card {
-    background-color: #ffffff !important;
-    border-color: #D1D5DB !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.light-mode .individual-service-card:hover {
-    border-color: #2563eb !important;
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
-    transform: translateY(-3px);
-}
-
-.light-mode .individual-service-card .price-tag {
-    background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.light-mode .individual-service-card .text-neutral-300 {
-    color: #1F2937 !important;
-}
-
-.light-mode .individual-service-card .text-neutral-400 {
-    color: #4b5563 !important;
 }
 
 .section-margin-huge {
@@ -512,28 +316,12 @@ header img.invert {
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
-.light-mode .bg-glass-overlay {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    opacity: 0.98 !important;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-}
-
 .bg-glass-overlay {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     opacity: 0.95 !important;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-.light-mode .bg-glass-overlay {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    opacity: 0.98 !important;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
 .tech-card {
@@ -597,138 +385,84 @@ header img.invert {
     z-index: 20;
 }
 
-/* Estilos 3D para os Cards de Serviço */
 #servicos-wrapper .service-card {
     transform-style: preserve-3d;
 }
 
-/* NOVO: Estilos 3D para os Cards de Preço */
 #precos #pricing-grid {
     perspective: 1000px;
-    /* Perspectiva no container */
 }
 
 #precos .card-padrao,
 #precos .card-destaque {
     transform-style: preserve-3d;
-    /* Permite que o efeito 3D funcione */
 }
 
-
-/* Ajuste a classe #timeline-progress para usar um gradiente de 4 paradas (stops) */
 #timeline-progress {
-    /* De: Roxo e Rosa (Antigo: background-image: linear-gradient(to bottom, #9333ea, #db2777); ) */
-    /* Novo Gradiente com 4 Cores: Azul -> Roxo -> Rosa/Vermelho -> Verde */
     background-image: linear-gradient(to bottom,
             #3b82f6 0%,
-            /* Passo 1: Azul */
             #a855f7 33%,
-            /* Passo 2: Roxo */
             #ec4899 66%,
-            /* Passo 3: Rosa/Pink */
             #22c55e 100%
-            /* Passo 4: Verde */
         );
     transition: none !important;
-    /* Certifica que o GSAP controla a animação */
 }
 
-/* Certifique-se de que a linha original é bem clara para o contraste */
 #timeline-line {
     background-color: rgba(255, 255, 255, 0.05) !important;
 }
-
 
 .reviews-container {
     scroll-behavior: smooth;
     overflow-x: scroll !important;
     min-height: 450px !important;
-
-    /* Esconde a barra de rolagem (AWWWARDS style) */
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
     padding-bottom: 3rem;
-    /* Espaço para a sombra e a rolagem */
-
-    /* [REMOVIDO min-h: O GSAP controla a altura mínima indiretamente pelo Parallax] */
 }
 
 .reviews-container::-webkit-scrollbar {
     display: none;
-    /* Chrome, Safari, Opera */
 }
 
-/* Estilo dos Cards Internos de Review */
 .review-inner-card {
     position: relative;
     z-index: 10;
-    /* Garante que os efeitos de transform e shadow funcionem */
     transition: box-shadow 0.3s, transform 0.3s;
 }
 
-/* Efeito de Destaque no Hover */
 .review-inner-card:hover {
     box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
-    /* Sombra roxa elegante */
 }
 
-/* Fixa o tamanho dos itens no Carrossel */
 .review-card-full {
     flex-shrink: 0;
     max-width: none;
 }
 
-/* Classe para o elemento de fundo de reviews que o GSAP usa para Parallax */
 #reviews-background-effect {
-    /* Garante que o fundo esteja na camada certa para o Parallax */
     position: absolute;
     inset: 0;
     pointer-events: none;
-    /* O GSAP irá adicionar o background gradient radial */
 }
 
-/* Ajuste Light Mode - Cores mais escuras no Gradiente */
-.light-mode #timeline-progress {
-    background-image: linear-gradient(to bottom,
-            #2563eb 0%,
-            /* Passo 1: Azul escuro */
-            #9333ea 33%,
-            /* Passo 2: Roxo escuro */
-            #db2777 66%,
-            /* Passo 3: Rosa/Pink escuro */
-            #16a34a 100%
-            /* Passo 4: Verde escuro */
-        );
-}
-
-/* Estilos para a Seção de Preços (Chamativa AWWWARDS) */
-
-/* Card Padrão (BASIC / CUSTOM) */
 .card-padrao {
-    /* Adiciona um toque de profundidade base para a animação */
     transform: scale(1);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card-padrao:hover {
     transform: scale(1.05);
-    /* Escala no hover */
     z-index: 10;
 }
 
-/* Card de DESTAQUE (PREMIUM) */
 .card-destaque {
-    /* Estado inicial já elevado pelo scale-[1.05] */
     animation: price-pulse 4s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 [data-gsap-price="true"] {
     opacity: 0;
 }
-
-[data-gsap-result="true"] {}
 
 @keyframes price-pulse {
 
@@ -913,7 +647,7 @@ header img.invert {
 }
 
 .dock-link-logo img {
-    height: 40px;
+    height: 80px;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -923,12 +657,8 @@ header img.invert {
     z-index: 30;
 }
 
-/* ... Outras regras ... */
-
-/* Dock Link Efeito Aprimorado */
 .dock-link-text {
     position: relative;
-    /* Necessário para posicionar o fundo */
     z-index: 10;
 }
 
@@ -936,16 +666,11 @@ header img.invert {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: scale(1);
     display: block;
-    /* Mantenha 'block' para o padding do hover */
     padding: 8px 12px;
-    /* Aumenta a área de hover e padding */
     border-radius: 9999px;
-    /* Cantos arredondados */
     color: var(--nav-text-color, #d1d5db);
-    /* Usa variável para cor base */
     position: relative;
     z-index: 20;
-    /* Garante que o texto fique acima do efeito de fundo */
     font-weight: 600;
 }
 
@@ -964,19 +689,15 @@ header img.invert {
 .dock-link-text:hover::before {
     opacity: 1;
     transform: scale(1.05);
-    /* Fundo sutilmente maior que o link */
 }
 
 .dock-link-text a:hover {
     transform: scale(1.15);
-    /* Efeito de bolha no texto */
     color: #ffffff;
-    /* Texto branco no hover */
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .dock-link-text a:hover::after {
-    /* Adicionando um sublinhado/highlight sutil */
     content: '';
     position: absolute;
     bottom: 5px;
@@ -986,20 +707,6 @@ header img.invert {
     background: linear-gradient(90deg, transparent, #a855f7, transparent);
     transform: translateX(-50%);
     opacity: 0.8;
-}
-
-/* Light Mode Adjustments (para garantir cores visíveis) */
-.light-mode .dock-link-text a {
-    color: var(--nav-text-color, #374151);
-}
-
-.light-mode .dock-link-text a:hover {
-    color: #111827;
-    text-shadow: none;
-}
-
-.light-mode .dock-link-text::before {
-    background: linear-gradient(90deg, rgba(37, 99, 235, 0.1), rgba(147, 51, 234, 0.1));
 }
 
 .shadow-gradient-bottom {
@@ -1048,28 +755,6 @@ header img.invert {
     }
 }
 
-.light-mode .cta-button-header {
-    background-image: linear-gradient(to right, #2563eb, #9333ea) !important;
-    box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
-}
-
-.light-mode .cta-button-header:hover {
-    box-shadow: 0 0 15px rgba(147, 51, 234, 0.6);
-}
-
-.light-mode .logo-text-link {
-    filter: none !important;
-}
-
-.light-mode header .backdrop-blur-xl {
-    background-color: rgba(255, 255, 255, 0.85) !important;
-    border-color: #D1D5DB !important;
-}
-
-.light-mode .dock-link-text a:hover {
-    color: #9333ea !important;
-}
-
 #mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -1098,11 +783,6 @@ header img.invert {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.light-mode #mobile-menu {
-    background-color: #F3F4F6;
-    border-left: 1px solid #D1D5DB;
-}
-
 #mobile-menu-overlay.open {
     opacity: 1;
     visibility: visible;
@@ -1126,16 +806,6 @@ header img.invert {
     pointer-events: none;
     will-change: transform;
 }
-
-.light-mode .card-glow-overlay {
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            rgba(37, 99, 235, 0.3) 0%,
-            rgba(147, 51, 234, 0.15) 30%,
-            rgba(0, 0, 0, 0.0) 65%);
-    filter: blur(20px);
-}
-
-/* NOVOS GRADIENTES DE BORDA PARA CARDS DE SERVIÇO */
 
 .border-gradient-blue-purple {
     border: 2px solid transparent !important;
@@ -1165,48 +835,22 @@ header img.invert {
     border-image: linear-gradient(135deg, #f87171, #22c55e) 1;
 }
 
-.light-mode .border-gradient-red-green {
-    border-image: linear-gradient(135deg, #dc2626, #16a34a) 1;
-}
-
 .service-card i {
     display: block;
 }
 
-.light-mode .border-gradient-blue-purple {
-    border-image: linear-gradient(135deg, #2563eb, #9333ea) 1;
-}
-
-.light-mode .border-gradient-purple-pink {
-    border-image: linear-gradient(135deg, #9333ea, #db2777) 1;
-}
-
-.light-mode .border-gradient-pink-red {
-    border-image: linear-gradient(135deg, #db2777, #dc2626) 1;
-}
-
-.light-mode .border-gradient-red-green {
-    border-image: linear-gradient(135deg, #dc2626, #16a34a) 1;
-}
-
-/* Adicione esta classe de PADDING customizada */
 .py-spacing-mega {
     padding-top: 15rem;
-    /* 240px */
     padding-bottom: 15rem;
-    /* 240px */
 }
 
-/* Ajuste a classe existente .py-huge (se necessário, ou remova se não for usada) */
 .py-huge {
     padding-top: 8rem;
     padding-bottom: 8rem;
 }
 
-/* Garantir que os ícones Font Awesome no texto apareçam corretamente */
 .fa-whatsapp,
 .fa-envelope,
 .fa-map-marker-alt {
-    /* Se você usou Font Awesome, esta regra garante que eles sejam dimensionados */
     font-size: 1.25rem;
 }
