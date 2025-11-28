@@ -18,40 +18,21 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="./style.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
-    <link rel="stylesheet" href="./style.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'pt',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-17620440833');
     </script>
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17620440833">
-</script>
-
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'AW-17620440833');
-</script>
 
 <body class="min-h-screen">
 
@@ -63,7 +44,7 @@
         class="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 p-6 transform translate-x-full transition-transform duration-300">
         <div class="flex justify-between items-center mb-10">
             <a href="#" class="flex items-center group px-4 py-2">
-                <img src="assets/images/icon.png" alt="Vennity Logo" class="h-12 w-auto logo-text-link" />
+                <img src="assets/images/icon.png" alt="Vennity Logo" width="48" height="48" class="h-12 w-auto logo-text-link" />
             </a>
             <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
                 <i class="fas fa-times text-xl"></i>
@@ -98,343 +79,299 @@
 
     <section id="fixed-header-wrapper" class="relative w-full max-w-full z-50 transition-all duration-300">
 
-        <div id="mobile-menu-overlay" onclick="toggleMobileMenu()" class="hidden fixed inset-0 bg-black/50 z-40"></div>
-
-        <nav id="mobile-menu"
-            class="fixed top-0 right-0 h-full w-64 bg-black/90 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-50 p-6">
-            <div class="flex justify-between items-center mb-10">
-                <a href="#hero" onclick="toggleMobileMenu()" class="flex items-center group px-0 py-2">
-                    <img src="assets/images/icon.png" alt="Vennity Logo" class="h-12 w-auto logo-text-link" />
-                </a>
-                <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <ul class="space-y-6 text-lg font-semibold text-neutral-300 uppercase">
-                <li><a href="#hero" onclick="toggleMobileMenu()"
-                        class="block hover:text-purple-400 transition-colors">Início</a></li>
-                <li><a href="#depoimentos" onclick="toggleMobileMenu()"
-                        class="block hover:text-purple-400 transition-colors">Reviews</a>
-                </li>
-                <li><a href="#processo" onclick="toggleMobileMenu()"
-                        class="block hover:text-purple-400 transition-colors">Processo</a>
-                </li>
-                <li><a href="#sobre" onclick="toggleMobileMenu()"
-                        class="block hover:text-purple-400 transition-colors">Sobre</a></li>
-                <li><a href="#precos" onclick="toggleMobileMenu()"
-                        class="block hover:text-purple-400 transition-colors">Preços</a></li>
-                <li><a href="#contato" onclick="toggleMobileMenu()"
-                        class="block hover:text-purple-400 transition-colors">Contato</a></li>
-                <li><a href="politica-e-termos.html"
-                        class="block hover:text-pink-400 transition-colors border-t border-white/10 pt-4 mt-4">Política
-                        e
-                        Termos</a></li>
-                <li><a href="faq.html" class="block hover:text-purple-400 transition-colors">FAQ</a></li>
-            </ul>
-
-            <a href="#contato" onclick="toggleMobileMenu()"
-                class="mt-10 inline-block w-full text-center cta-button-header text-white font-bold py-3 rounded-full shadow-lg">
-                Trabalhe Conosco!
+        <div id="logo-container" class="fixed top-5 left-5 z-50 hidden md:block">
+            <a href="#hero" class="flex items-center group px-4 py-2 dock-link-logo">
+                <img src="assets/images/icon.png" alt="Vennity Logo" width="80" height="80"
+                    class="h-20 w-auto logo-text-link transition-transform duration-300" />
             </a>
-        </nav>
-        <section id="fixed-header-wrapper" class="relative w-full max-w-full z-50 transition-all duration-300">
+        </div>
 
-            <div id="logo-container" class="fixed top-5 left-5 z-50 hidden md:block">
-                <a href="#hero" class="flex items-center group px-4 py-2 dock-link-logo">
-                    <img src="assets/images/icon.png" alt="Vennity Logo"
-                        class="h-20 w-auto logo-text-link transition-transform duration-300" />
-                </a>
-            </div>
+        <header id="main-header"
+            class="fixed top-5 left-1/2 transform -translate-x-1/2 w-full max-w-none md:w-fit z-50 rounded-full transition-all duration-300">
+            <div
+                class="uppercase flex justify-center items-center h-20 md:h-16 w-full backdrop-blur-p bg-black/20 border border-white/5 rounded-full px-4 sm:px-6 shadow-gradient-bottom">
 
-            <header id="main-header"
-                class="fixed top-5 left-1/2 transform -translate-x-1/2 w-full max-w-none md:w-fit z-50 rounded-full transition-all duration-300">
-                <div
-                    class="uppercase flex justify-center items-center h-20 md:h-16 w-full backdrop-blur-p bg-black/20 border border-white/5 rounded-full px-4 sm:px-6 shadow-gradient-bottom">
-
-                    <a href="#contato"
-                        class="cta-button-header text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 text-sm md:hidden uppercase">
-                        Fale Conosco
-                    </a>
-
-                    <div class="hidden md:flex space-x-6 items-center">
-
-                        <nav class="text-neutral-300">
-                            <ul class="flex space-x-4 items-center">
-                                <li class="dock-link-text">
-                                    <a href="#sobre"
-                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Sobre</a>
-                                </li>
-                                <li class="dock-link-text">
-                                    <a href="#depoimentos"
-                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Reviews</a>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <a href="#hero" class="text-neutral-300 hover:text-purple-400 transition-colors duration-200 
-                    px-6 py-3 rounded-full bg-white/10 hover:bg-white/20">
-                            <i class="fas fa-home text-xl"></i>
-                        </a>
-
-                        <nav class="text-neutral-300">
-                            <ul class="flex space-x-4 items-center">
-                                <li class="dock-link-text">
-                                    <a href="#precos"
-                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Preços</a>
-                                </li>
-                                <li class="dock-link-text">
-                                    <a href="#contato"
-                                        class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Contato</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <a href="#hero" class="flex items-center group md:hidden">
-                        <img src="assets/images/icon.png" alt="Vennity Logo" class="h-14 w-auto logo-text-link" />
-                    </a>
-
-                    <button id="menu-toggle-button" onclick="toggleMobileMenu()"
-                        class="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-
-                </div>
-            </header>
-
-            <div id="contact-button-container" class="fixed top-7 right-5 z-50 hidden md:block">
                 <a href="#contato"
-                    class="flex items-center cta-button-header text-white font-bold py-2.5 px-6 rounded-full shadow-lg transition-all duration-300 text-sm uppercase">
-                    FALE CONOSCO
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    class="cta-button-header text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 text-sm md:hidden uppercase">
+                    Fale Conosco
                 </a>
-            </div>
 
-        </section>
+                <div class="hidden md:flex space-x-6 items-center">
 
-        <main>
+                    <nav class="text-neutral-300">
+                        <ul class="flex space-x-4 items-center">
+                            <li class="dock-link-text">
+                                <a href="#sobre"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Sobre</a>
+                            </li>
+                            <li class="dock-link-text">
+                                <a href="#depoimentos"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Reviews</a>
+                            </li>
+                        </ul>
+                    </nav>
 
-            <section id="hero"
-                class="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-[120px] pb-0 sm:pt-32">
+                    <a href="#hero" class="text-neutral-300 hover:text-purple-400 transition-colors duration-200 
+                    px-6 py-3 rounded-full bg-white/10 hover:bg-white/20">
+                        <i class="fas fa-home text-xl"></i>
+                    </a>
 
-                <canvas id="background-canvas"></canvas>
-
-                <div aria-hidden="true" class="absolute inset-0 -z-10">
-                    <div
-                        class="absolute inset-x-0 top-[10%] h-[600px] bg-gradient-to-br from-purple-800/60 via-blue-900/50 to-transparent blur-3xl opacity-70">
-                    </div>
+                    <nav class="text-neutral-300">
+                        <ul class="flex space-x-4 items-center">
+                            <li class="dock-link-text">
+                                <a href="#precos"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Preços</a>
+                            </li>
+                            <li class="dock-link-text">
+                                <a href="#contato"
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Contato</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
 
+                <a href="#hero" class="flex items-center group md:hidden">
+                    <img src="assets/images/icon.png" alt="Vennity Logo" width="56" height="56" class="h-14 w-auto logo-text-link" />
+                </a>
+
+                <button id="menu-toggle-button" onclick="toggleMobileMenu()"
+                    class="md:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+            </div>
+        </header>
+
+        <div id="contact-button-container" class="fixed top-7 right-5 z-50 hidden md:block">
+            <a href="#contato"
+                class="flex items-center cta-button-header text-white font-bold py-2.5 px-6 rounded-full shadow-lg transition-all duration-300 text-sm uppercase">
+                FALE CONOSCO
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+            </a>
+        </div>
+
+    </section>
+
+    <main>
+
+        <section id="hero"
+            class="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-[120px] pb-0 sm:pt-32">
+
+            <canvas id="background-canvas"></canvas>
+
+            <div aria-hidden="true" class="absolute inset-0 -z-10">
                 <div
-                    class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center flex-grow z-10 py-12">
+                    class="absolute inset-x-0 top-[10%] h-[600px] bg-gradient-to-br from-purple-800/60 via-blue-900/50 to-transparent blur-3xl opacity-70">
+                </div>
+            </div>
 
-                    <div id="mouse-glow" class="mouse-glow"></div>
+            <div
+                class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center flex-grow z-10 py-12">
 
-                    <div class="text-center w-full relative">
+                <div id="mouse-glow" class="mouse-glow"></div>
 
-                        <div class="hero-canvas-container">
-                            <canvas id="hero-canvas" class="z-20"></canvas>
-                        </div>
+                <div class="text-center w-full relative">
 
-                        <h1 id="hero-h1"
-                            class="uppercase absolute inset-0 text-5xl sm:text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse"
-                            title="Desenvolvimento Web, UX e Performance de Alto Nível">
-                        </h1>
-                        <h1 id="hero-h1-text-fallback"
-                            class="uppercase font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple leading-none pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem]"
-                            style="line-height: 0.8; height: 100%; width: 100%; top: -10px;">
-                            <span class="inline-block" style="opacity: 0;" data-gsap-hero="h1">VENNITY.</span>
-                        </h1>
+                    <div class="hero-canvas-container">
+                        <canvas id="hero-canvas" class="z-20"></canvas>
+                    </div>
+
+                    <h1 id="hero-h1"
+                        class="uppercase absolute inset-0 text-5xl sm:text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse"
+                        title="Desenvolvimento Web, UX e Performance de Alto Nível">
+                    </h1>
+                    <h1 id="hero-h1-text-fallback"
+                        class="uppercase font-black tracking-tight bg-clip-text text-transparent gradient-blue-purple leading-none pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem]"
+                        style="line-height: 0.8; height: 100%; width: 100%; top: -10px;">
+                        <span class="inline-block" style="opacity: 0;" data-gsap-hero="h1">VENNITY.</span>
+                    </h1>
 
 
-                        <div class="mt-12 opacity-0" data-gsap-hero="subtitle">
-                            <p
-                                class="text-lg md:text-xl font-light text-transparent bg-clip-text gradient-blue-purple max-w-1xl mx-auto font-inter-tight whitespace-nowrap overflow-hidden text-ellipsis uppercase tracking-widest">
-                                DESENVOLVA SEU LEGADO.
-                            </p>
-                        </div>
+                    <div class="mt-12 opacity-0" data-gsap-hero="subtitle">
+                        <p
+                            class="text-lg md:text-xl font-light text-transparent bg-clip-text gradient-blue-purple max-w-1xl mx-auto font-inter-tight whitespace-nowrap overflow-hidden text-ellipsis uppercase tracking-widest">
+                            DESENVOLVA SEU LEGADO.
+                        </p>
+                    </div>
 
-                        <div id="div-to-animate-1"
-                            class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0"
-                            data-gsap-hero="buttons">
-                            <a href="#contato" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                    <div id="div-to-animate-1"
+                        class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0"
+                        data-gsap-hero="buttons">
+                        <a href="#contato" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
                 text-white font-bold py-3 px-8 rounded-full shadow-xl shadow-blue-500/40 transform hover:scale-[1.03]
                 transition-all duration-300 flex items-center justify-center gap-2 text-base">
-                                CRIAR PROJETO (Análise Gratuita)
-                            </a>
+                            CRIAR PROJETO (Análise Gratuita)
+                        </a>
 
-                            <a href="faq.html" class="w-full sm:w-auto bg-transparent border border-neutral-700 hover:border-purple-500 text-neutral-300 font-medium py-3 px-8 rounded-full
+                        <a href="faq.html" class="w-full sm:w-auto bg-transparent border border-neutral-700 hover:border-purple-500 text-neutral-300 font-medium py-3 px-8 rounded-full
                 transition-colors duration-300 flex items-center justify-center gap-2 text-base hover:text-white">
-                                Tire suas dúvidas
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                            Tire suas dúvidas
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div
+                        class="relative mt-8 mb-4 max-w-lg mx-auto w-full h-2 animate-fade-in-up delay-800 animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/50 to-blue-500/0 blur-md opacity-75 transform scale-y-150">
                         </div>
+                        <div
+                            class="absolute inset-0 h-0.5 mt-0.5 bg-gradient-to-r from-blue-500/0 via-purple-500/70 to-blue-500/0 opacity-90">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="impacto" class="w-full bg-gray-900/70 border-y border-white/10 overflow-hidden fade-in-on-scroll">
+                <div class="ticker-container">
+                    <div class="ticker-content flex items-center px-8 sm:px-16 lg:px-24 py-4 whitespace-nowrap">
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-figma.png" alt="Figma" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-firebase.png" alt="Firebase" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-googleads.png" alt="Google Ads" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-next.png" alt="Next.js" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-node.png" alt="Node.js" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-react.png" alt="React" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-meta.png" alt="Meta Ads" loading="lazy" width="80" height="80">
+                        </div>
+                    </div>
+
+                    <div class="ticker-content flex items-center px-8 sm:px-16 lg:px-24 py-4 whitespace-nowrap">
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-figma.png" alt="Figma" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-firebase.png" alt="Firebase" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-googleads.png" alt="Google Ads" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-next.png" alt="Next.js" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-node.png" alt="Node.js" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-react.png" alt="React" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS" loading="lazy" width="80" height="80">
+                        </div>
+                        <div
+                            class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
+                            <img src="assets/images/logo-meta.png" alt="Meta Ads" loading="lazy" width="80" height="80">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="relative overflow-hidden bg-gray-950/90 spacing-mega">
+
+            <div aria-hidden="true"
+                class="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-900/40 via-blue-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
+            </div>
+
+            <div aria-hidden="true" class="absolute inset-0 bg-grid opacity-5"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-32 sm:pt-40">
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                    <div class="lg:order-2" data-gsap-target="text">
+                        <h2
+                            class="text-6xl sm:text-7xl font-extrabold mb-6 text-transparent bg-clip-text gradient-purple-pink leading-tight">
+                            O Futuro Está Aqui.
+                        </h2>
+                        <p class="text-xl text-neutral-300 mb-8 max-w-xl">
+                            Na <strong>Vennity</strong>, não apenas desenvolvemos sites; criamos ecossistemas
+                            digitais que definem novos padrões. Nossa equipe é composta por profissionais de alto
+                            nível
+                            que vivem e respiram a inovação, focados em entregar soluções que geram resultados de
+                            alto
+                            nível.
+                        </p>
+                        <ul class="space-y-4 text-neutral-200">
+                            <li class="flex items-start gap-3 text-lg font-medium">
+                                <span
+                                    class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
+                                Foco em<strong>Performance Máxima.</strong>
+                            </li>
+                            <li class="flex items-start gap-3 text-lg font-medium">
+                                <span
+                                    class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
+                                Suporte<strong>Rápido e Eficaz.</strong>
+                            </li>
+                            <li class="flex items-start gap-3 text-lg font-medium">
+                                <span
+                                    class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
+                                <strong>Confiança</strong>máxima e garantia de satisfação.
+                            </li>
+                        </ul>
+                        <a href="#contato"
+                            class="mt-10 inline-flex items-center text-xl font-semibold text-purple-400 hover:text-purple-300 transition-all duration-300 border-b-2 border-purple-400/50 hover:border-purple-300 group">
+                            Fale com um Especialista <span aria-hidden="true"
+                                class="ml-2 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </a>
+                    </div>
+
+                    <div class="lg:order-1 relative" data-gsap-target="terminal">
 
                         <div
-                            class="relative mt-8 mb-4 max-w-lg mx-auto w-full h-2 animate-fade-in-up delay-800 animate-fade-in-up delay-200 leading-tight animate-subtle-float animate-text-pulse">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/50 to-blue-500/0 blur-md opacity-75 transform scale-y-150">
-                            </div>
-                            <div
-                                class="absolute inset-0 h-0.5 mt-0.5 bg-gradient-to-r from-blue-500/0 via-purple-500/70 to-blue-500/0 opacity-90">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div id="impacto"
-                    class="w-full bg-gray-900/70 border-y border-white/10 overflow-hidden fade-in-on-scroll">
-                    <div class="ticker-container">
-                        <div class="ticker-content flex items-center px-8 sm:px-16 lg:px-24 py-4 whitespace-nowrap">
+                            class="relative p-1 rounded-xl bg-gradient-to-br from-purple-500/50 to-pink-500/20 shadow-2xl shadow-purple-900/50 transform hover:scale-[1.02] transition-transform duration-500 terminal-container">
 
                             <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-figma.png" alt="Figma">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-firebase.png" alt="Firebase">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-googleads.png" alt="Google Ads">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-next.png" alt="Next.js">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-node.png" alt="Node.js">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-react.png" alt="React">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-meta.png" alt="Meta Ads">
-                            </div>
-                        </div>
-
-                        <div class="ticker-content flex items-center px-8 sm:px-16 lg:px-24 py-4 whitespace-nowrap">
-
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-figma.png" alt="Figma">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-firebase.png" alt="Firebase">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-googleads.png" alt="Google Ads">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-next.png" alt="Next.js">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-node.png" alt="Node.js">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-react.png" alt="React">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS">
-                            </div>
-                            <div
-                                class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                                <img src="assets/images/logo-meta.png" alt="Meta Ads">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="sobre" class="relative overflow-hidden bg-gray-950/90 spacing-mega">
-
-                <div aria-hidden="true"
-                    class="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-900/40 via-blue-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
-                </div>
-
-                <div aria-hidden="true" class="absolute inset-0 bg-grid opacity-5"></div>
-
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-32 sm:pt-40">
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-                        <div class="lg:order-2" data-gsap-target="text">
-                            <h2
-                                class="text-6xl sm:text-7xl font-extrabold mb-6 text-transparent bg-clip-text gradient-purple-pink leading-tight">
-                                O Futuro Está Aqui.
-                            </h2>
-                            <p class="text-xl text-neutral-300 mb-8 max-w-xl">
-                                Na <strong>Vennity</strong>, não apenas desenvolvemos sites; criamos ecossistemas
-                                digitais que definem novos padrões. Nossa equipe é composta por profissionais de alto
-                                nível
-                                que vivem e respiram a inovação, focados em entregar soluções que geram resultados de
-                                alto
-                                nível.
-                            </p>
-                            <ul class="space-y-4 text-neutral-200">
-                                <li class="flex items-start gap-3 text-lg font-medium">
-                                    <span
-                                        class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
-                                    Foco em<strong>Performance Máxima.</strong>
-                                </li>
-                                <li class="flex items-start gap-3 text-lg font-medium">
-                                    <span
-                                        class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
-                                    Suporte<strong>Rápido e Eficaz.</strong>
-                                </li>
-                                <li class="flex items-start gap-3 text-lg font-medium">
-                                    <span
-                                        class="text-blue-500 text-2xl leading-none font-extrabold transform rotate-90 inline-block">≫</span>
-                                    <strong>Confiança</strong>máxima e garantia de satisfação.
-                                </li>
-                            </ul>
-                            <a href="#contato"
-                                class="mt-10 inline-flex items-center text-xl font-semibold text-purple-400 hover:text-purple-300 transition-all duration-300 border-b-2 border-purple-400/50 hover:border-purple-300 group">
-                                Fale com um Especialista <span aria-hidden="true"
-                                    class="ml-2 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                            </a>
-                        </div>
-
-                        <div class="lg:order-1 relative" data-gsap-target="terminal">
-
-                            <div
-                                class="relative p-1 rounded-xl bg-gradient-to-br from-purple-500/50 to-pink-500/20 shadow-2xl shadow-purple-900/50 transform hover:scale-[1.02] transition-transform duration-500 terminal-container">
+                                class="relative p-8 rounded-[11px] bg-gray-900 border border-purple-500/40 terminal-window">
 
                                 <div
-                                    class="relative p-8 rounded-[11px] bg-gray-900 border border-purple-500/40 terminal-window">
-
-                                    <div
-                                        class="text-sm text-neutral-500 mb-4 flex justify-between items-center pb-2 border-b border-white/10">
-                                        &lt;Terminal_Log&gt; Sessão: Visão Corporativa
-                                        <div class="flex space-x-2">
-                                            <span class="w-3 h-3 bg-red-500 rounded-full block"></span>
-                                            <span class="w-3 h-3 bg-yellow-500 rounded-full block"></span>
-                                            <span class="w-3 h-3 bg-green-500 rounded-full block"></span>
-                                        </div>
+                                    class="text-sm text-neutral-500 mb-4 flex justify-between items-center pb-2 border-b border-white/10">
+                                    &lt;Terminal_Log&gt; Sessão: Visão Corporativa
+                                    <div class="flex space-x-2">
+                                        <span class="w-3 h-3 bg-red-500 rounded-full block"></span>
+                                        <span class="w-3 h-3 bg-yellow-500 rounded-full block"></span>
+                                        <span class="w-3 h-3 bg-green-500 rounded-full block"></span>
                                     </div>
+                                </div>
 
-                                    <pre class="text-xs sm:text-sm text-green-400 overflow-x-auto terminal-code"
-                                        data-gsap-terminal="true">
+                                <pre class="text-xs sm:text-sm text-green-400 overflow-x-auto terminal-code"
+                                    data-gsap-terminal="true">
 <span class="text-blue-400">const</span> <span class="text-yellow-400">Vennity</span> = <span class="text-blue-400">class</span> {
     <span class="text-pink-400">constructor</span>() {
         <span class="text-white">this</span>.missao = <span class="text-red-400">"Maximizar seus ganhos"</span>;
@@ -451,1042 +388,1049 @@
 }
                         </pre>
 
-                                    <div class="text-sm text-neutral-500 mt-4 border-t border-white/10 pt-2">
-                                        &lt;/Terminal_Log&gt;
-                                    </div>
+                                <div class="text-sm text-neutral-500 mt-4 border-t border-white/10 pt-2">
+                                    &lt;/Terminal_Log&gt;
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="video-mockup" class="pt-12 bg-gray-950/90 spacing-mega relative">
-                <canvas id="video-particles"></canvas>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="relative w-full max-w-6xl mx-auto">
-                        <div
-                            class="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-40 blur-2xl transition-all duration-500 hover:opacity-70">
-                        </div>
-                        <div
-                            class="relative rounded-3xl bg-gray-900/80 p-6 shadow-2xl shadow-blue-500/20 border border-white/10 backdrop-blur-sm mockup-bg">
-                            <div class="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
-                                <div class="flex items-center gap-2">
-                                    <span class="h-3 w-3 rounded-full bg-red-500"></span>
-                                    <span class="h-3 w-3 rounded-full bg-yellow-500"></span>
-                                    <span class="h-3 w-3 rounded-full bg-green-500"></span>
-                                </div>
-                                <div
-                                    class="text-xs text-neutral-500 bg-gray-950 px-3 py-1 rounded-lg border border-neutral-700">
-                                    https://vbmdevs.com/
-                                </div>
-                                <div>
-                                    <span class="text-sm text-neutral-400">Status: Online</span>
-                                </div>
-                            </div>
-                            <div class="aspect-video bg-gray-950 rounded-lg overflow-hidden">
-                                <video controls autoplay loop muted class="w-full h-full object-cover">
-                                    <source src="assets/images/hero.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </div>
+        <section id="video-mockup" class="pt-12 bg-gray-950/90 spacing-mega relative">
+            <canvas id="video-particles"></canvas>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="relative w-full max-w-6xl mx-auto">
+                    <div
+                        class="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-40 blur-2xl transition-all duration-500 hover:opacity-70">
                     </div>
-                </div>
-            </section>
-
-            <section class="bg-gray-950 relative overflow-hidden" id="servicos-wrapper">
-
-                <div aria-hidden="true"
-                    class="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
-                </div>
-
-                <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-huge">
-                    <div class="text-center mb-16">
-                        <h2
-                            class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
-                            Estratégias de Alto Nível: Do Visual até a Conversão
-                        </h2>
-                        <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
-                            Serviços que otimizam seus resultados.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-4 grid-rows-2 gap-6 lg:gap-8 max-w-content mx-auto">
-
-                        <div id="service-card-1" data-gsap-card="true"
-                            class="service-card group relative p-8 sm:p-10 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-blue-purple col-span-4 lg:col-span-2 row-span-1 min-h-[300px]">
+                    <div
+                        class="relative rounded-3xl bg-gray-900/80 p-6 shadow-2xl shadow-blue-500/20 border border-white/10 backdrop-blur-sm mockup-bg">
+                        <div class="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
+                            <div class="flex items-center gap-2">
+                                <span class="h-3 w-3 rounded-full bg-red-500"></span>
+                                <span class="h-3 w-3 rounded-full bg-yellow-500"></span>
+                                <span class="h-3 w-3 rounded-full bg-green-500"></span>
+                            </div>
                             <div
-                                class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                                class="text-xs text-neutral-500 bg-gray-950 px-3 py-1 rounded-lg border border-neutral-700">
+                                https://vbmdevs.com/
                             </div>
-
-                            <div class="relative z-10 h-full flex flex-col justify-between">
-                                <div class="mb-6">
-                                    <div
-                                        class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/50 mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">
-                                        Desenvolvimento Completo
-                                    </h3>
-                                </div>
-                                <p class="text-lg text-neutral-300 max-w-lg">
-                                    Construção de sistemas e sites customizados com as melhores tecnologias do mercado,
-                                    garantindo<strong>longevidade, velocidade</strong>e uma experiência impecável.
-                                </p>
+                            <div>
+                                <span class="text-sm text-neutral-400">Status: Online</span>
                             </div>
                         </div>
-
-                        <div id="service-card-2" data-gsap-card="true"
-                            class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-purple-pink col-span-2 lg:col-span-1 row-span-1">
-                            <div
-                                class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                            </div>
-
-                            <div class="relative z-10">
-                                <div class="mb-4">
-                                    <div
-                                        class="w-14 h-14 flex items-center justify-center rounded-full bg-purple-600/20 text-purple-400 border border-purple-500/50 mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <path
-                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                                            <path
-                                                d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Performance Máxima</h3>
-                                </div>
-                                <p class="text-sm text-neutral-400">
-                                    Sua página dedicada ao máximo desempenho e adaptabilidade, nosso maior objetivo é a
-                                    agilidade e a praticidade de acesso.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div id="service-card-3" data-gsap-card="true"
-                            class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-pink-red col-span-2 lg:col-span-1 row-span-1">
-                            <div
-                                class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                            </div>
-
-                            <div class="relative z-10">
-                                <div class="mb-4">
-                                    <div
-                                        class="w-14 h-14 flex items-center justify-center rounded-full bg-pink-600/20 text-pink-400 border border-pink-500/50 mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Alavancagem Máxima</h3>
-                                </div>
-                                <p class="text-sm text-neutral-400">
-                                    Geramos as melhores conexões estratégicas, transformando investimento em crescimento
-                                    sólido e mensurável.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div id="service-card-4" data-gsap-card="true"
-                            class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-red-green col-span-2 lg:col-span-1 row-span-1">
-                            <div
-                                class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                            </div>
-
-                            <div class="relative z-10">
-                                <div class="mb-4">
-                                    <div
-                                        class="w-14 h-14 flex items-center justify-center rounded-full bg-green-600/20 text-green-400 border border-green-500/50 mb-4">
-                                        <i class="fas fa-camera-retro text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Mídia Social</h3>
-                                </div>
-                                <p class="text-sm text-neutral-400">
-                                    Criamos identidade visual e artes profissionais para o feed e stories.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div id="service-card-5" data-gsap-card="true"
-                            class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-blue-purple col-span-2 lg:col-span-1 row-span-1">
-                            <div
-                                class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                            </div>
-
-                            <div class="relative z-10">
-                                <div class="mb-4">
-                                    <div
-                                        class="w-14 h-14 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/50 mb-4">
-                                        <i class="fas fa-map-marked-alt text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">SEO Local</h3>
-                                </div>
-                                <p class="text-sm text-neutral-400">
-                                    Gestão de Perfil Empresarial e destaque no Google Maps e Pesquisa.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div id="service-card-6" data-gsap-card="true"
-                            class="service-card group relative p-8 sm:p-10 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-purple-pink col-span-4 lg:col-span-2 row-span-1 min-h-[300px]">
-                            <div
-                                class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                            </div>
-
-                            <div class="relative z-10 h-full flex flex-col justify-between">
-                                <div class="mb-6">
-                                    <div
-                                        class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-600/20 text-purple-400 border border-purple-500/50 mb-4">
-                                        <i class="fas fa-brain text-3xl"></i>
-                                    </div>
-                                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">
-                                        Consultoria Customizada
-                                    </h3>
-                                </div>
-                                <p class="text-lg text-neutral-300 max-w-lg">
-                                    Análise aprofundada, reestruturação de sistemas legados ou desenvolvimento de
-                                    software
-                                    sob medida.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-12">
-                        <a href="#contato"
-                            class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                            text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.03]">
-                            Fale com um Especialista Agora
-                        </a>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="processo" class="py-24 relative overflow-hidden bg-gray-950">
-                <canvas id="processo-particles-canvas"></canvas>
-
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center mb-16">
-                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-pink-red">
-                            O Caminho do Seu Sucesso
-                        </h2>
-                        <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
-                            4 etapas para tirar sua visão do papel e levá-la ao ar com segurança e precisão.
-                        </p>
-                    </div>
-
-                    <div class="relative max-w-4xl mx-auto">
-                        <div id="timeline-line"
-                            class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-blue-500/20 hidden md:block">
-                            <div id="timeline-progress" class="absolute top-0 left-0 w-full h-0">
-                            </div>
-                        </div>
-
-                        <div class="space-y-20">
-
-                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
-                                <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
-                                    <div
-                                        class="inline-block px-4 py-2 rounded-full border border-blue-500/50 bg-blue-950/40 text-blue-300 mb-2 process-step">
-                                        PASSO 1
-                                    </div>
-                                    <h3 class="text-3xl font-semibold mb-2 text-white">Estratégias Refinadas</h3>
-                                    <p class="text-neutral-400">
-                                        Mergulhamos nos seus objetivos de negócio e adaptamos seu negócio ao seu
-                                        público-alvo, definindo a melhor estratégia possível.
-                                    </p>
-                                </div>
-                                <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
-                                </div>
-                            </div>
-
-                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
-                                <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
-                                    <div
-                                        class="inline-block px-4 py-2 rounded-full border border-purple-500/50 bg-purple-950/40 text-purple-300 mb-2 process-step">
-                                        PASSO 2
-                                    </div>
-                                    <h3 class="text-3xl font-semibold mb-2 text-white">Páginas Impactantes</h3>
-                                    <p class="text-neutral-400">
-                                        Criamos páginas que convertem, com um design moderno e interface intuitiva, seu
-                                        site é feito sob medida, pronto para receber novos clientes.
-                                    </p>
-                                </div>
-                                <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-purple-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
-                                </div>
-                            </div>
-
-                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
-                                <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
-                                    <div
-                                        class="inline-block px-4 py-2 rounded-full border border-pink-500/50 bg-pink-950/40 text-pink-300 mb-2 process-step">
-                                        PASSO 3
-                                    </div>
-                                    <h3 class="text-3xl font-semibold mb-2 text-white">Tráfego Certeiro</h3>
-                                    <p class="text-neutral-400">
-                                        Analisamos rigorosamente seu posicionamento de mercado e seu público alvo,
-                                        adaptamos minuciosamente seus anúncios para diminuir seus gastos e aumentar seus
-                                        ganhos.
-                                    </p>
-                                </div>
-                                <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-pink-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
-                                </div>
-                            </div>
-
-                            <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
-                                <div class="md:w-1/2 md:odd:pr-12 md:even:pr-12 text-center md:text-left">
-                                    <div
-                                        class="inline-block px-4 py-2 rounded-full border border-green-500/50 bg-green-950/40 text-green-300 mb-2 process-step">
-                                        PASSO 4
-                                    </div>
-                                    <h3 class="text-3xl font-semibold mb-2 text-white"> Lançamento e Manutenção</h3>
-                                    <p class="text-neutral-400">
-                                        Seu site é entregue com domínio e hospedagem própria, 100% seguro e com
-                                        certificado SSL. Também, oferecemos suporte constante ao seu sistema, garantindo
-                                        sua
-                                        integridade máxima.
-                                    </p>
-                                </div>
-                                <div
-                                    class="hidden md:block w-8 h-8 rounded-full bg-green-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
-                                </div>
-                            </div>
-
+                        <div class="aspect-video bg-gray-950 rounded-lg overflow-hidden">
+                            <video controls autoplay loop muted class="w-full h-full object-cover">
+                                <source src="assets/images/hero.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="resultados" class="py-24 bg-gray-950 relative overflow-hidden">
+        <section class="bg-gray-950 relative overflow-hidden" id="servicos-wrapper">
 
-                <div aria-hidden="true" class="absolute inset-0 z-0">
-                    <div id="results-background-magic"></div>
-                    <canvas id="resultados-particles-canvas"></canvas>
-                </div>
+            <div aria-hidden="true"
+                class="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-pink-900/30 bg-glass-overlay shadow-2xl shadow-purple-500/10">
+            </div>
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center mb-16">
-                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
-                            Resultados Que Você Deve Esperar
-                        </h2>
-                        <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
-                            Métricas e análises reais sobre o poder da performance Vennity.
-                        </p>
-                    </div>
-
-                    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                        <div data-gsap-result="true"
-                            class="result-card-container p-8 rounded-2xl border border-blue-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform duration-300">
-
-                            <p
-                                class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 mb-2">
-                                <span id="counter-1" data-target="300" class="counter-value">300</span>%
-                            </p>
-
-                            <h3 class="text-3xl font-bold mb-2 text-white">Retorno Estimado</h3>
-                            <p class="text-neutral-400 font-body">300% do seu investimento em menos de 18 meses.</p>
-                        </div>
-
-                        <div data-gsap-result="true"
-                            class="result-card-container p-8 rounded-2xl border border-purple-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform duration-300">
-
-                            <p
-                                class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-                                <span id="counter-2" data-target="99" class="counter-value">99</span>+
-                            </p>
-
-                            <h3 class="text-3xl font-bold mb-2 text-white">PageSpeed Score</h3>
-                            <p class="text-neutral-400 font-body">Performance otimizada, essencial para o SEO e a
-                                experiência do usuário.</p>
-                        </div>
-
-                        <div data-gsap-result="true"
-                            class="result-card-container p-8 rounded-2xl border border-pink-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform duration-300">
-
-                            <p
-                                class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-red-400 mb-2">
-                                <span id="counter-3" data-target="100.0" data-decimal="true"
-                                    class="counter-value">100</span>%
-                            </p>
-
-                            <h3 class="text-3xl font-bold mb-2 text-white">Garantia Uptime</h3>
-                            <p class="text-neutral-400 font-body">Sua página no ar 24 horas, 7 dias na semana.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="depoimentos" class="relative py-24 bg-gray-900/70 overflow-hidden">
-                <div class="max-w-content mx-auto relative z-10">
-                    <div class="text-center mb-16 px-4 sm:px-6 lg:px-8">
-                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-purple-pink">
-                            Reviews de Clientes
-                        </h2>
-                        <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
-                            Observe os reviews dados por alguns de nossos clientes!
-                        </p>
-                    </div>
-
-                    <div id="reviews-carousel"
-                        class="reviews-container snap-x snap-mandatory overflow-x-scroll flex space-x-8 lg:space-x-12 pb-8 px-4 sm:px-6 lg:px-8 pr-16 lg:pr-32 min-h-[550px]">
-                        <div id="review-1"
-                            class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
-                            <div class="p-8 rounded-2xl border border-purple-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
-                                data-gsap-review="true">
-
-                                <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
-                                    "A Vennity triplicou a nossa taxa de conversão em pouquíssimo tempo. O site é rápido
-                                    e
-                                    intuitivo, o suporte é rápido e funcional."
-                                </p>
-                                <div class="flex items-center">
-                                    <div
-                                        class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-purple-500 bg-gray-700 p-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="w-full h-full text-purple-400">
-                                            <path fill-rule="evenodd"
-                                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-white">J***** M.</p>
-                                        <p class="text-sm text-purple-400">Hotelaria</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="review-2"
-                            class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
-                            <div class="p-8 rounded-2xl border border-blue-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
-                                data-gsap-review="true">
-
-                                <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
-                                    "Nosso fluxo de contatos era baixíssimo antes de contratarmos o serviço de marketing
-                                    da
-                                    Vennity, a estratégia de tráfego assertiva reduziu meus custos e me fez voltar a
-                                    vender de fato."
-                                </p>
-                                <div class="flex items-center">
-                                    <div
-                                        class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-blue-500 bg-gray-700 p-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="w-full h-full text-blue-400">
-                                            <path fill-rule="evenodd"
-                                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-white">A***** M.</p>
-                                        <p class="text-sm text-blue-400">Imóveis</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="review-3"
-                            class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
-                            <div class="p-8 rounded-2xl border border-pink-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
-                                data-gsap-review="true">
-
-                                <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
-                                    "O site que recebemos é impecável, tenho novos clientes todos os dias, minha página
-                                    do
-                                    Instagram ficou LINDA!"
-                                </p>
-                                <div class="flex items-center">
-                                    <div
-                                        class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-pink-500 bg-gray-700 p-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="w-full h-full text-pink-400">
-                                            <path fill-rule="evenodd"
-                                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-white">S******* M*</p>
-                                        <p class="text-sm text-pink-400">Marketing</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="review-4"
-                            class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
-                            <div class="p-8 rounded-2xl border border-blue-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
-                                data-gsap-review="true">
-
-                                <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
-                                    "O suporte é incomparável. Resposta rápida e solução eficaz. Recomendo a Vennity
-                                    para
-                                    qualquer negócio sério."
-                                </p>
-                                <div class="flex items-center">
-                                    <div
-                                        class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-blue-500 bg-gray-700 p-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="w-full h-full text-blue-400">
-                                            <path fill-rule="evenodd"
-                                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-white">B*** C.</p>
-                                        <p class="text-sm text-blue-400">Consultoria</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="precos" class="py-24 bg-gray-950 relative overflow-hidden">
-
-                <div aria-hidden="true" class="absolute inset-0 z-0">
-                    <div id="results-background-magic"></div>
-                    <canvas id="resultados-particles-canvas"></canvas>
-                </div>
-
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center mb-16">
-                        <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
-                            Nossos Planos de Crescimento
-                        </h2>
-                        <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
-                            Desenvolvemos soluções sob medida.<strong>Esta é a sua oportunidade de dominar o
-                                mercado.</strong>
-                        </p>
-                    </div>
-
-                    <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-start mb-16">
-
-                        <div data-gsap-price="true"
-                            class="card-padrao p-8 rounded-3xl border border-gray-700/50 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-blue-500/30 hover:border-blue-500/80 transform hover:scale-[1.02] cursor-pointer">
-                            <h3 class="text-3xl font-black mb-2 text-blue-400 text-center md:text-left">
-                                BASIC
-                            </h3>
-                            <p class="text-neutral-400 mb-4 font-body">Presença digital essencial e primeiros leads
-                                garantidos.</p>
-
-                            <div class="mb-6">
-                                <p class="text-sm text-neutral-500 line-through">De R$ 950,00</p>
-                                <span class="text-4xl md:text-3xl font-extrabold text-white">a partir de R$
-                                    700,00</span>
-                                <span class="text-neutral-500">/ projeto</span>
-                                <p class="text-sm font-bold text-blue-400 mt-1">~7% DE DESCONTO NO PACOTE!</p>
-                            </div>
-                            <ul class="space-y-3 text-neutral-300 mb-8">
-                                <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Landing Page de
-                                    Alta Conversão</li>
-                                <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Estratégia de
-                                    Tráfego Pago Inicial (A partir de R$ 200 + investimento)</li>
-                                <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Domínio,
-                                    Hospedagem e Manutenção (R$ 49,90/mês)</li>
-                                <li class="flex items-center gap-2 text-neutral-600 line-through"><span
-                                        class="text-neutral-600">✗</span> Mídia Social
-                                    & Gestão de Perfil</li>
-                                <li class="flex items-center gap-2 text-neutral-600 line-through"><span
-                                        class="text-neutral-600">✗</span> Suporte
-                                    Prioritário Avançado</li>
-                            </ul>
-
-                            <button
-                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
-                                onclick="sendWhatsAppPackage('BASIC')">
-                                Contratar Pacote Basic
-                            </button>
-                        </div>
-
-                        <div data-gsap-price="true"
-                            class="card-destaque relative p-10 rounded-3xl border-4 border-purple-500 bg-gray-800/80 shadow-2xl shadow-purple-500/50 transition-all duration-300 transform scale-[1.05] hover:scale-[1.08] cursor-pointer">
-                            <div class="text-center mb-4">
-                                <span
-                                    class="inline-block px-4 py-1 text-sm font-black text-white bg-purple-600 rounded-full shadow-lg shadow-purple-500/50">MAIOR
-                                    DESCONTO E VALOR</span>
-                            </div>
-                            <h3
-                                class="text-4xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-white text-center md:text-left">
-                                PREMIUM
-                            </h3>
-                            <p class="text-neutral-300 mb-4 font-body">O pacote completo para dominar o mercado digital!
-                            </p>
-
-                            <div class="mb-6">
-                                <p class="text-sm text-neutral-500 line-through">De R$ 1.550,00</p>
-                                <span class="text-5xl font-extrabold text-white">a partir de R$
-                                    1.250,00</span>
-                                <span class="text-neutral-300">/ projeto</span>
-                                <p class="text-sm font-black text-purple-400 mt-1">MAIS DE 30% DE DESCONTO!</p>
-                            </div>
-                            <ul class="space-y-3 text-white mb-8">
-                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> <strong>Tudo
-                                        do Plano BASIC</strong></li>
-                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Mídia Social
-                                    (Designs e Estratégia)</li>
-                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Gestão de
-                                    Google Empresas (SEO Local)</li>
-                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Domínio,
-                                    Hospedagem e Manutenção (R$ 39,90/mês)</li>
-                                <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Suporte e
-                                    Prioridade Máxima</li>
-                            </ul>
-
-                            <button
-                                class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black py-4 rounded-full transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-purple-500/50"
-                                onclick="sendWhatsAppPackage('PREMIUM')">
-                                Contratar Pacote Premium
-                            </button>
-                        </div>
-
-                        <div data-gsap-price="true"
-                            class="card-padrao p-8 rounded-3xl border border-gray-700/50 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-pink-500/30 hover:border-pink-500/80 transform hover:scale-[1.02] cursor-pointer">
-                            <h3 class="text-3xl font-black mb-2 text-pink-400 text-center md:text-left">
-                                CUSTOM
-                            </h3>
-                            <p class="text-neutral-400 mb-4 font-body">Desenvolvimento de sistemas complexos e
-                                reestruturação.</p>
-
-                            <div class="mb-6">
-                                <span class="text-4xl md:text-3xl font-extrabold text-white">A Consultar</span>
-                                <span class="text-neutral-500">/ projeto</span>
-                            </div>
-
-                            <ul class="space-y-3 text-neutral-300 mb-8">
-                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Reestruturação
-                                    de Sistemas Legados</li>
-                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Desenvolvimento
-                                    de Software Personalizado</li>
-                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Arquitetura de
-                                    Microserviços e Escalabilidade</li>
-                                <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Consultoria
-                                    Estratégica e Suporte Dedicado</li>
-                                <li class="flex items-center gap-2"><span class="text-neutral-600">~</span> Preço, prazo
-                                    e tecnologias definidos após análise</li>
-                            </ul>
-
-                            <button
-                                class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
-                                onclick="sendWhatsAppPackage('CUSTOM')">
-                                Contratar Pacote Custom
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="mt-20">
-                        <h3
-                            class="text-2xl sm:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                            Serviços Avulsos: Soluções Focadas no Seu Projeto
-                        </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                                <div class="flex items-center mb-3">
-                                    <div
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500/20 text-blue-400 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-lg text-neutral-300 font-semibold">Landing Page</h4>
-                                </div>
-                                <p class="text-sm text-neutral-400 mb-4">Página única otimizada para capturar leads e
-                                    gerar
-                                    vendas.</p>
-                                <span class="block text-2xl font-extrabold price-tag">a partir de R$ 600,00</span>
-                            </div>
-
-                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                                <div class="flex items-center mb-3">
-                                    <div
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 text-purple-400 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.5 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.5-3-9s1.343-9 3-9m-9 9h.01M19.01 12h.01" />
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-lg text-neutral-300 font-semibold">Site Institucional</h4>
-                                </div>
-                                <p class="text-sm text-neutral-400 mb-4">Criação completa de um site multi-páginas para
-                                    sua
-                                    marca.</p>
-                                <span class="block text-2xl font-extrabold price-tag">a partir de R$ 1.000,00</span>
-                            </div>
-
-                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                                <div class="flex items-center mb-3">
-                                    <div
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-pink-500/20 text-pink-400 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-lg text-neutral-300 font-semibold">Gestão de Tráfego Pago</h4>
-                                </div>
-                                <p class="text-sm text-neutral-400 mb-4">Otimização e gerenciamento profissional de
-                                    campanhas
-                                    (Google Ads/Meta).</p>
-                                <span class="block text-2xl font-extrabold price-tag">a partir de R$ 200,00</span>
-                            </div>
-
-                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                                <div class="flex items-center mb-3">
-                                    <div
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500/20 text-green-400 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-lg text-neutral-300 font-semibold">Gestão de SEO</h4>
-                                </div>
-                                <p class="text-sm text-neutral-400 mb-4">Melhore seu SEO local e destaque-se no Google
-                                    Maps
-                                    e
-                                    Pesquisa.</p>
-                                <span class="block text-2xl font-extrabold price-tag">R$ 200,00</span>
-                            </div>
-
-                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                                <div class="flex items-center mb-3">
-                                    <div
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-400 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-lg text-neutral-300 font-semibold">Design para Mídia Social</h4>
-                                </div>
-                                <p class="text-sm text-neutral-400 mb-4">Criação de artes profissionais e adaptadas para
-                                    feed e stories.</p>
-                                <span class="block text-2xl font-extrabold price-tag">R$ 40,00 / Design</span>
-                            </div>
-
-                            <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                                <div class="flex items-center mb-3">
-                                    <div
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-lg text-neutral-300 font-semibold">Reestruturação de Sistemas</h4>
-                                </div>
-                                <p class="text-sm text-neutral-400 mb-4">Repaginação de sistemas legados ou com
-                                    problemas de
-                                    escala.</p>
-                                <span class="block text-2xl font-extrabold price-tag">Preço Sob Consulta</span>
-                            </div>
-                        </div>
-                        <div class="text-center mt-8">
-                            <a href="#contato"
-                                class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                                 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.03]">
-                                Fale Conosco sobre Serviços Avulsos
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="mt-20 pt-8 border-t border-white/10 text-center">
-                        <h3 class="text-2xl font-bold mb-4 text-purple-400">Transparência e Condições de Serviço</h3>
-                        <p class="text-neutral-500 max-w-4xl mx-auto text-sm space-y-2">
-                            <span class="block">
-                                AVISO LEGAL: Todos os projetos são individuais e o preço final e o tempo de
-                                entrega variam de acordo com a complexidade e requisitos específicos do cliente. O valor
-                                final será determinado e formalizado no Contrato de Prestação de Serviço.
-                            </span>
-                            <span class="block mt-2">
-                                PAGAMENTO: Todos os valores à vista mencionados incluem 10% de desconto (Pix).
-                                Pagamento no cartão de crédito pode ser realizado em até 3x com acréscimo de 10% de
-                                juros. O
-                                valor do projeto deve ser pago na assinatura do contrato.
-                            </span>
-                            <span class="block mt-2">
-                                CONTRATO E ALTERAÇÕES: Emitimos Nota Fiscal para todos os projetos. O contrato
-                                assinado garante abertura para alterações pontuais por uma semana após a entrega. Após
-                                este período, as alterações ficam limitadas à manutenção básica inclusa.
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contato" class="py-spacing-mega bg-gray-900/70 relative overflow-hidden">
-                <canvas id="contato-particles-canvas"></canvas>
-                <div aria-hidden="true"
-                    class="absolute inset-x-0 top-0 h-full bg-gradient-to-t from-gray-950/0 via-gray-950/20 to-gray-950/0">
-                </div>
-
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-                    <div id="contact-form-interactive" class="relative max-w-6xl mx-auto">
-                        <div id="mouse-glow-contato" class="mouse-glow hidden lg:block"></div>
-
-                        <div data-gsap-contact="main"
-                            class="p-8 lg:p-10 rounded-3xl bg-gray-950/90 border border-purple-500/40 shadow-2xl shadow-purple-500/20 bg-glass-overlay relative z-20">
-
-                            <div class="text-center mb-8" data-gsap-contact="header">
-                                <h2
-                                    class="text-4xl font-extrabold mb-2 text-transparent bg-clip-text gradient-purple-pink">
-                                    SOLICITE SEU ORÇAMENTO
-                                </h2>
-                                <p class="text-lg text-neutral-400 max-w-xl mx-auto">
-                                    Dê o próximo passo. Análise de projeto 100% gratuita!
-                                </p>
-                            </div>
-
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
-
-                                <div data-gsap-contact="details">
-                                    <h3 class="text-xl font-bold mb-4 text-blue-400">
-                                        Fale Conosco Diretamente
-                                    </h3>
-
-                                    <div class="space-y-4 text-neutral-300 mb-6">
-                                        <p class="flex items-center gap-3">
-                                            <span class="text-lg text-purple-400"><i class="fas fa-envelope"></i></span>
-                                            <span class="font-bold text-white mr-2">E-mail:</span>
-                                            <a href="mailto:contato@vbmdevs.com"
-                                                class="text-neutral-400 hover:text-purple-400 transition-colors">contato@vbmdevs.com</a>
-                                        </p>
-
-                                        <p class="flex items-center gap-3">
-                                            <span class="text-lg text-blue-400"><i class="fab fa-whatsapp"></i></span>
-                                            <span class="font-bold text-white mr-2">WhatsApp:</span>
-                                            <a href="https://wa.me/5551996299252" target="_blank"
-                                                class="text-neutral-400 hover:text-blue-400 transition-colors">+55 (51)
-                                                99629-9252</a>
-                                        </p>
-
-                                        <p class="flex items-center gap-3">
-                                            <span class="text-lg text-pink-400"><i
-                                                    class="fas fa-map-marker-alt"></i></span>
-                                            <span class="font-bold text-white mr-2">Atendimento:</span>
-                                            <span class="text-neutral-400">Remoto Global (Base: RS/BR)</span>
-                                        </p>
-                                    </div>
-
-                                    <div class="pt-4 border-t border-white/10" data-gsap-contact="social">
-                                        <h4 class="text-base font-bold mb-3 text-white">Siga nas Redes</h4>
-                                        <div class="flex space-x-4">
-                                            <a href="https://www.instagram.com/vbmdev" target="_blank"
-                                                rel="noopener noreferrer"
-                                                class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 border border-transparent hover:border-purple-400/50 rounded-full">
-                                                <i class="fab fa-instagram text-xl"></i>
-                                            </a>
-                                            <a href="https://wa.me/5551996299252" target="_blank"
-                                                rel="noopener noreferrer"
-                                                class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 border border-transparent hover:border-blue-400/50 rounded-full">
-                                                <i class="fab fa-whatsapp text-xl"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div data-gsap-contact="form">
-                                    <form id="whatsappForm" onsubmit="return sendWhatsApp(event)" class="space-y-4">
-
-                                        <div data-gsap-field="1">
-                                            <label for="nome"
-                                                class="block text-sm font-medium text-neutral-300 mb-1">Nome
-                                                Completo</label>
-                                            <input type="text" id="nome" name="nome" required
-                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                                        </div>
-
-                                        <div data-gsap-field="2">
-                                            <label for="email"
-                                                class="block text-sm font-medium text-neutral-300 mb-1">E-mail
-                                                Profissional</label>
-                                            <input type="email" id="email" name="email" required
-                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
-                                        </div>
-
-                                        <div data-gsap-field="3">
-                                            <label for="assunto"
-                                                class="block text-sm font-medium text-neutral-300 mb-1">Serviço
-                                                Desejado</label>
-                                            <input type="text" id="assunto" name="assunto" required
-                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
-                                                placeholder="Ex: Landing Page, Tráfego Pago...">
-                                        </div>
-
-                                        <div data-gsap-field="4">
-                                            <label for="mensagem"
-                                                class="block text-sm font-medium text-neutral-300 mb-1">Detalhes</label>
-                                            <textarea id="mensagem" name="mensagem" rows="3" required
-                                                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
-                                        </div>
-
-                                        <div data-gsap-field="5" class="pt-2">
-                                            <button type="submit"
-                                                class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                                             text-white font-bold py-3 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.01] uppercase text-base">
-                                                ENVIAR MENSAGEM
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer id="main-footer"
-            class="bg-deep-contrast pt-24 pb-12 border-t border-white/10 overflow-hidden gsap-footer-reveal">
-            <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-
-                <div class="text-center mb-24">
-                    <div class="footer-cta-title overflow-hidden">
-                        <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-white leading-tight">
-                            <span class="inline-block footer-title-line">
-                                PRONTO PARA
-                            </span>
-                            <br class="hidden sm:block" />
-                            <span
-                                class="inline-block footer-title-line text-transparent bg-clip-text gradient-blue-purple">
-                                MUDAR O JOGO?
-                            </span>
-                        </h2>
-                    </div>
-
-                    <p class="text-xl text-pink-500 max-w-4xl mx-auto mb-10 footer-cta-subtitle">
-                        Sua jornada começa aqui.
+            <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-huge">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                        Estratégias de Alto Nível: Do Visual até a Conversão
+                    </h2>
+                    <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                        Serviços que otimizam seus resultados.
                     </p>
+                </div>
 
+                <div class="grid grid-cols-4 grid-rows-2 gap-6 lg:gap-8 max-w-content mx-auto">
+
+                    <div id="service-card-1" data-gsap-card="true"
+                        class="service-card group relative p-8 sm:p-10 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-blue-purple col-span-4 lg:col-span-2 row-span-1 min-h-[300px]">
+                        <div
+                            class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        </div>
+
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div class="mb-6">
+                                <div
+                                    class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/50 mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">
+                                    Desenvolvimento Completo
+                                </h3>
+                            </div>
+                            <p class="text-lg text-neutral-300 max-w-lg">
+                                Construção de sistemas e sites customizados com as melhores tecnologias do mercado,
+                                garantindo<strong>longevidade, velocidade</strong>e uma experiência impecável.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="service-card-2" data-gsap-card="true"
+                        class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-purple-pink col-span-2 lg:col-span-1 row-span-1">
+                        <div
+                            class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-purple-600/20 text-purple-400 border border-purple-500/50 mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                        <path
+                                            d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Performance Máxima</h3>
+                            </div>
+                            <p class="text-sm text-neutral-400">
+                                Sua página dedicada ao máximo desempenho e adaptabilidade, nosso maior objetivo é a
+                                agilidade e a praticidade de acesso.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="service-card-3" data-gsap-card="true"
+                        class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-pink-red col-span-2 lg:col-span-1 row-span-1">
+                        <div
+                            class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-pink-600/20 text-pink-400 border border-pink-500/50 mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Alavancagem Máxima</h3>
+                            </div>
+                            <p class="text-sm text-neutral-400">
+                                Geramos as melhores conexões estratégicas, transformando investimento em crescimento
+                                sólido e mensurável.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="service-card-4" data-gsap-card="true"
+                        class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-red-green col-span-2 lg:col-span-1 row-span-1">
+                        <div
+                            class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-green-600/20 text-green-400 border border-green-500/50 mb-4">
+                                    <i class="fas fa-camera-retro text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Mídia Social</h3>
+                            </div>
+                            <p class="text-sm text-neutral-400">
+                                Criamos identidade visual e artes profissionais para o feed e stories.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="service-card-5" data-gsap-card="true"
+                        class="service-card group relative p-8 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-blue-purple col-span-2 lg:col-span-1 row-span-1">
+                        <div
+                            class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="mb-4">
+                                <div
+                                    class="w-14 h-14 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/50 mb-4">
+                                    <i class="fas fa-map-marked-alt text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">SEO Local</h3>
+                            </div>
+                            <p class="text-sm text-neutral-400">
+                                Gestão de Perfil Empresarial e destaque no Google Maps e Pesquisa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="service-card-6" data-gsap-card="true"
+                        class="service-card group relative p-8 sm:p-10 rounded-3xl bg-gray-900/60 shadow-2xl overflow-hidden transform border-gradient-purple-pink col-span-4 lg:col-span-2 row-span-1 min-h-[300px]">
+                        <div
+                            class="card-glow-overlay absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        </div>
+
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div class="mb-6">
+                                <div
+                                    class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-600/20 text-purple-400 border border-purple-500/50 mb-4">
+                                    <i class="fas fa-brain text-3xl"></i>
+                                </div>
+                                <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">
+                                    Consultoria Customizada
+                                </h3>
+                            </div>
+                            <p class="text-lg text-neutral-300 max-w-lg">
+                                Análise aprofundada, reestruturação de sistemas legados ou desenvolvimento de
+                                software
+                                sob medida.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
                     <a href="#contato"
-                        class="footer-cta-button inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                             text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.05] text-lg">
-                        <i class="fas fa-rocket mr-2"></i> INICIAR PROJETO AGORA
+                        class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.03]">
+                        Fale com um Especialista Agora
                     </a>
                 </div>
 
-                <div class="border-t border-white/10 pt-12">
-                    <div
-                        class="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-8 footer-links-container mx-auto max-w-6xl">
+            </div>
+        </section>
 
-                        <div class="col-span-2 md:col-span-1 footer-link-group-left text-left">
-                            <a href="#hero" class="flex items-center group mb-4">
-                                <img src="assets/images/icon.png" alt="Vennity Logo"
-                                    class="h-20 w-auto logo-text-link" />
-                            </a>
-                            <p class="text-sm text-neutral-500 max-w-xs">
-                                Performance digital e desenvolvimento de alto nível.
-                            </p>
+        <section id="processo" class="py-24 relative overflow-hidden bg-gray-950">
+            <canvas id="processo-particles-canvas"></canvas>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-pink-red">
+                        O Caminho do Seu Sucesso
+                    </h2>
+                    <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                        4 etapas para tirar sua visão do papel e levá-la ao ar com segurança e precisão.
+                    </p>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto">
+                    <div id="timeline-line"
+                        class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-blue-500/20 hidden md:block">
+                        <div id="timeline-progress" class="absolute top-0 left-0 w-full h-0">
                         </div>
+                    </div>
 
-                        <div class="md:col-span-1 text-left md:text-center">
-                            <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Mapa do
-                                Site</h4>
-                            <ul class="space-y-3 text-base inline-block md:mx-auto">
-                                <li class="footer-link-item"><a href="#sobre"
-                                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Sobre</a>
-                                </li>
-                                <li class="footer-link-item"><a href="#servicos-wrapper"
-                                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Serviços</a>
-                                </li>
-                                <li class="footer-link-item"><a href="#processo"
-                                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Processo</a>
-                                </li>
-                                <li class="footer-link-item"><a href="#precos"
-                                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Preços</a>
-                                </li>
-                                <li class="footer-link-item"><a href="#depoimentos"
-                                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Reviews</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="space-y-20">
 
-                        <div class="md:col-span-1 text-left md:text-center">
-                            <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Legal</h4>
-                            <ul class="space-y-3 text-base inline-block md:mx-auto">
-                                <li class="footer-link-item"><a href="politica-e-termos.html"
-                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Política
-                                        de Privacidade</a></li>
-                                <li class="footer-link-item"><a href="politica-e-termos.html"
-                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Termos
-                                        de Uso</a></li>
-                                <li class="footer-link-item"><a href="faq.html"
-                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">FAQ</a>
-                                </li>
-                                <li class="footer-link-item"><a href="#contato"
-                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Suporte</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="col-span-2 md:col-span-1 text-left">
-                            <h4 class="text-lg font-bold text-white mb-4 uppercase">Fale Conosco</h4>
-                            <div class="space-y-3 text-base">
-                                <p class="flex items-center gap-3 footer-contact-item">
-                                    <span class="text-purple-400"><i class="fas fa-envelope"></i></span>
-                                    <a href="mailto:contato@vbmdevs.com"
-                                        class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">contato@vbmdevs.com</a>
-                                </p>
-                                <p class="flex items-center gap-3 footer-contact-item">
-                                    <span class="text-blue-400"><i class="fab fa-whatsapp"></i></span>
-                                    <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
-                                        class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">+55
-                                        (51) 99629-9252</a>
-                                </p>
-                                <p class="flex items-center gap-3 footer-contact-item">
-                                    <span class="text-pink-400"><i class="fas fa-map-marker-alt"></i></span>
-                                    <span class="text-neutral-400">Rio Grande do Sul/BR (Remoto)</span>
+                        <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                            <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
+                                <div
+                                    class="inline-block px-4 py-2 rounded-full border border-blue-500/50 bg-blue-950/40 text-blue-300 mb-2 process-step">
+                                    PASSO 1
+                                </div>
+                                <h3 class="text-3xl font-semibold mb-2 text-white">Estratégias Refinadas</h3>
+                                <p class="text-neutral-400">
+                                    Mergulhamos nos seus objetivos de negócio e adaptamos seu negócio ao seu
+                                    público-alvo, definindo a melhor estratégia possível.
                                 </p>
                             </div>
-                            <div class="flex space-x-6 mt-6 footer-social-links">
-                                <a href="https://www.instagram.com/vbmdev" target="_blank" rel="noopener noreferrer"
-                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-purple-400/50">
-                                    <i class="fab fa-instagram text-2xl"></i>
-                                </a>
-                                <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
-                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-blue-400/50">
-                                    <i class="fab fa-whatsapp text-2xl"></i>
-                                </a>
+                            <div
+                                class="hidden md:block w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
+                            </div>
+                        </div>
+
+                        <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                            <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
+                                <div
+                                    class="inline-block px-4 py-2 rounded-full border border-purple-500/50 bg-purple-950/40 text-purple-300 mb-2 process-step">
+                                    PASSO 2
+                                </div>
+                                <h3 class="text-3xl font-semibold mb-2 text-white">Páginas Impactantes</h3>
+                                <p class="text-neutral-400">
+                                    Criamos páginas que convertem, com um design moderno e interface intuitiva, seu
+                                    site é feito sob medida, pronto para receber novos clientes.
+                                </p>
+                            </div>
+                            <div
+                                class="hidden md:block w-8 h-8 rounded-full bg-purple-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
+                            </div>
+                        </div>
+
+                        <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                            <div class="md:w-1/2 md:odd:pl-12 md:even:pr-12 text-center md:text-left">
+                                <div
+                                    class="inline-block px-4 py-2 rounded-full border border-pink-500/50 bg-pink-950/40 text-pink-300 mb-2 process-step">
+                                    PASSO 3
+                                </div>
+                                <h3 class="text-3xl font-semibold mb-2 text-white">Tráfego Certeiro</h3>
+                                <p class="text-neutral-400">
+                                    Analisamos rigorosamente seu posicionamento de mercado e seu público alvo,
+                                    adaptamos minuciosamente seus anúncios para diminuir seus gastos e aumentar seus
+                                    ganhos.
+                                </p>
+                            </div>
+                            <div
+                                class="hidden md:block w-8 h-8 rounded-full bg-pink-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
+                            </div>
+                        </div>
+
+                        <div class="process-step-item md:flex items-center relative md:odd:flex-row-reverse">
+                            <div class="md:w-1/2 md:odd:pr-12 md:even:pr-12 text-center md:text-left">
+                                <div
+                                    class="inline-block px-4 py-2 rounded-full border border-green-500/50 bg-green-950/40 text-green-300 mb-2 process-step">
+                                    PASSO 4
+                                </div>
+                                <h3 class="text-3xl font-semibold mb-2 text-white"> Lançamento e Manutenção</h3>
+                                <p class="text-neutral-400">
+                                    Seu site é entregue com domínio e hospedagem própria, 100% seguro e com
+                                    certificado SSL. Também, oferecemos suporte constante ao seu sistema, garantindo
+                                    sua
+                                    integridade máxima.
+                                </p>
+                            </div>
+                            <div
+                                class="hidden md:block w-8 h-8 rounded-full bg-green-600 border-4 border-gray-950 absolute left-1/2 transform -translate-x-1/2 z-20 timeline-dot">
                             </div>
                         </div>
 
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div
-                    class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-neutral-600 font-body footer-copyright">
-                    &copy; 2022 Vennity. - Todos os direitos reservados.
+        <section id="resultados" class="py-24 bg-gray-950 relative overflow-hidden">
+
+            <div aria-hidden="true" class="absolute inset-0 z-0">
+                <div id="results-background-magic"></div>
+                <canvas id="resultados-particles-canvas"></canvas>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                        Resultados Que Você Deve Esperar
+                    </h2>
+                    <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                        Métricas e análises reais sobre o poder da performance Vennity.
+                    </p>
+                </div>
+
+                <div id="results-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div data-gsap-result="true"
+                        class="result-card-container p-8 rounded-2xl border border-blue-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform duration-300">
+
+                        <p
+                            class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 mb-2">
+                            <span id="counter-1" data-target="300" class="counter-value">300</span>%
+                        </p>
+
+                        <h3 class="text-3xl font-bold mb-2 text-white">Retorno Estimado</h3>
+                        <p class="text-neutral-400 font-body">300% do seu investimento em menos de 18 meses.</p>
+                    </div>
+
+                    <div data-gsap-result="true"
+                        class="result-card-container p-8 rounded-2xl border border-purple-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform duration-300">
+
+                        <p
+                            class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
+                            <span id="counter-2" data-target="99" class="counter-value">99</span>+
+                        </p>
+
+                        <h3 class="text-3xl font-bold mb-2 text-white">PageSpeed Score</h3>
+                        <p class="text-neutral-400 font-body">Performance otimizada, essencial para o SEO e a
+                            experiência do usuário.</p>
+                    </div>
+
+                    <div data-gsap-result="true"
+                        class="result-card-container p-8 rounded-2xl border border-pink-500/50 bg-gray-900/60 shadow-xl text-center transform hover:scale-[1.03] transition-transform duration-300">
+
+                        <p
+                            class="text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-red-400 mb-2">
+                            <span id="counter-3" data-target="100.0" data-decimal="true"
+                                class="counter-value">100</span>%
+                        </p>
+
+                        <h3 class="text-3xl font-bold mb-2 text-white">Garantia Uptime</h3>
+                        <p class="text-neutral-400 font-body">Sua página no ar 24 horas, 7 dias na semana.</p>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </section>
 
-        <script src="assets/js/script.js"></script>
+        <section id="depoimentos" class="relative py-24 bg-gray-900/70 overflow-hidden">
+            <div class="max-w-content mx-auto relative z-10">
+                <div class="text-center mb-16 px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-purple-pink">
+                        Reviews de Clientes
+                    </h2>
+                    <p class="text-xl text-neutral-400 max-w-2xl mx-auto">
+                        Observe os reviews dados por alguns de nossos clientes!
+                    </p>
+                </div>
+
+                <div id="reviews-carousel"
+                    class="reviews-container snap-x snap-mandatory overflow-x-scroll flex space-x-8 lg:space-x-12 pb-8 px-4 sm:px-6 lg:px-8 pr-16 lg:pr-32 min-h-[550px]">
+                    <div id="review-1" class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
+                        <div class="p-8 rounded-2xl border border-purple-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
+                            data-gsap-review="true">
+
+                            <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
+                                "A Vennity triplicou a nossa taxa de conversão em pouquíssimo tempo. O site é rápido
+                                e
+                                intuitivo, o suporte é rápido e funcional."
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-purple-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-purple-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">J***** M.</p>
+                                    <p class="text-sm text-purple-400">Hotelaria</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="review-2" class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
+                        <div class="p-8 rounded-2xl border border-blue-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
+                            data-gsap-review="true">
+
+                            <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
+                                "Nosso fluxo de contatos era baixíssimo antes de contratarmos o serviço de marketing
+                                da
+                                Vennity, a estratégia de tráfego assertiva reduziu meus custos e me fez voltar a
+                                vender de fato."
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-blue-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-blue-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">A***** M.</p>
+                                    <p class="text-sm text-blue-400">Imóveis</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="review-3" class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
+                        <div class="p-8 rounded-2xl border border-pink-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
+                            data-gsap-review="true">
+
+                            <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
+                                "O site que recebemos é impecável, tenho novos clientes todos os dias, minha página
+                                do
+                                Instagram ficou LINDA!"
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-pink-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-pink-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">S******* M*</p>
+                                    <p class="text-sm text-pink-400">Marketing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="review-4" class="review-card-full snap-start flex-shrink-0 w-[85%] md:w-[40%] lg:w-[30%]">
+                        <div class="p-8 rounded-2xl border border-blue-500/30 bg-gray-950/70 shadow-2xl backdrop-blur-sm h-full review-inner-card"
+                            data-gsap-review="true">
+
+                            <p class="text-lg italic text-neutral-300 mb-6 min-h-20">
+                                "O suporte é incomparável. Resposta rápida e solução eficaz. Recomendo a Vennity
+                                para
+                                qualquer negócio sério."
+                            </p>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center mr-4 rounded-full border border-blue-500 bg-gray-700 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-full h-full text-blue-400">
+                                        <path fill-rule="evenodd"
+                                            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">B*** C.</p>
+                                    <p class="text-sm text-blue-400">Consultoria</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="precos" class="py-24 bg-gray-950 relative overflow-hidden">
+
+            <div aria-hidden="true" class="absolute inset-0 z-0">
+                <div id="results-background-magic"></div>
+                <canvas id="resultados-particles-canvas"></canvas>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
+                        Nossos Planos de Crescimento
+                    </h2>
+                    <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                        Desenvolvemos soluções sob medida.<strong>Esta é a sua oportunidade de dominar o
+                            mercado.</strong>
+                    </p>
+                </div>
+
+                <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-start mb-16">
+
+                    <div data-gsap-price="true"
+                        class="card-padrao p-8 rounded-3xl border border-gray-700/50 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-blue-500/30 hover:border-blue-500/80 transform hover:scale-[1.02] cursor-pointer">
+                        <h3 class="text-3xl font-black mb-2 text-blue-400 text-center md:text-left">
+                            BASIC
+                        </h3>
+                        <p class="text-neutral-400 mb-4 font-body">Presença digital essencial e primeiros leads
+                            garantidos.</p>
+
+                        <div class="mb-6">
+                            <p class="text-sm text-neutral-500 line-through">De R$ 950,00</p>
+                            <span class="text-4xl md:text-3xl font-extrabold text-white">a partir de R$
+                                700,00</span>
+                            <span class="text-neutral-500">/ projeto</span>
+                            <p class="text-sm font-bold text-blue-400 mt-1">~7% DE DESCONTO NO PACOTE!</p>
+                        </div>
+                        <ul class="space-y-3 text-neutral-300 mb-8">
+                            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Landing Page de
+                                Alta Conversão</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Estratégia de
+                                Tráfego Pago Inicial (A partir de R$ 200 + investimento)</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Domínio,
+                                Hospedagem e Manutenção (R$ 49,90/mês)</li>
+                            <li class="flex items-center gap-2 text-neutral-600 line-through"><span
+                                    class="text-neutral-600">✗</span> Mídia Social
+                                & Gestão de Perfil</li>
+                            <li class="flex items-center gap-2 text-neutral-600 line-through"><span
+                                    class="text-neutral-600">✗</span> Suporte
+                                Prioritário Avançado</li>
+                        </ul>
+
+                        <button
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
+                            onclick="sendWhatsAppPackage('BASIC')">
+                            Contratar Pacote Basic
+                        </button>
+                    </div>
+
+                    <div data-gsap-price="true"
+                        class="card-destaque relative p-10 rounded-3xl border-4 border-purple-500 bg-gray-800/80 shadow-2xl shadow-purple-500/50 transition-all duration-300 transform scale-[1.05] hover:scale-[1.08] cursor-pointer">
+                        <div class="text-center mb-4">
+                            <span
+                                class="inline-block px-4 py-1 text-sm font-black text-white bg-purple-600 rounded-full shadow-lg shadow-purple-500/50">MAIOR
+                                DESCONTO E VALOR</span>
+                        </div>
+                        <h3
+                            class="text-4xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-white text-center md:text-left">
+                            PREMIUM
+                        </h3>
+                        <p class="text-neutral-300 mb-4 font-body">O pacote completo para dominar o mercado digital!
+                        </p>
+
+                        <div class="mb-6">
+                            <p class="text-sm text-neutral-500 line-through">De R$ 1.550,00</p>
+                            <span class="text-5xl font-extrabold text-white">a partir de R$
+                                1.250,00</span>
+                            <span class="text-neutral-300">/ projeto</span>
+                            <p class="text-sm font-black text-purple-400 mt-1">MAIS DE 30% DE DESCONTO!</p>
+                        </div>
+                        <ul class="space-y-3 text-white mb-8">
+                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> <strong>Tudo
+                                    do Plano BASIC</strong></li>
+                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Mídia Social
+                                (Designs e Estratégia)</li>
+                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Gestão de
+                                Google Empresas (SEO Local)</li>
+                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Domínio,
+                                Hospedagem e Manutenção (R$ 39,90/mês)</li>
+                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Suporte e
+                                Prioridade Máxima</li>
+                        </ul>
+
+                        <button
+                            class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black py-4 rounded-full transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-purple-500/50"
+                            onclick="sendWhatsAppPackage('PREMIUM')">
+                            Contratar Pacote Premium
+                        </button>
+                    </div>
+
+                    <div data-gsap-price="true"
+                        class="card-padrao p-8 rounded-3xl border border-gray-700/50 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-pink-500/30 hover:border-pink-500/80 transform hover:scale-[1.02] cursor-pointer">
+                        <h3 class="text-3xl font-black mb-2 text-pink-400 text-center md:text-left">
+                            CUSTOM
+                        </h3>
+                        <p class="text-neutral-400 mb-4 font-body">Desenvolvimento de sistemas complexos e
+                            reestruturação.</p>
+
+                        <div class="mb-6">
+                            <span class="text-4xl md:text-3xl font-extrabold text-white">A Consultar</span>
+                            <span class="text-neutral-500">/ projeto</span>
+                        </div>
+
+                        <ul class="space-y-3 text-neutral-300 mb-8">
+                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Reestruturação
+                                de Sistemas Legados</li>
+                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Desenvolvimento
+                                de Software Personalizado</li>
+                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Arquitetura de
+                                Microserviços e Escalabilidade</li>
+                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Consultoria
+                                Estratégica e Suporte Dedicado</li>
+                            <li class="flex items-center gap-2"><span class="text-neutral-600">~</span> Preço, prazo
+                                e tecnologias definidos após análise</li>
+                        </ul>
+
+                        <button
+                            class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
+                            onclick="sendWhatsAppPackage('CUSTOM')">
+                            Contratar Pacote Custom
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-20">
+                    <h3
+                        class="text-2xl sm:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                        Serviços Avulsos: Soluções Focadas no Seu Projeto
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                            <div class="flex items-center mb-3">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500/20 text-blue-400 mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg text-neutral-300 font-semibold">Landing Page</h4>
+                            </div>
+                            <p class="text-sm text-neutral-400 mb-4">Página única otimizada para capturar leads e
+                                gerar
+                                vendas.</p>
+                            <span class="block text-2xl font-extrabold price-tag">a partir de R$ 600,00</span>
+                        </div>
+
+                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                            <div class="flex items-center mb-3">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 text-purple-400 mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.5 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.5-3-9s1.343-9 3-9m-9 9h.01M19.01 12h.01" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg text-neutral-300 font-semibold">Site Institucional</h4>
+                            </div>
+                            <p class="text-sm text-neutral-400 mb-4">Criação completa de um site multi-páginas para
+                                sua
+                                marca.</p>
+                            <span class="block text-2xl font-extrabold price-tag">a partir de R$ 1.000,00</span>
+                        </div>
+
+                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                            <div class="flex items-center mb-3">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-pink-500/20 text-pink-400 mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg text-neutral-300 font-semibold">Gestão de Tráfego Pago</h4>
+                            </div>
+                            <p class="text-sm text-neutral-400 mb-4">Otimização e gerenciamento profissional de
+                                campanhas
+                                (Google Ads/Meta).</p>
+                            <span class="block text-2xl font-extrabold price-tag">a partir de R$ 200,00</span>
+                        </div>
+
+                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                            <div class="flex items-center mb-3">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500/20 text-green-400 mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg text-neutral-300 font-semibold">Gestão de SEO</h4>
+                            </div>
+                            <p class="text-sm text-neutral-400 mb-4">Melhore seu SEO local e destaque-se no Google
+                                Maps
+                                e
+                                Pesquisa.</p>
+                            <span class="block text-2xl font-extrabold price-tag">R$ 200,00</span>
+                        </div>
+
+                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                            <div class="flex items-center mb-3">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-400 mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg text-neutral-300 font-semibold">Design para Mídia Social</h4>
+                            </div>
+                            <p class="text-sm text-neutral-400 mb-4">Criação de artes profissionais e adaptadas para
+                                feed e stories.</p>
+                            <span class="block text-2xl font-extrabold price-tag">R$ 40,00 / Design</span>
+                        </div>
+
+                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
+                            <div class="flex items-center mb-3">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400 mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg text-neutral-300 font-semibold">Reestruturação de Sistemas</h4>
+                            </div>
+                            <p class="text-sm text-neutral-400 mb-4">Repaginação de sistemas legados ou com
+                                problemas de
+                                escala.</p>
+                            <span class="block text-2xl font-extrabold price-tag">Preço Sob Consulta</span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8">
+                        <a href="#contato"
+                            class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                             text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.03]">
+                            Fale Conosco sobre Serviços Avulsos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-20 pt-8 border-t border-white/10 text-center">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Transparência e Condições de Serviço</h3>
+                    <p class="text-neutral-500 max-w-4xl mx-auto text-sm space-y-2">
+                        <span class="block">
+                            AVISO LEGAL: Todos os projetos são individuais e o preço final e o tempo de
+                            entrega variam de acordo com a complexidade e requisitos específicos do cliente. O valor
+                            final será determinado e formalizado no Contrato de Prestação de Serviço.
+                        </span>
+                        <span class="block mt-2">
+                            PAGAMENTO: Todos os valores à vista mencionados incluem 10% de desconto (Pix).
+                            Pagamento no cartão de crédito pode ser realizado em até 3x com acréscimo de 10% de
+                            juros. O
+                            valor do projeto deve ser pago na assinatura do contrato.
+                        </span>
+                        <span class="block mt-2">
+                            CONTRATO E ALTERAÇÕES: Emitimos Nota Fiscal para todos os projetos. O contrato
+                            assinado garante abertura para alterações pontuais por uma semana após a entrega. Após
+                            este período, as alterações ficam limitadas à manutenção básica inclusa.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="py-spacing-mega bg-gray-900/70 relative overflow-hidden">
+            <canvas id="contato-particles-canvas"></canvas>
+            <div aria-hidden="true"
+                class="absolute inset-x-0 top-0 h-full bg-gradient-to-t from-gray-950/0 via-gray-950/20 to-gray-950/0">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                <div id="contact-form-interactive" class="relative max-w-6xl mx-auto">
+                    <div id="mouse-glow-contato" class="mouse-glow hidden lg:block"></div>
+
+                    <div data-gsap-contact="main"
+                        class="p-8 lg:p-10 rounded-3xl bg-gray-950/90 border border-purple-500/40 shadow-2xl shadow-purple-500/20 bg-glass-overlay relative z-20">
+
+                        <div class="text-center mb-8" data-gsap-contact="header">
+                            <h2
+                                class="text-4xl font-extrabold mb-2 text-transparent bg-clip-text gradient-purple-pink">
+                                SOLICITE SEU ORÇAMENTO
+                            </h2>
+                            <p class="text-lg text-neutral-400 max-w-xl mx-auto">
+                                Dê o próximo passo. Análise de projeto 100% gratuita!
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+
+                            <div data-gsap-contact="details">
+                                <h3 class="text-xl font-bold mb-4 text-blue-400">
+                                    Fale Conosco Diretamente
+                                </h3>
+
+                                <div class="space-y-4 text-neutral-300 mb-6">
+                                    <p class="flex items-center gap-3">
+                                        <span class="text-lg text-purple-400"><i class="fas fa-envelope"></i></span>
+                                        <span class="font-bold text-white mr-2">E-mail:</span>
+                                        <a href="mailto:contato@vbmdevs.com"
+                                            class="text-neutral-400 hover:text-purple-400 transition-colors">contato@vbmdevs.com</a>
+                                    </p>
+
+                                    <p class="flex items-center gap-3">
+                                        <span class="text-lg text-blue-400"><i class="fab fa-whatsapp"></i></span>
+                                        <span class="font-bold text-white mr-2">WhatsApp:</span>
+                                        <a href="https://wa.me/5551996299252" target="_blank"
+                                            class="text-neutral-400 hover:text-blue-400 transition-colors">+55 (51)
+                                            99629-9252</a>
+                                    </p>
+
+                                    <p class="flex items-center gap-3">
+                                        <span class="text-lg text-pink-400"><i
+                                                class="fas fa-map-marker-alt"></i></span>
+                                        <span class="font-bold text-white mr-2">Atendimento:</span>
+                                        <span class="text-neutral-400">Remoto Global (Base: RS/BR)</span>
+                                    </p>
+                                </div>
+
+                                <div class="pt-4 border-t border-white/10" data-gsap-contact="social">
+                                    <h4 class="text-base font-bold mb-3 text-white">Siga nas Redes</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="https://www.instagram.com/vbmdev" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 border border-transparent hover:border-purple-400/50 rounded-full">
+                                            <i class="fab fa-instagram text-xl"></i>
+                                        </a>
+                                        <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
+                                            class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 border border-transparent hover:border-blue-400/50 rounded-full">
+                                            <i class="fab fa-whatsapp text-xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-gsap-contact="form">
+                                <form id="whatsappForm" onsubmit="return sendWhatsApp(event)" class="space-y-4">
+
+                                    <div data-gsap-field="1">
+                                        <label for="nome"
+                                            class="block text-sm font-medium text-neutral-300 mb-1">Nome
+                                            Completo</label>
+                                        <input type="text" id="nome" name="nome" required
+                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                    </div>
+
+                                    <div data-gsap-field="2">
+                                        <label for="email"
+                                            class="block text-sm font-medium text-neutral-300 mb-1">E-mail
+                                            Profissional</label>
+                                        <input type="email" id="email" name="email" required
+                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                    </div>
+
+                                    <div data-gsap-field="3">
+                                        <label for="assunto"
+                                            class="block text-sm font-medium text-neutral-300 mb-1">Serviço
+                                            Desejado</label>
+                                        <input type="text" id="assunto" name="assunto" required
+                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                            placeholder="Ex: Landing Page, Tráfego Pago...">
+                                    </div>
+
+                                    <div data-gsap-field="4">
+                                        <label for="mensagem"
+                                            class="block text-sm font-medium text-neutral-300 mb-1">Detalhes</label>
+                                        <textarea id="mensagem" name="mensagem" rows="3" required
+                                            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200"></textarea>
+                                    </div>
+
+                                    <div data-gsap-field="5" class="pt-2">
+                                        <button type="submit"
+                                            class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                                             text-white font-bold py-3 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.01] uppercase text-base">
+                                            ENVIAR MENSAGEM
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer" class="bg-deep-contrast pt-24 pb-12 border-t border-white/10 overflow-hidden gsap-footer-reveal">
+        <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-24">
+                <div class="footer-cta-title overflow-hidden">
+                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-white leading-tight">
+                        <span class="inline-block footer-title-line">
+                            PRONTO PARA
+                        </span>
+                        <br class="hidden sm:block" />
+                        <span
+                            class="inline-block footer-title-line text-transparent bg-clip-text gradient-blue-purple">
+                            MUDAR O JOGO?
+                        </span>
+                    </h2>
+                </div>
+
+                <p class="text-xl text-pink-500 max-w-4xl mx-auto mb-10 footer-cta-subtitle">
+                    Sua jornada começa aqui.
+                </p>
+
+                <a href="#contato"
+                    class="footer-cta-button inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
+                             text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.05] text-lg">
+                    <i class="fas fa-rocket mr-2"></i> INICIAR PROJETO AGORA
+                </a>
+            </div>
+
+            <div class="border-t border-white/10 pt-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-8 footer-links-container mx-auto max-w-6xl">
+
+                    <div class="col-span-2 md:col-span-1 footer-link-group-left text-left">
+                        <a href="#hero" class="flex items-center group mb-4">
+                            <img src="assets/images/icon.png" alt="Vennity Logo" width="80" height="80" class="h-20 w-auto logo-text-link" loading="lazy" />
+                        </a>
+                        <p class="text-sm text-neutral-500 max-w-xs">
+                            Performance digital e desenvolvimento de alto nível.
+                        </p>
+                    </div>
+
+                    <div class="md:col-span-1 text-left md:text-center">
+                        <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Mapa do
+                            Site</h4>
+                        <ul class="space-y-3 text-base inline-block md:mx-auto">
+                            <li class="footer-link-item"><a href="#sobre"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Sobre</a>
+                            </li>
+                            <li class="footer-link-item"><a href="#servicos-wrapper"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Serviços</a>
+                            </li>
+                            <li class="footer-link-item"><a href="#processo"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Processo</a>
+                            </li>
+                            <li class="footer-link-item"><a href="#precos"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Preços</a>
+                            </li>
+                            <li class="footer-link-item"><a href="#depoimentos"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Reviews</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="md:col-span-1 text-left md:text-center">
+                        <h4 class="text-lg font-bold text-white mb-4 uppercase footer-link-group-header">Legal</h4>
+                        <ul class="space-y-3 text-base inline-block md:mx-auto">
+                            <li class="footer-link-item"><a href="politica-e-termos.html"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Política
+                                    de Privacidade</a></li>
+                            <li class="footer-link-item"><a href="politica-e-termos.html"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Termos
+                                    de Uso</a></li>
+                            <li class="footer-link-item"><a href="faq.html"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">FAQ</a>
+                            </li>
+                            <li class="footer-link-item"><a href="#contato"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">Suporte</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-span-2 md:col-span-1 text-left">
+                        <h4 class="text-lg font-bold text-white mb-4 uppercase">Fale Conosco</h4>
+                        <div class="space-y-3 text-base">
+                            <p class="flex items-center gap-3 footer-contact-item">
+                                <span class="text-purple-400"><i class="fas fa-envelope"></i></span>
+                                <a href="mailto:contato@vbmdevs.com"
+                                    class="text-neutral-400 hover:text-purple-400 transition-colors duration-200">contato@vbmdevs.com</a>
+                            </p>
+                            <p class="flex items-center gap-3 footer-contact-item">
+                                <span class="text-blue-400"><i class="fab fa-whatsapp"></i></span>
+                                <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">+55
+                                    (51) 99629-9252</a>
+                            </p>
+                            <p class="flex items-center gap-3 footer-contact-item">
+                                <span class="text-pink-400"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="text-neutral-400">Rio Grande do Sul/BR (Remoto)</span>
+                            </p>
+                        </div>
+                        <div class="flex space-x-6 mt-6 footer-social-links">
+                            <a href="https://www.instagram.com/vbmdev" target="_blank" rel="noopener noreferrer"
+                                class="text-neutral-400 hover:text-purple-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-purple-400/50">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                            <a href="https://wa.me/5551996299252" target="_blank" rel="noopener noreferrer"
+                                class="text-neutral-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-full border border-transparent hover:border-blue-400/50">
+                                <i class="fab fa-whatsapp text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div
+                class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-neutral-600 font-body footer-copyright">
+                &copy; 2022 Vennity. - Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+
+    <script src="assets/js/script.js" defer></script>
+
 </body>
-
 </html>
