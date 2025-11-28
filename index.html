@@ -44,7 +44,8 @@
         class="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 p-6 transform translate-x-full transition-transform duration-300">
         <div class="flex justify-between items-center mb-10">
             <a href="#" class="flex items-center group px-4 py-2">
-                <img src="assets/images/icon.png" alt="Vennity Logo" width="48" height="48" class="h-12 w-auto logo-text-link" />
+                <img src="assets/images/icon.png" alt="Vennity Logo" width="48" height="48"
+                    class="h-12 w-auto logo-text-link" />
             </a>
             <button onclick="toggleMobileMenu()" class="text-white hover:text-purple-400 transition-colors">
                 <i class="fas fa-times text-xl"></i>
@@ -62,7 +63,7 @@
             <li><a href="#sobre" onclick="toggleMobileMenu()"
                     class="block hover:text-purple-400 transition-colors">Sobre</a></li>
             <li><a href="#precos" onclick="toggleMobileMenu()"
-                    class="block hover:text-purple-400 transition-colors">Preços</a></li>
+                    class="block hover:text-purple-400 transition-colors">Serviços</a></li>
             <li><a href="#contato" onclick="toggleMobileMenu()"
                     class="block hover:text-purple-400 transition-colors">Contato</a></li>
             <li><a href="politica-e-termos.html"
@@ -120,7 +121,7 @@
                         <ul class="flex space-x-4 items-center">
                             <li class="dock-link-text">
                                 <a href="#precos"
-                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Preços</a>
+                                    class="text-sm hover:text-purple-400 transition-colors duration-200 px-2 uppercase">Serviços</a>
                             </li>
                             <li class="dock-link-text">
                                 <a href="#contato"
@@ -131,7 +132,8 @@
                 </div>
 
                 <a href="#hero" class="flex items-center group md:hidden">
-                    <img src="assets/images/icon.png" alt="Vennity Logo" width="56" height="56" class="h-14 w-auto logo-text-link" />
+                    <img src="assets/images/icon.png" alt="Vennity Logo" width="56" height="56"
+                        class="h-14 w-auto logo-text-link" />
                 </a>
 
                 <button id="menu-toggle-button" onclick="toggleMobileMenu()"
@@ -237,11 +239,13 @@
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                            <img src="assets/images/logo-firebase.png" alt="Firebase" loading="lazy" width="80" height="80">
+                            <img src="assets/images/logo-firebase.png" alt="Firebase" loading="lazy" width="80"
+                                height="80">
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                            <img src="assets/images/logo-googleads.png" alt="Google Ads" loading="lazy" width="80" height="80">
+                            <img src="assets/images/logo-googleads.png" alt="Google Ads" loading="lazy" width="80"
+                                height="80">
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
@@ -257,7 +261,8 @@
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                            <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS" loading="lazy" width="80" height="80">
+                            <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS" loading="lazy" width="80"
+                                height="80">
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
@@ -272,11 +277,13 @@
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                            <img src="assets/images/logo-firebase.png" alt="Firebase" loading="lazy" width="80" height="80">
+                            <img src="assets/images/logo-firebase.png" alt="Firebase" loading="lazy" width="80"
+                                height="80">
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                            <img src="assets/images/logo-googleads.png" alt="Google Ads" loading="lazy" width="80" height="80">
+                            <img src="assets/images/logo-googleads.png" alt="Google Ads" loading="lazy" width="80"
+                                height="80">
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
@@ -292,7 +299,8 @@
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
-                            <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS" loading="lazy" width="80" height="80">
+                            <img src="assets/images/logo-tailwind.png" alt="Tailwind CSS" loading="lazy" width="80"
+                                height="80">
                         </div>
                         <div
                             class="dock-logo-item w-[8%] min-w-[80px] flex justify-center items-center mr-5 lg:mr-[4.5rem]">
@@ -889,286 +897,199 @@
             </div>
         </section>
 
-        <section id="precos" class="py-24 bg-gray-950 relative overflow-hidden">
+        <section id="precos" class="py-20 lg:py-32 bg-[#030712] relative overflow-hidden">
 
-            <div aria-hidden="true" class="absolute inset-0 z-0">
-                <div id="results-background-magic"></div>
-                <canvas id="resultados-particles-canvas"></canvas>
+            <div class="absolute inset-0 w-full h-full pointer-events-none">
+                <div
+                    class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen animate-pulse">
+                </div>
+                <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] mix-blend-screen animate-pulse"
+                    style="animation-delay: 1s;"></div>
+                <canvas id="resultados-particles-canvas" class="opacity-30"></canvas>
             </div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-blue-purple">
-                        Nossos Planos de Crescimento
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+
+                <div class="text-center mb-16 lg:mb-24">
+                    <h2
+                        class="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter mb-6 drop-shadow-2xl">
+                        SERVIÇOS
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse">.</span>
                     </h2>
-                    <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
-                        Desenvolvemos soluções sob medida.<strong>Esta é a sua oportunidade de dominar o
-                            mercado.</strong>
+                    <p
+                        class="text-neutral-400 font-bold tracking-[0.2em] uppercase text-xs md:text-sm bg-white/5 inline-block px-4 py-2 rounded-full backdrop-blur-sm border border-white/5">
+                        Infraestrutura Digital de Alta Performance
                     </p>
                 </div>
 
-                <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-start mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
 
-                    <div data-gsap-price="true"
-                        class="card-padrao p-8 rounded-3xl border border-gray-700/50 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-blue-500/30 hover:border-blue-500/80 transform hover:scale-[1.02] cursor-pointer">
-                        <h3 class="text-3xl font-black mb-2 text-blue-400 text-center md:text-left">
-                            BASIC
-                        </h3>
-                        <p class="text-neutral-400 mb-4 font-body">Presença digital essencial e primeiros leads
-                            garantidos.</p>
-
-                        <div class="mb-6">
-                            <p class="text-sm text-neutral-500 line-through">De R$ 950,00</p>
-                            <span class="text-4xl md:text-3xl font-extrabold text-white">a partir de R$
-                                700,00</span>
-                            <span class="text-neutral-500">/ projeto</span>
-                            <p class="text-sm font-bold text-blue-400 mt-1">~7% DE DESCONTO NO PACOTE!</p>
+                    <div class="group relative min-h-[400px] md:min-h-[460px] cursor-default">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200 animate-tilt">
                         </div>
-                        <ul class="space-y-3 text-neutral-300 mb-8">
-                            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Landing Page de
-                                Alta Conversão</li>
-                            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Estratégia de
-                                Tráfego Pago Inicial (A partir de R$ 200 + investimento)</li>
-                            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Domínio,
-                                Hospedagem e Manutenção (R$ 49,90/mês)</li>
-                            <li class="flex items-center gap-2 text-neutral-600 line-through"><span
-                                    class="text-neutral-600">✗</span> Mídia Social
-                                & Gestão de Perfil</li>
-                            <li class="flex items-center gap-2 text-neutral-600 line-through"><span
-                                    class="text-neutral-600">✗</span> Suporte
-                                Prioritário Avançado</li>
-                        </ul>
 
-                        <button
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
-                            onclick="sendWhatsAppPackage('BASIC')">
-                            Contratar Pacote Basic
-                        </button>
+                        <div
+                            class="relative h-full rounded-[2.5rem] bg-[#050505] p-8 lg:p-10 flex flex-col justify-between overflow-hidden border border-white/10 group-hover:border-cyan-500/30 transition-all duration-500 group-hover:-translate-y-2">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10 flex justify-between items-start">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-gray-900/80 border border-white/10 flex items-center justify-center group-hover:bg-cyan-500 group-hover:border-cyan-400 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-cyan-500/50 group-hover:rotate-3">
+                                    <i
+                                        class="fas fa-code text-2xl lg:text-3xl text-neutral-400 group-hover:text-white transition-colors duration-300"></i>
+                                </div>
+                                <span
+                                    class="text-6xl lg:text-8xl font-black text-white/5 group-hover:text-cyan-500/10 transition-colors duration-500 select-none">01</span>
+                            </div>
+
+                            <div class="relative z-10 mt-8">
+                                <h3
+                                    class="text-3xl lg:text-4xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all duration-300 uppercase italic">
+                                    Development
+                                </h3>
+                                <p
+                                    class="text-neutral-400 text-base lg:text-lg leading-relaxed group-hover:text-neutral-200 transition-colors duration-300">
+                                    Sites e aplicações ultra-rápidas. Stack moderna com Next.js e React focada em
+                                    performance bruta.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div data-gsap-price="true"
-                        class="card-destaque relative p-10 rounded-3xl border-4 border-purple-500 bg-gray-800/80 shadow-2xl shadow-purple-500/50 transition-all duration-300 transform scale-[1.05] hover:scale-[1.08] cursor-pointer">
-                        <div class="text-center mb-4">
-                            <span
-                                class="inline-block px-4 py-1 text-sm font-black text-white bg-purple-600 rounded-full shadow-lg shadow-purple-500/50">MAIOR
-                                DESCONTO E VALOR</span>
+                    <div class="group relative min-h-[400px] md:min-h-[460px] cursor-default">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200">
                         </div>
-                        <h3
-                            class="text-4xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-white text-center md:text-left">
-                            PREMIUM
-                        </h3>
-                        <p class="text-neutral-300 mb-4 font-body">O pacote completo para dominar o mercado digital!
-                        </p>
 
-                        <div class="mb-6">
-                            <p class="text-sm text-neutral-500 line-through">De R$ 1.550,00</p>
-                            <span class="text-5xl font-extrabold text-white">a partir de R$
-                                1.250,00</span>
-                            <span class="text-neutral-300">/ projeto</span>
-                            <p class="text-sm font-black text-purple-400 mt-1">MAIS DE 30% DE DESCONTO!</p>
+                        <div
+                            class="relative h-full rounded-[2.5rem] bg-[#050505] p-8 lg:p-10 flex flex-col justify-between overflow-hidden border border-white/10 group-hover:border-purple-500/30 transition-all duration-500 group-hover:-translate-y-2">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10 flex justify-between items-start">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-gray-900/80 border border-white/10 flex items-center justify-center group-hover:bg-purple-500 group-hover:border-purple-400 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-purple-500/50 group-hover:-rotate-3">
+                                    <i
+                                        class="fas fa-pen-nib text-2xl lg:text-3xl text-neutral-400 group-hover:text-white transition-colors duration-300"></i>
+                                </div>
+                                <span
+                                    class="text-6xl lg:text-8xl font-black text-white/5 group-hover:text-purple-500/10 transition-colors duration-500 select-none">02</span>
+                            </div>
+
+                            <div class="relative z-10 mt-8">
+                                <h3
+                                    class="text-3xl lg:text-4xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 transition-all duration-300 uppercase italic">
+                                    UI/UX Design
+                                </h3>
+                                <p
+                                    class="text-neutral-400 text-base lg:text-lg leading-relaxed group-hover:text-neutral-200 transition-colors duration-300">
+                                    Interfaces imersivas. Identidade visual e design systems que prendem a atenção e
+                                    convertem.
+                                </p>
+                            </div>
                         </div>
-                        <ul class="space-y-3 text-white mb-8">
-                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> <strong>Tudo
-                                    do Plano BASIC</strong></li>
-                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Mídia Social
-                                (Designs e Estratégia)</li>
-                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Gestão de
-                                Google Empresas (SEO Local)</li>
-                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Domínio,
-                                Hospedagem e Manutenção (R$ 39,90/mês)</li>
-                            <li class="flex items-center gap-2"><span class="text-purple-400">★</span> Suporte e
-                                Prioridade Máxima</li>
-                        </ul>
-
-                        <button
-                            class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black py-4 rounded-full transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-purple-500/50"
-                            onclick="sendWhatsAppPackage('PREMIUM')">
-                            Contratar Pacote Premium
-                        </button>
                     </div>
 
-                    <div data-gsap-price="true"
-                        class="card-padrao p-8 rounded-3xl border border-gray-700/50 bg-gray-900/60 shadow-xl transition-all duration-300 hover:shadow-pink-500/30 hover:border-pink-500/80 transform hover:scale-[1.02] cursor-pointer">
-                        <h3 class="text-3xl font-black mb-2 text-pink-400 text-center md:text-left">
-                            CUSTOM
-                        </h3>
-                        <p class="text-neutral-400 mb-4 font-body">Desenvolvimento de sistemas complexos e
-                            reestruturação.</p>
-
-                        <div class="mb-6">
-                            <span class="text-4xl md:text-3xl font-extrabold text-white">A Consultar</span>
-                            <span class="text-neutral-500">/ projeto</span>
+                    <div class="group relative min-h-[400px] md:min-h-[460px] cursor-default">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-red-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200">
                         </div>
 
-                        <ul class="space-y-3 text-neutral-300 mb-8">
-                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Reestruturação
-                                de Sistemas Legados</li>
-                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Desenvolvimento
-                                de Software Personalizado</li>
-                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Arquitetura de
-                                Microserviços e Escalabilidade</li>
-                            <li class="flex items-center gap-2"><span class="text-pink-500">✓</span> Consultoria
-                                Estratégica e Suporte Dedicado</li>
-                            <li class="flex items-center gap-2"><span class="text-neutral-600">~</span> Preço, prazo
-                                e tecnologias definidos após análise</li>
-                        </ul>
+                        <div
+                            class="relative h-full rounded-[2.5rem] bg-[#050505] p-8 lg:p-10 flex flex-col justify-between overflow-hidden border border-white/10 group-hover:border-orange-500/30 transition-all duration-500 group-hover:-translate-y-2">
 
-                        <button
-                            class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-full transition-colors duration-200"
-                            onclick="sendWhatsAppPackage('CUSTOM')">
-                            Contratar Pacote Custom
-                        </button>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10 flex justify-between items-start">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-gray-900/80 border border-white/10 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-400 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-orange-500/50 group-hover:rotate-3">
+                                    <i
+                                        class="fas fa-rocket text-2xl lg:text-3xl text-neutral-400 group-hover:text-white transition-colors duration-300"></i>
+                                </div>
+                                <span
+                                    class="text-6xl lg:text-8xl font-black text-white/5 group-hover:text-orange-500/10 transition-colors duration-500 select-none">03</span>
+                            </div>
+
+                            <div class="relative z-10 mt-8">
+                                <h3
+                                    class="text-3xl lg:text-4xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-red-500 transition-all duration-300 uppercase italic">
+                                    Growth Ads
+                                </h3>
+                                <p
+                                    class="text-neutral-400 text-base lg:text-lg leading-relaxed group-hover:text-neutral-200 transition-colors duration-300">
+                                    Gestão de tráfego agressiva. Google e Meta Ads otimizados para ROI máximo e escala
+                                    previsível.
+                                </p>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="group relative min-h-[400px] md:min-h-[460px] cursor-default">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200">
+                        </div>
+
+                        <div
+                            class="relative h-full rounded-[2.5rem] bg-[#050505] p-8 lg:p-10 flex flex-col justify-between overflow-hidden border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500 group-hover:-translate-y-2">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10 flex justify-between items-start">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-gray-900/80 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:border-emerald-400 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-emerald-500/50 group-hover:-rotate-3">
+                                    <i
+                                        class="fas fa-brain text-2xl lg:text-3xl text-neutral-400 group-hover:text-white transition-colors duration-300"></i>
+                                </div>
+                                <span
+                                    class="text-6xl lg:text-8xl font-black text-white/5 group-hover:text-emerald-500/10 transition-colors duration-500 select-none">04</span>
+                            </div>
+
+                            <div class="relative z-10 mt-8">
+                                <h3
+                                    class="text-3xl lg:text-4xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-green-500 transition-all duration-300 uppercase italic">
+                                    Consultoria
+                                </h3>
+                                <p
+                                    class="text-neutral-400 text-base lg:text-lg leading-relaxed group-hover:text-neutral-200 transition-colors duration-300">
+                                    Soluções para problemas complexos. Reestruturação de sistemas e arquitetura de
+                                    software sob medida.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="mt-20">
-                    <h3
-                        class="text-2xl sm:text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                        Serviços Avulsos: Soluções Focadas no Seu Projeto
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                            <div class="flex items-center mb-3">
-                                <div
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500/20 text-blue-400 mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg text-neutral-300 font-semibold">Landing Page</h4>
-                            </div>
-                            <p class="text-sm text-neutral-400 mb-4">Página única otimizada para capturar leads e
-                                gerar
-                                vendas.</p>
-                            <span class="block text-2xl font-extrabold price-tag">a partir de R$ 600,00</span>
+                <div class="mt-20 lg:mt-28 flex justify-center">
+                    <div class="relative group cursor-pointer">
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500 group-hover:blur-lg animate-pulse">
                         </div>
-
-                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                            <div class="flex items-center mb-3">
-                                <div
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 text-purple-400 mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.5 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.5-3-9s1.343-9 3-9m-9 9h.01M19.01 12h.01" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg text-neutral-300 font-semibold">Site Institucional</h4>
-                            </div>
-                            <p class="text-sm text-neutral-400 mb-4">Criação completa de um site multi-páginas para
-                                sua
-                                marca.</p>
-                            <span class="block text-2xl font-extrabold price-tag">a partir de R$ 1.000,00</span>
-                        </div>
-
-                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                            <div class="flex items-center mb-3">
-                                <div
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-pink-500/20 text-pink-400 mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg text-neutral-300 font-semibold">Gestão de Tráfego Pago</h4>
-                            </div>
-                            <p class="text-sm text-neutral-400 mb-4">Otimização e gerenciamento profissional de
-                                campanhas
-                                (Google Ads/Meta).</p>
-                            <span class="block text-2xl font-extrabold price-tag">a partir de R$ 200,00</span>
-                        </div>
-
-                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                            <div class="flex items-center mb-3">
-                                <div
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500/20 text-green-400 mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg text-neutral-300 font-semibold">Gestão de SEO</h4>
-                            </div>
-                            <p class="text-sm text-neutral-400 mb-4">Melhore seu SEO local e destaque-se no Google
-                                Maps
-                                e
-                                Pesquisa.</p>
-                            <span class="block text-2xl font-extrabold price-tag">R$ 200,00</span>
-                        </div>
-
-                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                            <div class="flex items-center mb-3">
-                                <div
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-400 mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg text-neutral-300 font-semibold">Design para Mídia Social</h4>
-                            </div>
-                            <p class="text-sm text-neutral-400 mb-4">Criação de artes profissionais e adaptadas para
-                                feed e stories.</p>
-                            <span class="block text-2xl font-extrabold price-tag">R$ 40,00 / Design</span>
-                        </div>
-
-                        <div class="p-6 rounded-xl border border-gray-700 individual-service-card">
-                            <div class="flex items-center mb-3">
-                                <div
-                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400 mr-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg text-neutral-300 font-semibold">Reestruturação de Sistemas</h4>
-                            </div>
-                            <p class="text-sm text-neutral-400 mb-4">Repaginação de sistemas legados ou com
-                                problemas de
-                                escala.</p>
-                            <span class="block text-2xl font-extrabold price-tag">Preço Sob Consulta</span>
-                        </div>
-                    </div>
-                    <div class="text-center mt-8">
                         <a href="#contato"
-                            class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600
-                             text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.03]">
-                            Fale Conosco sobre Serviços Avulsos
+                            class="relative px-12 py-5 bg-black rounded-full leading-none flex items-center border border-white/10 group-hover:border-white/30 transition-all active:scale-95">
+                            <span
+                                class="text-white font-bold tracking-widest uppercase text-base lg:text-lg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-200 group-hover:to-purple-200 transition-all duration-300">
+                                Iniciar Projeto
+                            </span>
+                            <span
+                                class="ml-4 text-purple-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110">
+                                <i class="fas fa-arrow-right text-lg lg:text-xl"></i>
+                            </span>
                         </a>
                     </div>
                 </div>
 
-                <div class="mt-20 pt-8 border-t border-white/10 text-center">
-                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Transparência e Condições de Serviço</h3>
-                    <p class="text-neutral-500 max-w-4xl mx-auto text-sm space-y-2">
-                        <span class="block">
-                            AVISO LEGAL: Todos os projetos são individuais e o preço final e o tempo de
-                            entrega variam de acordo com a complexidade e requisitos específicos do cliente. O valor
-                            final será determinado e formalizado no Contrato de Prestação de Serviço.
-                        </span>
-                        <span class="block mt-2">
-                            PAGAMENTO: Todos os valores à vista mencionados incluem 10% de desconto (Pix).
-                            Pagamento no cartão de crédito pode ser realizado em até 3x com acréscimo de 10% de
-                            juros. O
-                            valor do projeto deve ser pago na assinatura do contrato.
-                        </span>
-                        <span class="block mt-2">
-                            CONTRATO E ALTERAÇÕES: Emitimos Nota Fiscal para todos os projetos. O contrato
-                            assinado garante abertura para alterações pontuais por uma semana após a entrega. Após
-                            este período, as alterações ficam limitadas à manutenção básica inclusa.
-                        </span>
-                    </p>
-                </div>
             </div>
         </section>
 
@@ -1187,8 +1108,7 @@
                         class="p-8 lg:p-10 rounded-3xl bg-gray-950/90 border border-purple-500/40 shadow-2xl shadow-purple-500/20 bg-glass-overlay relative z-20">
 
                         <div class="text-center mb-8" data-gsap-contact="header">
-                            <h2
-                                class="text-4xl font-extrabold mb-2 text-transparent bg-clip-text gradient-purple-pink">
+                            <h2 class="text-4xl font-extrabold mb-2 text-transparent bg-clip-text gradient-purple-pink">
                                 SOLICITE SEU ORÇAMENTO
                             </h2>
                             <p class="text-lg text-neutral-400 max-w-xl mx-auto">
@@ -1220,8 +1140,7 @@
                                     </p>
 
                                     <p class="flex items-center gap-3">
-                                        <span class="text-lg text-pink-400"><i
-                                                class="fas fa-map-marker-alt"></i></span>
+                                        <span class="text-lg text-pink-400"><i class="fas fa-map-marker-alt"></i></span>
                                         <span class="font-bold text-white mr-2">Atendimento:</span>
                                         <span class="text-neutral-400">Remoto Global (Base: RS/BR)</span>
                                     </p>
@@ -1247,8 +1166,7 @@
                                 <form id="whatsappForm" onsubmit="return sendWhatsApp(event)" class="space-y-4">
 
                                     <div data-gsap-field="1">
-                                        <label for="nome"
-                                            class="block text-sm font-medium text-neutral-300 mb-1">Nome
+                                        <label for="nome" class="block text-sm font-medium text-neutral-300 mb-1">Nome
                                             Completo</label>
                                         <input type="text" id="nome" name="nome" required
                                             class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-neutral-500 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
@@ -1294,7 +1212,8 @@
         </section>
     </main>
 
-    <footer id="main-footer" class="bg-deep-contrast pt-24 pb-12 border-t border-white/10 overflow-hidden gsap-footer-reveal">
+    <footer id="main-footer"
+        class="bg-deep-contrast pt-24 pb-12 border-t border-white/10 overflow-hidden gsap-footer-reveal">
         <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
 
             <div class="text-center mb-24">
@@ -1304,8 +1223,7 @@
                             PRONTO PARA
                         </span>
                         <br class="hidden sm:block" />
-                        <span
-                            class="inline-block footer-title-line text-transparent bg-clip-text gradient-blue-purple">
+                        <span class="inline-block footer-title-line text-transparent bg-clip-text gradient-blue-purple">
                             MUDAR O JOGO?
                         </span>
                     </h2>
@@ -1327,7 +1245,8 @@
 
                     <div class="col-span-2 md:col-span-1 footer-link-group-left text-left">
                         <a href="#hero" class="flex items-center group mb-4">
-                            <img src="assets/images/icon.png" alt="Vennity Logo" width="80" height="80" class="h-20 w-auto logo-text-link" loading="lazy" />
+                            <img src="assets/images/icon.png" alt="Vennity Logo" width="80" height="80"
+                                class="h-20 w-auto logo-text-link" loading="lazy" />
                         </a>
                         <p class="text-sm text-neutral-500 max-w-xs">
                             Performance digital e desenvolvimento de alto nível.
@@ -1348,7 +1267,7 @@
                                     class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Processo</a>
                             </li>
                             <li class="footer-link-item"><a href="#precos"
-                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Preços</a>
+                                    class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Serviços</a>
                             </li>
                             <li class="footer-link-item"><a href="#depoimentos"
                                     class="text-neutral-400 hover:text-blue-400 transition-colors duration-200">Reviews</a>
@@ -1428,9 +1347,11 @@
             }, 'google_translate_element');
         }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        defer></script>
 
     <script src="assets/js/script.js" defer></script>
 
 </body>
+
 </html>
